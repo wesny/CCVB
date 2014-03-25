@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="../static/style.css" type="text/css" rel="stylesheet" />
+    <title>Socialpedia - Home</title>
+  </head>
+  <body>
+    <h1 class="center">Socialpedia</h1>
+    <svg id="svg" height=100% width=100%>
+      <foreignobject width=100% height=100%>
+	<div style="width:100%;" class="center"> 
+	  <div style="float:left; width:50%;">
+	    Left
+	  </div>
+	  <div style="float:right; width:50%;">
+	    Right
+	  </div>
+	</div>
+      </foreignobject>
+    </svg>
+  </body>
+
+  <script>
+   s = document.getElementById("svg");
+
+   var makeBackground = function() {
+      width = parseInt(document.width);
+      height = parseInt(document.height);
+
+      var rects = s.getElementsByTagName('rect');
+      var len = rects.length
+      for(var i = 0; i < len; i++) {
+          rects[0].parentNode.removeChild(rects[0]);
+      }
+
+      for(var i = 0; i < 100; i++) {
+         var randpixel = document.createElementNS("http://www.w3.org/2000/svg","rect");
+         var dimension = Math.random() * 10 + 1;
+         randpixel.setAttribute('x',Math.random() * width);
+         randpixel.setAttribute('y',Math.random() * height);
+         randpixel.setAttribute('width',dimension);
+         randpixel.setAttribute('height',dimension);
+         randpixel.setAttribute('fill','#7aff85');
+         s.appendChild(randpixel);
+
+         var randpixel2 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+         var dimension2 = Math.random() * 10 + 1;
+         randpixel2.setAttribute('x',Math.random() * width);
+         randpixel2.setAttribute('y',Math.random() * height);
+         randpixel2.setAttribute('width',dimension2);
+         randpixel2.setAttribute('height',dimension2);
+         randpixel2.setAttribute('fill','#baffc0');
+         s.appendChild(randpixel2);
+
+         var randpixel3 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+         var dimension3 = Math.random() * 10 + 1;
+         randpixel3.setAttribute('x',Math.random() * width);
+         randpixel3.setAttribute('y',Math.random() * height);
+         randpixel3.setAttribute('width',dimension3);
+         randpixel3.setAttribute('height',dimension3);
+         randpixel3.setAttribute('fill','#9effa6');
+         s.appendChild(randpixel3);
+      }
+   }
+
+   window.onresize = makeBackground;
+   makeBackground();
+  </script>
+</html>
+
