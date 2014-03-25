@@ -17,6 +17,14 @@ This could be expanded to look at the daily, weekly, monthly, and yearly popular
 
 2. Create better version of Klout that gives you analytics on how effective you are on social media. 
 
-Chris: I'll probably spend about an hour each on Wednesday night and Thursday night setting up a skeleton for the user interface.
+###Chris
 
-Jack: I can spend an hour a night on this project
+I'll probably spend about an hour each on Wednesday night and Thursday night setting up a skeleton for the user interface.
+
+###Jack
+
+I can spend an hour a night on this project
+
+###Sweyn
+
+Currently experimenting with authenticating with/how much data we can pull out of the public Facebook Graph API without authenticating
