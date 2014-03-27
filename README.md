@@ -28,3 +28,11 @@ I can spend an hour a night on this project
 ###Sweyn
 
 Currently experimenting with authenticating with/how much data we can pull out of the public Facebook Graph API without authenticating
+
+###David
+
+I will be working on the Twitter and Instagram implementation, primarily on generating data about popularity of individuals/organizations.
+
+I will work 1-2 hours nightly in addition to massive chunks on weekends (making this project awesome is a priority). 
+
+Due 3/28: Authenticate and pull as much data as possible from Twitter and Instragram APIs
