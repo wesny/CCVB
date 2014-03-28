@@ -1,1 +1,5 @@
-#https://api.twitter.com/1/users/search.json?q=Twitter%20API
+import tweepy
+
+public_tweets = tweepy.api.public_timeline()
+for tweet in public_tweets:
+    print tweet.text
