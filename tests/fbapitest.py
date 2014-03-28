@@ -1,4 +1,39 @@
+import json
 from facebook import GraphAPI
-graph = GraphAPI("CAACEdEose0cBAIv32JzGUoVlZCPHvuCjan4nIUvNUhO95nVpoaRKmSp8xrL3KBOYMj27avyv5KwF5YsMyHLZCzKbZC9uWJJpdYnvOmaL2BRosARkSxAlWRxrRDjQi0WhqUrpXT96sZAnd9v1ZCg9XZCDKgtt1n27YkBoSdryGZBo5ry1XDmOZAkvK5ToTBQTsSmnEJqXeeZAppwZDZD")
-batched_requests = '[{"method":"GET","relative_url":"me"},{"method":"GET","relative_url":"me/friends?limit=50"}]'
-print graph.request("", post_args = {"batch":batched_requests})
+
+def make_call(id):
+	dict = {}
+	dict["method"] = "GET"
+	dict["relative_url"] = "%s?fields=likes.limit(1).summary(true),comments.limit(1).summary(true),shares&limit=5000" % id
+	return dict
+
+def make_batch_string(json):
+	returnl = []
+	entries = json['data']
+	for entry in entries:
+		returnl.appen(make_call(entry['id']))
+	return returnl
+
+
+f = open('output.json', 'w')
+
+graph = GraphAPI("1409088379353690|Y34Vq85nCHpqCsZRHCB8tygHYZs")
+batched_requests = "[{'method': 'GET', 'relative_url': 'me'}, {'method': 'GET', 'relative_url': '6815841748_10152209157081749?fields=likes.limit(1).summary(true),comments.limit(1).summary(true),shares&limit=5000'}]"
+data = graph.request("", post_args = {"batch":batched_requests})
+x = json.loads(data[1]['body'])
+f.write(json.dumps(x, sort_keys=True, indent=4, separators=(',', ': ')))
+
+f.close()
+
+"""
+Notes:
+
+/barackobama/posts?fields=id : returns a list of ids
+
+
+
+
+
+
+
+"""
