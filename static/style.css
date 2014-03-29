@@ -11,4 +11,11 @@ input[type="submit"] {
     width:225px;
     height:225px;
     border: 0;
+    font-family: 'Poiret One', cursive;
+    font-size: 28px;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 60px;
 }
