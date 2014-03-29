@@ -5,14 +5,13 @@
     <title>Socialpedia - Home</title>
   </head>
   <body>
-    <h1 class="center">Socialpedia</h1>
     <svg id="svg" height=100% width=100%>
-      <foreignobject width=100% height=100%>
-	<div style="width:100%;" class="center"> 
-	  <div style="float:left; width:50%;">
+      <foreignobject width=100% height=100% id="foreign">
+	<div style="width:100%;" class="center" id="full-div"> 
+	  <div style="float:left; width:50%;" id="left-div">
 	    Left
 	  </div>
-	  <div style="float:right; width:50%;">
+	  <div style="float:right; width:50%;"id="right-div">
 	    Right
 	  </div>
 	</div>
@@ -21,7 +20,14 @@
   </body>
 
   <script>
-   s = document.getElementById("svg");
+   var s = document.getElementById("svg");
+   var title = document.createElement("h1");
+   var fullDiv = document.getElementById("full-div");
+   var foreign = document.getElementById("foreign");
+   title.appendChild(document.createTextNode("Socialpedia"));
+   title.setAttribute('class',"center");
+   foreign.insertBefore(title, fullDiv);
+
 
    var makeBackground = function() {
       width = parseInt(document.width);
@@ -33,7 +39,7 @@
           rects[0].parentNode.removeChild(rects[0]);
       }
 
-      for(var i = 0; i < 100; i++) {
+      for(var i = 0; i < 150; i++) {
          var randpixel = document.createElementNS("http://www.w3.org/2000/svg","rect");
          var dimension = Math.random() * 10 + 1;
          randpixel.setAttribute('x',Math.random() * width);
@@ -61,6 +67,7 @@
          randpixel3.setAttribute('fill','#9effa6');
          s.appendChild(randpixel3);
       }
+      s.appendChild(foreign);
    }
 
    window.onresize = makeBackground;
