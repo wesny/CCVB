@@ -4,6 +4,7 @@
     <link href="../static/style.css" type="text/css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Cinzel:900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <title>Socialpedia - Home</title>
   </head>
   <body>
@@ -33,55 +34,75 @@
    title.setAttribute('class',"center");
    foreign.insertBefore(title, fullDiv);
 
+
+   var leftLink = document.createElement("form");
+   leftLink.setAttribute('action',"peopleresults.html");
    var leftButton = document.createElement("input");
    leftButton.setAttribute('type',"submit");
    leftButton.setAttribute('value',"PEOPLE SEARCH");
-   leftDiv.appendChild(leftButton);
+   leftLink.appendChild(leftButton);
+   var leftTextBox = document.createElement("input");
+   leftTextBox.setAttribute('type',"text");
+   leftLink.appendChild(document.createElement("br"));
+   leftLink.appendChild(document.createElement("br"));
+   leftLink.appendChild(leftTextBox);
+   leftDiv.appendChild(leftLink);
+   
+   var rightLink = document.createElement("form");
+   rightLink.setAttribute('action',"thingresults.html");
    var rightButton = document.createElement("input");
    rightButton.setAttribute('type',"submit");
    rightButton.setAttribute('value',"THINGS SEARCH");
-   rightDiv.appendChild(rightButton);
+   rightLink.appendChild(rightButton);
+   var rightTextBox = document.createElement("input");
+   rightTextBox.setAttribute('type',"text");
+   rightLink.appendChild(document.createElement("br"));
+   rightLink.appendChild(document.createElement("br"));
+   rightLink.appendChild(rightTextBox);
+   rightDiv.appendChild(rightLink);
+
    
    var makeBackground = function() {
-      width = parseInt(document.width);
-      height = parseInt(document.height);
-
-      var rects = s.getElementsByTagName('rect');
-      var len = rects.length
+     width = parseInt(document.width);
+     height = parseInt(document.height);
+     
+     var rects = s.getElementsByTagName('rect');
+     var len = rects.length
       for(var i = 0; i < len; i++) {
-          rects[0].parentNode.removeChild(rects[0]);
-      }
-
-      for(var i = 0; i < 150; i++) {
-         var randpixel = document.createElementNS("http://www.w3.org/2000/svg","rect");
-         var dimension = Math.random() * 10 + 1;
-         randpixel.setAttribute('x',Math.random() * width);
-         randpixel.setAttribute('y',Math.random() * height);
-         randpixel.setAttribute('width',dimension);
-         randpixel.setAttribute('height',dimension);
-         randpixel.setAttribute('fill','#7aff85');
-         s.appendChild(randpixel);
-
-         var randpixel2 = document.createElementNS("http://www.w3.org/2000/svg","rect");
-         var dimension2 = Math.random() * 10 + 1;
-         randpixel2.setAttribute('x',Math.random() * width);
-         randpixel2.setAttribute('y',Math.random() * height);
-         randpixel2.setAttribute('width',dimension2);
-         randpixel2.setAttribute('height',dimension2);
-         randpixel2.setAttribute('fill','#baffc0');
-         s.appendChild(randpixel2);
-
-         var randpixel3 = document.createElementNS("http://www.w3.org/2000/svg","rect");
-         var dimension3 = Math.random() * 10 + 1;
-         randpixel3.setAttribute('x',Math.random() * width);
-         randpixel3.setAttribute('y',Math.random() * height);
-         randpixel3.setAttribute('width',dimension3);
-         randpixel3.setAttribute('height',dimension3);
-         randpixel3.setAttribute('fill','#9effa6');
-         s.appendChild(randpixel3);
-      }
-      s.appendChild(foreign);
+       rects[0].parentNode.removeChild(rects[0]);
+     }
+     
+     for(var i = 0; i < 150; i++) {
+       var randpixel = document.createElementNS("http://www.w3.org/2000/svg","rect");
+       var dimension = Math.random() * 10 + 1;
+       randpixel.setAttribute('x',Math.random() * width);
+       randpixel.setAttribute('y',Math.random() * height);
+       randpixel.setAttribute('width',dimension);
+       randpixel.setAttribute('height',dimension);
+       randpixel.setAttribute('fill','#7aff85');
+       s.appendChild(randpixel);
+       
+       var randpixel2 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+       var dimension2 = Math.random() * 10 + 1;
+       randpixel2.setAttribute('x',Math.random() * width);
+       randpixel2.setAttribute('y',Math.random() * height);
+       randpixel2.setAttribute('width',dimension2);
+       randpixel2.setAttribute('height',dimension2);
+       randpixel2.setAttribute('fill','#baffc0');
+       s.appendChild(randpixel2);
+       
+       var randpixel3 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+       var dimension3 = Math.random() * 10 + 1;
+       randpixel3.setAttribute('x',Math.random() * width);
+       randpixel3.setAttribute('y',Math.random() * height);
+       randpixel3.setAttribute('width',dimension3);
+       randpixel3.setAttribute('height',dimension3);
+       randpixel3.setAttribute('fill','#9effa6');
+       s.appendChild(randpixel3);
+     }
+     s.appendChild(foreign);
    }
+   
 
    window.onresize = makeBackground;
    makeBackground();
