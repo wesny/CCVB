@@ -2,17 +2,20 @@
 <html>
   <head>
     <link href="../static/style.css" type="text/css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cinzel:900' rel='stylesheet' type='text/css'>
     <title>Socialpedia - Home</title>
   </head>
   <body>
     <svg id="svg" height=100% width=100%>
       <foreignobject width=100% height=100% id="foreign">
+	<br>
 	<div style="width:100%;" class="center" id="full-div"> 
 	  <div style="float:left; width:50%;" id="left-div">
-	    Left
+	    <br>
 	  </div>
-	  <div style="float:right; width:50%;"id="right-div">
-	    Right
+	  <div style="float:right; width:50%;" id="right-div">
+	    <br>
 	  </div>
 	</div>
       </foreignobject>
@@ -23,12 +26,22 @@
    var s = document.getElementById("svg");
    var title = document.createElement("h1");
    var fullDiv = document.getElementById("full-div");
+   var leftDiv = document.getElementById("left-div");
+   var rightDiv = document.getElementById("right-div");
    var foreign = document.getElementById("foreign");
    title.appendChild(document.createTextNode("Socialpedia"));
    title.setAttribute('class',"center");
    foreign.insertBefore(title, fullDiv);
 
-
+   var leftButton = document.createElement("input");
+   leftButton.setAttribute('type',"submit");
+   leftButton.setAttribute('value',"PEOPLE SEARCH");
+   leftDiv.appendChild(leftButton);
+   var rightButton = document.createElement("input");
+   rightButton.setAttribute('type',"submit");
+   rightButton.setAttribute('value',"THINGS SEARCH");
+   rightDiv.appendChild(rightButton);
+   
    var makeBackground = function() {
       width = parseInt(document.width);
       height = parseInt(document.height);
