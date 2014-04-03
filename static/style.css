@@ -5,3 +5,17 @@ body{
 .center{
     text-align:center;
 }
+
+input[type="submit"] {
+    background: url(images/bluebutton.jpg);
+    width:225px;
+    height:225px;
+    border: 0;
+    font-family: 'Poiret One', cursive;
+    font-size: 28px;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 60px;
+}
