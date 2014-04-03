@@ -1,11 +1,8 @@
-import tweepy
+import Twitter_Oauth
 
 Consumer_Key = 'jkITE2vTsnbZbO4isffog'
 Consumer_Secret = 'VAUmkrC3Tjj1OgVMLrtkSoNtvD7k4SZ6PhG0elBWHUw'
-Access_Token = '1531685562-9OgrUddG7L5bP9zUJETYf4sfABGC5U1cI2rxXeo'
-Access_Token_Secret = '5v43cr0rax5fLhYKF67lAHlobNVjQqVncCm4GgtEFyl8o'
-usrname = 'twitter'
 
-public_tweets = tweepy.API.get_user(usrname)
-for tweet in public_tweets:
-    print tweet.text
+bearer_token = get_bearer_token(Consumer_Key,Consumer_Secret) # generates a bearer token
+search_results = search_for_a_tweet(bearer_token, 'test') # does a very basic search
+print search_results # prints results form the search
