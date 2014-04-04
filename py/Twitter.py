@@ -22,6 +22,14 @@ def findUser (username):
     url = 'https://api.twitter.com/1.1/users/lookup.json?screen_name=%s' % (username)
     user = client.request(url)
     print json.dumps(user, sort_keys=True, indent=4, separators=(',', ':'))
-
+    profilePicture = user [0]['profile_image_url']
+    location = user[0]['location']
+    # This value represents how engaged your viewers are - do they place you on their lists
+    listed_count = user[0]['listed_count']
+    friends_count = user[0]["friends_count"]
+    followers_count = user[0]["followers_count"]
+    description = user[0]["description"]
+    statuses_count = user[0]["statuses_count"]
+    name = user[0]["name"]
 if __name__ == '__main__':
     print findUser ('nikhilgoya_l')
