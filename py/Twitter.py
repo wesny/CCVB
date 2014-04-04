@@ -1,8 +1,15 @@
-import Twitter_Oauth
+import json
+from application_only_auth import Client
 
-Consumer_Key = 'jkITE2vTsnbZbO4isffog'
-Consumer_Secret = 'VAUmkrC3Tjj1OgVMLrtkSoNtvD7k4SZ6PhG0elBWHUw'
+consumer_key = 'jkITE2vTsnbZbO4isffog'
+consumer_secret = 'VAUmkrC3Tjj1OgVMLrtkSoNtvD7k4SZ6PhG0elBWHUw'
 
-bearer_token = get_bearer_token(Consumer_Key,Consumer_Secret) # generates a bearer token
-search_results = search_for_a_tweet(bearer_token, 'test') # does a very basic search
-print search_results # prints results form the search
+client = Client(consumer_key, consumer_secret)
+
+# Pretty print of tweet payload
+tweet = client.request('https://api.twitter.com/1.1/statuses/show.json?id=316683059296624640')
+print json.dumps(tweet, sort_keys=True, indent=4, separators=(',', ':'))
+
+# Show rate limit status for this application
+status = client.rate_limit_status()
+print status['resources']['search']
