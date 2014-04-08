@@ -46,9 +46,27 @@ def get_User_Timeline (username):
         })
 
     return tweets
+
+def cruchData (tweetArray):
+    finalData = tweetArray[0]
+    favorite_count = 0
+    retweet_count = 0
+    tweet_count = len (tweetArray)
+    finalData["popularTweets"] = []
+
+    for tweet in tweetArray:
+        retweet_count = retweet_count + tweet["retweet_count"]
+        favorite_count = favorite_count + tweet["favorite_count"]
+    avg_retweet_count = retweet_count /  tweet_count
+    avg_fav_count = favorite_count /  tweet_count
+    finalData["favorite_count"] =  avg_fav_count
+    finalData["retweet_count"] =  avg_retweet_count
+    return finalData
+
 if __name__ == '__main__':
      tweets = get_User_Timeline ('nikhilgoya_l')
-     print json.dumps(tweets, sort_keys=True, indent=4, separators=(',', ':'))
+     data = cruchData (tweets)
+     print json.dumps(data, sort_keys=True, indent=4, separators=(',', ':'))
 
 
 #NOTES/LONG TERM GOALS 
