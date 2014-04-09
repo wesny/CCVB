@@ -7,7 +7,7 @@ graph = GraphAPI("1409088379353690|Y34Vq85nCHpqCsZRHCB8tygHYZs")
 def make_call(id):
 	dict = {}
 	dict["method"] = "GET"
-	dict["relative_url"] = "%s?fields=likes.limit(1).summary(true),comments.limit(1).summary(true),shares&limit=5000" % id
+	dict["relative_url"] = ("%s?fields=likes.limit(1).summary(true),comments.limit(1).summary(true),shares&limit=5000" % id).encode('ascii','ignore')
 	return dict
 
 def make_batch_string(json):
