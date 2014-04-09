@@ -11,6 +11,14 @@ env.line_statement_prefix = '='
 def index():
     return render_template("index.html")
 
+@app.route("/peopleresults")
+def peopleresults():
+    return render_template("peopleresults.html")
+
+@app.route("/thingresults")
+def thingresults():
+    return render_template("thingresults.html")
+
 if __name__ == '__main__':
     app.debug = True;
     app.run()
