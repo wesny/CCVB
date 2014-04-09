@@ -24,7 +24,7 @@ def get_posts(id):
 
 posts = get_posts("barackobama")
 
-batched_requests = make_batch_string(posts)
+batched_requests = "[{'method': 'GET', 'relative_url': 'me'}, {'method': 'GET', 'relative_url': '6815841748_10152209157081749?fields=likes.limit(1).summary(true),comments.limit(1).summary(true),shares&limit=5000'}]"
 data = graph.request("", post_args = {"batch":batched_requests})
 x = json.loads(data[1]['body'])
 f.write(json.dumps(x, sort_keys=True, indent=4, separators=(',', ': ')))
