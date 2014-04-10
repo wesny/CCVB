@@ -1,3 +1,4 @@
+#import statistics
 import json
 from application_only_auth import Client
 
@@ -48,19 +49,33 @@ def get_User_Timeline (username):
     return tweets
 
 def cruchData (tweetArray):
+    # Define my variables
     finalData = tweetArray[0]
     favorite_count = 0
     retweet_count = 0
+    favorite_vals = []
+    retweet_vals = []
     tweet_count = len (tweetArray)
-    finalData["popularTweets"] = []
 
+    #Calculate Average Values
     for tweet in tweetArray:
         retweet_count = retweet_count + tweet["retweet_count"]
+        retweet_vals.append (tweet["retweet_count"])
         favorite_count = favorite_count + tweet["favorite_count"]
+        favorite_vals.append (tweet["favorite_count"])
     avg_retweet_count = retweet_count /  tweet_count
     avg_fav_count = favorite_count /  tweet_count
+    
+    #Update finalData array
     finalData["favorite_count"] =  avg_fav_count
     finalData["retweet_count"] =  avg_retweet_count
+    finalData["popularTweets"] = []
+
+    #Find awesome tweets
+    for tweet in tweetArray:
+        
+        tweetArray.index(tweet)
+        
     return finalData
 
 if __name__ == '__main__':
