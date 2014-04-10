@@ -1,6 +1,8 @@
 import json
 from facebook import GraphAPI
 
+f = open('output.json','w')
+
 graph = GraphAPI("1409088379353690|Y34Vq85nCHpqCsZRHCB8tygHYZs")
 
 def make_call(id):
@@ -37,3 +39,4 @@ posts = get_posts("barackobama")
 batched_requests = "[{'method': 'GET', 'relative_url': 'me'}, {'method': 'GET', 'relative_url': '6815841748_10152209157081749?fields=likes.limit(1).summary(true),comments.limit(1).summary(true),shares&limit=5000'}]"
 data = graph.request("", post_args = {"batch":batched_requests})
 print create_engag_dict(data)
+f.write(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
