@@ -1,7 +1,6 @@
 import json
 from facebook import GraphAPI
 
-f = open('output.json', 'w')
 graph = GraphAPI("1409088379353690|Y34Vq85nCHpqCsZRHCB8tygHYZs")
 
 def make_call(id):
@@ -19,27 +18,22 @@ def make_batch_string(json):
 	return returnl
 
 def get_posts(id):
-	r = graph.get_object("barackobama/posts", fields='id')
+	r = graph.get_object("barackobama/posts", fields='id', limit=5000)
 	return r
+
+def create_engag_dict(data):
+	d = {}
+	for post in data:
+		x = json.loads(post['body'])
+		y = {}
+		y['likes'] = x['likes']['summary']['total_count']
+		y['comments'] = x['comments']['summary']['total_count']
+		y['shares'] = x['shares']['count']
+		d[x['id']] = y
+	return d
 
 posts = get_posts("barackobama")
 
 batched_requests = "[{'method': 'GET', 'relative_url': 'me'}, {'method': 'GET', 'relative_url': '6815841748_10152209157081749?fields=likes.limit(1).summary(true),comments.limit(1).summary(true),shares&limit=5000'}]"
 data = graph.request("", post_args = {"batch":batched_requests})
-x = json.loads(data[1]['body'])
-f.write(json.dumps(x, sort_keys=True, indent=4, separators=(',', ': ')))
-
-f.close()
-
-"""
-Notes:
-
-/barackobama/posts?fields=id : returns a list of ids
-
-
-
-
-
-
-
-"""
+print create_engag_dict(data)
