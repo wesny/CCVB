@@ -1,6 +1,6 @@
-#import statistics
 import json
 from application_only_auth import Client
+import functions
 
 consumer_key = 'jkITE2vTsnbZbO4isffog'
 consumer_secret = 'VAUmkrC3Tjj1OgVMLrtkSoNtvD7k4SZ6PhG0elBWHUw'
@@ -69,13 +69,18 @@ def cruchData (tweetArray):
     #Update finalData array
     finalData["favorite_count"] =  avg_fav_count
     finalData["retweet_count"] =  avg_retweet_count
-    finalData["popularTweets"] = []
-
+   
+    popTweets = []
     #Find awesome tweets
     for tweet in tweetArray:
-        
-        tweetArray.index(tweet)
-        
+        retweets = tweet["retweet_count"]
+        favs = tweet["favorite_count"]
+        var pop = functions.isPopular (favs,favorite_vals)
+        var pop2 = functions.isPopular (retweets, retweet_vals)
+        if pop = true: 
+           popTweets.append (tweet["text"])
+
+    finalData["popularTweets"] = popTweets
     return finalData
 
 if __name__ == '__main__':
@@ -88,3 +93,5 @@ if __name__ == '__main__':
     #A. MONGODB Storage for API Calls
     #This code needs to be modified to cache user data and store it in a mongoDB. Then update with API calls every 15 minutes to avoid too many calls at once. 
     #Then, when user call a search, we search the mongoDB. If the data has been updated in the past week, we use it. Otherwise, we make a distint call.
+    
+    #B. Don't count retweets!
