@@ -25,6 +25,8 @@ I'll probably spend about an hour each on Wednesday night and Thursday night set
 
 I can spend an hour a night on this project
 
+Week of April 7: Get V1 of Twitter Query Working
+
 ###Sweyn
 
 Currently experimenting with authenticating with/how much data we can pull out of the public Facebook Graph API without authenticating

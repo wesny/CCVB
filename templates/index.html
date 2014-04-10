@@ -1,13 +1,8 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link href="../static/style.css" type="text/css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Cinzel:900' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <title>Socialpedia - Home</title>
-  </head>
-  <body>
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+{% body %}
     <svg id="svg" height=100% width=100%>
       <foreignobject width=100% height=100% id="foreign">
 	<br>
@@ -21,7 +16,7 @@
 	</div>
       </foreignobject>
     </svg>
-  </body>
+{% endblock %}
 
   <script>
    var s = document.getElementById("svg");
@@ -36,7 +31,7 @@
 
 
    var leftLink = document.createElement("form");
-   leftLink.setAttribute('action',"peopleresults.html");
+   leftLink.setAttribute('action',"peopleresults");
    var leftButton = document.createElement("input");
    leftButton.setAttribute('type',"submit");
    leftButton.setAttribute('value',"PEOPLE SEARCH");
@@ -49,7 +44,7 @@
    leftDiv.appendChild(leftLink);
    
    var rightLink = document.createElement("form");
-   rightLink.setAttribute('action',"thingresults.html");
+   rightLink.setAttribute('action',"thingresults");
    var rightButton = document.createElement("input");
    rightButton.setAttribute('type',"submit");
    rightButton.setAttribute('value',"THINGS SEARCH");
