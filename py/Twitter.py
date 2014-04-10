@@ -75,12 +75,14 @@ def cruchData (tweetArray):
     for tweet in tweetArray:
         retweets = tweet["retweet_count"]
         favs = tweet["favorite_count"]
-        var pop = functions.isPopular (favs,favorite_vals)
-        var pop2 = functions.isPopular (retweets, retweet_vals)
-        if pop = true: 
+        pop = functions.isPopular (favs,favorite_vals)
+        pop2 = functions.isPopular (retweets, retweet_vals)
+        if pop or pop2:
            popTweets.append (tweet["text"])
 
+    #Add awesome tweets to finalData
     finalData["popularTweets"] = popTweets
+    finalData["text"] = ""
     return finalData
 
 if __name__ == '__main__':

@@ -1,12 +1,12 @@
-import Math
+import math
 
 def isPopular (val,L):
     avg = calcAvg (L)
     std = stdev (L)
     if (val > avg + (2 * std)):
-        return true
+        return True
     else:
-        return false
+        return False
         
 def calcAvg (L):
     x = sum (L)
@@ -21,7 +21,7 @@ def stdev (L):
         valSq = val * val
         SqauredDifference = SqauredDifference + valSq
     varience = SqauredDifference / len (L)
-    std = Math.sqrt (varience)
+    std = math.sqrt (varience)
     return std
 
 # D3 + SVG
