@@ -1,3 +1,6 @@
+var s = document.getElementById('svg');
+var foreign = document.getElementById('foreign');
+
 var makeBackground = function() {
      width = parseInt(document.width);
      height = parseInt(document.height);
