@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Things Search Results{% endblock %}
+
+{% block body %}
+{{ super() }}
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src = {{ url_for('static', filename='thingresults.js') }}> </script>
+{% endblock %}
+
+</html>
