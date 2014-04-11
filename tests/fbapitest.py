@@ -20,7 +20,7 @@ def make_batch_string(json):
 	return returnl
 
 def get_posts(id):
-	r = graph.get_object("barackobama/posts", fields='id', limit=5000)
+	r = graph.get_object("barackobama/posts", fields='id', limit=25)
 	return r
 
 def create_engag_dict(data):
