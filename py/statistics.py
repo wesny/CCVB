@@ -592,3 +592,5 @@ def pstdev(data, mu=None):
         return var.sqrt()
     except AttributeError:
         return math.sqrt(var)
+
+print "hello"

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}People Search Results{% endblock %}
+
+{% block body %}
+{{ super() }}
+{% block svg %}
+{% endblock %}
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src = {{ url_for('static', filename='peopleresults.js') }}> </script>
+{% endblock %}
+
+
+</html>

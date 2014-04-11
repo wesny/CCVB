@@ -1,6 +1,6 @@
-#import statistics
 import json
 from application_only_auth import Client
+import functions
 
 consumer_key = 'jkITE2vTsnbZbO4isffog'
 consumer_secret = 'VAUmkrC3Tjj1OgVMLrtkSoNtvD7k4SZ6PhG0elBWHUw'
@@ -32,20 +32,21 @@ def get_User_Timeline (username):
     url =  'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=%s&count=200' % (username)
     user_timeline = client.request(url)
     for tweet in  user_timeline:
-        tweets.append ({
-            "favorite_count":tweet['favorite_count'],
-            "retweet_count": tweet['retweet_count'],
-            "text" : tweet ['text'],
-            "listed_count" : tweet['user']['listed_count'],
-            "friends_count" : tweet['user']['friends_count'],
-            "followers_count" : tweet['user']['followers_count'],
-            "profilePicture" : tweet['user']['profile_image_url'],
-            "location" : tweet['user']['location'],
-            "description" : tweet['user']['description'],
-            "statuses_count" : tweet['user']['statuses_count'],
-            "name" : tweet['user']['name']    
-        })
-
+        txt = tweet["text"]
+        if txt.find("RT") == -1:
+            tweets.append ({
+                "favorite_count":tweet['favorite_count'],
+                "retweet_count": tweet['retweet_count'],
+                "text" : tweet ['text'],
+                "listed_count" : tweet['user']['listed_count'],
+                "friends_count" : tweet['user']['friends_count'],
+                "followers_count" : tweet['user']['followers_count'],
+                "profilePicture" : tweet['user']['profile_image_url'],
+                "location" : tweet['user']['location'],
+                "description" : tweet['user']['description'],
+                "statuses_count" : tweet['user']['statuses_count'],
+                "name" : tweet['user']['name']    
+            })
     return tweets
 
 def cruchData (tweetArray):
@@ -69,13 +70,20 @@ def cruchData (tweetArray):
     #Update finalData array
     finalData["favorite_count"] =  avg_fav_count
     finalData["retweet_count"] =  avg_retweet_count
-    finalData["popularTweets"] = []
-
+   
+    popTweets = []
     #Find awesome tweets
     for tweet in tweetArray:
-        
-        tweetArray.index(tweet)
-        
+        retweets = tweet["retweet_count"]
+        favs = tweet["favorite_count"]
+        pop = functions.isPopular (favs,favorite_vals)
+        pop2 = functions.isPopular (retweets, retweet_vals)
+        if pop or pop2:
+           popTweets.append (tweet["text"])
+
+    #Add awesome tweets to finalData
+    finalData["popularTweets"] = popTweets
+    finalData["text"] = ""
     return finalData
 
 if __name__ == '__main__':
@@ -88,3 +96,6 @@ if __name__ == '__main__':
     #A. MONGODB Storage for API Calls
     #This code needs to be modified to cache user data and store it in a mongoDB. Then update with API calls every 15 minutes to avoid too many calls at once. 
     #Then, when user call a search, we search the mongoDB. If the data has been updated in the past week, we use it. Otherwise, we make a distint call.
+    
+    #B. Don't count retweets! COMPLETE
+    #C. Get whitelisted (allows unlimited streaming API calls): https://dev.twitter.com/docs/rate-limiting-faq#how-whitelisting
