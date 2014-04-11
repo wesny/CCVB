@@ -32,20 +32,21 @@ def get_User_Timeline (username):
     url =  'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=%s&count=200' % (username)
     user_timeline = client.request(url)
     for tweet in  user_timeline:
-        tweets.append ({
-            "favorite_count":tweet['favorite_count'],
-            "retweet_count": tweet['retweet_count'],
-            "text" : tweet ['text'],
-            "listed_count" : tweet['user']['listed_count'],
-            "friends_count" : tweet['user']['friends_count'],
-            "followers_count" : tweet['user']['followers_count'],
-            "profilePicture" : tweet['user']['profile_image_url'],
-            "location" : tweet['user']['location'],
-            "description" : tweet['user']['description'],
-            "statuses_count" : tweet['user']['statuses_count'],
-            "name" : tweet['user']['name']    
-        })
-
+        txt = tweet["text"]
+        if txt.find("RT") == -1:
+            tweets.append ({
+                "favorite_count":tweet['favorite_count'],
+                "retweet_count": tweet['retweet_count'],
+                "text" : tweet ['text'],
+                "listed_count" : tweet['user']['listed_count'],
+                "friends_count" : tweet['user']['friends_count'],
+                "followers_count" : tweet['user']['followers_count'],
+                "profilePicture" : tweet['user']['profile_image_url'],
+                "location" : tweet['user']['location'],
+                "description" : tweet['user']['description'],
+                "statuses_count" : tweet['user']['statuses_count'],
+                "name" : tweet['user']['name']    
+            })
     return tweets
 
 def cruchData (tweetArray):
