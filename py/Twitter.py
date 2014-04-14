@@ -15,7 +15,7 @@ def tweet_payload ():
 # Show rate limit status for this application
 def rate_limit():
     status = client.rate_limit_status()
-    #print status['resources']['search']
+    print status['resources']['search']
 
 # Find a user and get info on him/her. UNNECESSARY DUE TO get_User_Timline
 #def findUser (username):
