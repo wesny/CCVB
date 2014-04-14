@@ -19,7 +19,11 @@ This could be expanded to look at the daily, weekly, monthly, and yearly popular
 
 ###Chris
 
-I'll probably spend about an hour each on Wednesday night and Thursday night setting up a skeleton for the user interface.
+Over Spring Break I will:
+1. Finish creating a base template and background script
+2. Use the template to create results pages
+3. Better organize the front page (real buttons, left and right sections, short descriptions of the two searches)
+4. Most likely resort to using Bootstrap
 
 ###Jack
 
