@@ -1,0 +1,2 @@
+consumer_key='sN4druNU46y0gUviNl0PUtM0A'
+consumer_secret='biCC0CKvyJRy8eVDeLxlwCj6qzbVHJ4PhhKy6DRjBeQCUwVfI7'
