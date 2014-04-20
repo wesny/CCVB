@@ -25,12 +25,23 @@ def get_User_Timeline (username):
     user_id = json_data["data"][0]["id"]
 
     #find user
-
-    url = ("https://api.instagram.com/v1/users/%s") %(user_id)
+    #doing it myself because the library is aweful...
+    url = ("https://api.instagram.com/v1/users/%s/?access_token=1267672900.1fb234f.ab78269e1b754039b0e900a966e14fdb") %(user_id)
     response = urlopen(url)
     json_raw = response.read()
     json_data = json.loads(json_raw)
-    print json_data
+    full_name = json_data["data"]["full_name"]
+    counts = json_data["data"]["counts"]
+    total_media = counts ["media"]
+    followed_by  = counts ["followed_by"]
+
+    data = {}
+    data ["full_name"] = full_name
+    data ["total_media"] = total_media
+    data ["followed_by"] = followed_by
+   
+    return data
 
 if __name__ == '__main__':
-     user = get_User_Timeline ('DavidCahn')
+     data = get_User_Timeline ('jennamarbles')
+     print data
