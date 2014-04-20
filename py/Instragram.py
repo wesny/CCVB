@@ -42,6 +42,9 @@ def get_User_Timeline (username):
    
     return data
 
+#def get_media (username):
+    #generic social media url:https://api.instagram.com/v1/users/3/media/recent/?access_token=1267672900.f59def8.c04a11eb198a426eb24ed18378ed4eab
+
 if __name__ == '__main__':
-     data = get_User_Timeline ('jennamarbles')
-     print data
+    data = get_User_Timeline ('jennamarbles')
+    print data
