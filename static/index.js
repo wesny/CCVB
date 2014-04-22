@@ -9,6 +9,28 @@ title.setAttribute('class',"center");
 foreign.insertBefore(title, fullDiv);
 
 
+var leftSide = document.createElementNS("http://www.w3.org/2000/svg","rect");
+leftSide.setAttribute('x', "10%");
+leftSide.setAttribute('y', 100);
+leftSide.setAttribute('width', "30%");
+leftSide.setAttribute('height',500);
+leftSide.setAttribute('rx', 10);
+leftSide.setAttribute('ry', 10);
+leftSide.setAttribute('fill', '#eeffee');
+leftSide.setAttribute('id','leftSide');
+s.appendChild(leftSide);
+
+var rightSide = document.createElementNS("http://www.w3.org/2000/svg","rect");
+rightSide.setAttribute('x', "60%");
+rightSide.setAttribute('y', 100);
+rightSide.setAttribute('width', "30%");
+rightSide.setAttribute('height', 500);
+rightSide.setAttribute('rx', 10);
+rightSide.setAttribute('ry', 10);
+rightSide.setAttribute('fill', '#eeffee');
+rightSide.setAttribute('id','rightSide');
+s.appendChild(rightSide);
+
 var leftLink = document.createElement("form");
 leftLink.setAttribute('action',"peopleresults");
 var leftButton = document.createElement("input");
@@ -34,3 +56,4 @@ rightLink.appendChild(document.createElement("br"));
 rightLink.appendChild(document.createElement("br"));
 rightLink.appendChild(rightTextBox);
 rightDiv.appendChild(rightLink);
+
