@@ -6,6 +6,11 @@ body{
     text-align:center;
 }
 
+div {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
 input[type="submit"] {
     background: url(images/button.png);
     width:262px;
