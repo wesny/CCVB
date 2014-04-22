@@ -7,7 +7,9 @@ var makeBackground = function() {
     
     var rects = s.getElementsByTagName('rect');
     var len = rects.length
-    for(var i = 0; i < len - 2; i++) {
+    var leftSide = document.getElementById('leftSide'); 
+    var rightSide = document.getElementById('rightSide');
+    for(var i = 0; i < len; i++) {
 	rects[0].parentNode.removeChild(rects[0]);
     }
     
@@ -39,14 +41,12 @@ var makeBackground = function() {
 	randpixel3.setAttribute('fill','#9effa6');
 	s.appendChild(randpixel3);
     }
-    var leftSide = document.getElementById('leftSide'); 
-    var rightSide = document.getElementById('rightSide'); 
+    
     if (leftSide != null) {
-	s.removeChild(leftSide);
-	s.removeChild(rightSide);
 	s.appendChild(leftSide);
 	s.appendChild(rightSide);
     }
+   
     s.appendChild(foreign);
 }
 

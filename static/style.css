@@ -25,3 +25,8 @@ h1 {
 }
 
 h2 {font-family: 'Cinzel', serif;}
+    
+a {
+    text-decoration: none;
+    color:black;
+}
