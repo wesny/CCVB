@@ -41,10 +41,12 @@ var makeBackground = function() {
     }
     var leftSide = document.getElementById('leftSide'); 
     var rightSide = document.getElementById('rightSide'); 
-    s.removeChild(leftSide);
-    s.removeChild(rightSide);
-    s.appendChild(leftSide);
-    s.appendChild(rightSide);
+    if (leftSide != null) {
+	s.removeChild(leftSide);
+	s.removeChild(rightSide);
+	s.appendChild(leftSide);
+	s.appendChild(rightSide);
+    }
     s.appendChild(foreign);
 }
 
