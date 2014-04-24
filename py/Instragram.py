@@ -2,6 +2,8 @@ import requests
 import json
 from urllib2 import urlopen
 from instagram.client import InstagramAPI
+import functions
+
 
 #AccountCreated
 #https://github.com/Instagram/python-instagram
@@ -36,33 +38,73 @@ def get_User_Data (username):
     counts = json_data["data"]["counts"]
     total_media = counts ["media"]
     followed_by  = counts ["followed_by"]
+    media = get_media (user_id)
 
     data = {}
     data ["full_name"] = full_name
     data ["total_media"] = total_media
     data ["followed_by"] = followed_by
-    try:
-        media = get_media (user_id)
-    except: 
-        media = []
     data ["media"] = media
     return data
 
 def get_media (user_id):
+    print "here"
     url = ("https://api.instagram.com/v1/users/%s/media/recent/?access_token=%s") % (user_id,access_token)
     response = urlopen(url)
     json_raw = response.read()
-    json_data = json.loads(json_raw)["data"][0]
-    for x in json_data:
-       # print x
-        for x in json_data["user"]:
-            print x
-        for x in json_data["likes"]:
-            print x
-        for x in json_data["comments"][0]:
-            print x
+    json_data = json.loads(json_raw)["data"]
+    allMedia = []
+    for image in json_data:
+        allMedia.append ({
+            "like_count":image["likes"]["count"],
+            "comment_count": image["comments"]["count"],
+            "text":image["caption"]["text"],
+            "link":image["link"]
+        })
+    finalMedia = crunchData (allMedia)
+    return finalMedia
 
-if __name__ == '__main__':
-  #  data = get_User_Timeline ('jennamarbles')
+def crunchData (media_array):
+    print "here"
+    finalData = media_array[0]
+    likes_count = 0
+    comments_count = 0
+    likes_vals = []
+    comments_vals = []
+    media_count = len (media_array)
+
+    #Calculate Average Values
+    for photo in media_array:
+        likes_count = likes_count + photo["like_count"]
+        likes_vals.append (photo["like_count"])
+        comments_count = comments_count + photo["comment_count"]
+        comments_vals.append (photo["comment_count"])
+    avg_likes_count = likes_count / media_count
+    avg_comments_count = comments_count /  media_count
+    
+    #Update finalData array
+    finalData["like_count"] = avg_likes_count
+    finalData["comment_count"] = avg_comments_count
+   
+    popMediaText = []
+    popMediaLink = []
+    #Find awesome media
+    for photo in media_array:
+        likes = tweet["like_count"]
+        comments = tweet["comment_count"]
+        pop = functions.isPopular (likes,likes_vals)
+        pop2 = functions.isPopular (comments, comments_vals)
+        if pop or pop2:
+           popMediaText.append (photo["text"])
+           popMediaLink.append (photo["link"])
+
+    #Add awesome media to finalData
+    finalData["link"] = popMediaLink
+    finalData["text"] = popMediaText
+    return finalData
+        
+    if __name__ == '__main__':
+    #data = get_User_Timeline ('jennamarbles')
     media = get_media(6717525)
+    print media
 
