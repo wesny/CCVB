@@ -14,7 +14,8 @@ class FBUser:
 
 class FBPost:
 
-	def __init__(self, text = "No Text", comments = 0, likes = 0, shares = 0, picture = None, video = None, link = None):
+	def __init__(self, info_pulled = False, text = "No Text", comments = 0, likes = 0, shares = 0, picture = None, video = None, link = None):
+		self.info_pulled = info_pulled
 		self.text = text
 		self.comments = comments
 		self.likes = likes
@@ -24,7 +25,9 @@ class FBPost:
 		self.link = link
 
 	def typeofpost(self):
-		if self.picture:
+		if self.info_pulled:
+			return "no_info"
+		elif self.picture:
 			return "picture"
 		elif self.video:
 			return "video"
