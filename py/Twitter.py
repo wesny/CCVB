@@ -70,6 +70,8 @@ def cruchData (tweetArray):
     #Update finalData array
     finalData["favorite_count"] =  avg_fav_count
     finalData["retweet_count"] =  avg_retweet_count
+    finalData["retweet_vals"] = retweet_vals
+    finalData["favorite_vals"] = favorite_vals
    
     popTweets = []
     #Find awesome tweets
