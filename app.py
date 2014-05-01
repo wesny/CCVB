@@ -1,6 +1,7 @@
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
-from alchemy import analyze
+from py import Twitter
+#from alchemy import analyze
 
 app = Flask(__name__)
 app.config.from_object('py.config')
@@ -26,7 +27,7 @@ def DCtesting():
     data = Twitter.cruchData (tweets)
     favorite_vals = data["favorite_vals"]
     print favorite_vals
-    return render_template ("Post_Popularity.html",favorite_vals)
+    return render_template ("Post_Popularity.html",favorite_vals=favorite_vals)
 
 @app.route("/tester", methods = ['GET', 'POST'])
 def tester():

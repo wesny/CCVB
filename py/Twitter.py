@@ -2,8 +2,11 @@ import json
 from application_only_auth import Client
 import functions
 
-consumer_key = 'jkITE2vTsnbZbO4isffog'
-consumer_secret = 'VAUmkrC3Tjj1OgVMLrtkSoNtvD7k4SZ6PhG0elBWHUw'
+#consumer_key = 'jkITE2vTsnbZbO4isffog'
+#consumer_secret = 'VAUmkrC3Tjj1OgVMLrtkSoNtvD7k4SZ6PhG0elBWHUw'
+consumer_key='sN4druNU46y0gUviNl0PUtM0A'
+consumer_secret='biCC0CKvyJRy8eVDeLxlwCj6qzbVHJ4PhhKy6DRjBeQCUwVfI7'
+
 
 client = Client(consumer_key, consumer_secret)
 
