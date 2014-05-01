@@ -20,6 +20,14 @@ def peopleresults():
 def thingresults():
     return render_template("thingresults.html")
 
+@app.route ("/DCtesting")
+def DCtesting():
+    tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
+    data = Twitter.cruchData (tweets)
+    favorite_vals = data["favorite_vals"]
+    print favorite_vals
+    return render_template ("Post_Popularity.html",favorite_vals)
+
 @app.route("/tester", methods = ['GET', 'POST'])
 def tester():
     if request.method == "GET": 
