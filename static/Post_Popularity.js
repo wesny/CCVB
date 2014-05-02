@@ -165,8 +165,6 @@ text_vals = [
     ];
 
 
-
-
 for (i=0; i<favorite_vals.length; i++) {
     d1.push ({
 	'label':i,
@@ -192,15 +190,25 @@ var c = svg.selectAll("circle")
     .attr('cx',function(d) {return xScale (d.x);})
     .attr('cy',function(d) {return yScale (d.y);})
     .attr('fill','steelblue')
-    .onmouseover("showText")
-    .onmouseout("removeText");
+    .on('mouseover', showText)
+    .on('mouseout', removeText);
 
-c.addEventListener('onmouseover', showText);
-c.addEventListener('onmouseover', showText);
+$("#svg").on("mouseover", "circle", function(event){
+    document.getElementById("dialog").innerHTML = "";
+    xCor = this.dx;
+    yCor = this.dy;
+    var txtNd=document.createTextNode(text_vals[xCor]);
+    document.getElementById("dialog").appendChild(txtNd);
+    $( "#dialog" ).dialog(); 
+    console.log("Showing Text");
+});
 
 var showText = function () {
     xCor = this.dx;
     yCor = this.dy;
+    ox = event.screenX;
+    oy = event.screenY;
+
     var txtNd=document.createTextNode(text_vals[xCor]);
     document.getElementById("dialog").appendChild(txtNd);
     $( "#dialog" ).dialog(); 
@@ -209,8 +217,6 @@ var showText = function () {
 
 var removeText = function () {
     $("#dialog").dialog('close');
-    document.getElementById("dialog").innerHTML = "";
-    
 }
 
 
