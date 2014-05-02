@@ -203,19 +203,7 @@ $("#svg").on("mouseover", "circle", function(event){
     console.log("Showing Text");
 });
 
-var showText = function () {
-    xCor = this.dx;
-    yCor = this.dy;
-    ox = event.screenX;
-    oy = event.screenY;
-
-    var txtNd=document.createTextNode(text_vals[xCor]);
-    document.getElementById("dialog").appendChild(txtNd);
-    $( "#dialog" ).dialog(); 
-    console.log("Showing Text");
-}
-
-var removeText = function () {
+$("#svg").on("mouseout", "circle", function(event){
     $("#dialog").dialog('close');
 }
 
