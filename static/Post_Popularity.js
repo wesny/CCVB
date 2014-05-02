@@ -1,3 +1,7 @@
+window.onload = function () {
+    document.getElementById("dialog").innerHTML = "";
+}
+
 // var favorite_vals = "{{ favorite_vals | tojson | safe}}";
 //console.log( favorite_vals)
 // Graphs your posts to tell you how popular they have been using d3.js
@@ -10,7 +14,7 @@ var svg = d3.select("body").append('svg')
     .attr('width',width)
     .attr('height',height)
     .attr('id','svg')
-    .style('border','1px solid');
+    .style('border','1px solid')
 
 d1 = []
 
@@ -188,9 +192,24 @@ var c = svg.selectAll("circle")
     .attr('cx',function(d) {return xScale (d.x);})
     .attr('cy',function(d) {return yScale (d.y);})
     .attr('fill','steelblue')
-    .addEventListener(mouseover,showText (d.x))
+    .onmouseover("showText")
+    .onmouseout("removeText");
 
-var showText = function (xVal) {
+c.addEventListener('onmouseover', showText);
+c.addEventListener('onmouseover', showText);
+
+var showText = function () {
+    xCor = this.dx;
+    yCor = this.dy;
+    var txtNd=document.createTextNode(text_vals[xCor]);
+    document.getElementById("dialog").appendChild(txtNd);
+    $( "#dialog" ).dialog(); 
+    console.log("Showing Text");
+}
+
+var removeText = function () {
+    $("#dialog").dialog('close');
+    document.getElementById("dialog").innerHTML = "";
     
 }
 
