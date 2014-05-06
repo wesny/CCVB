@@ -1,6 +1,7 @@
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
+import os
 #from alchemy import analyze
 
 app = Flask(__name__)
@@ -35,8 +36,12 @@ def tester():
         return render_template("tester.html")
     if request.method == "POST": 
         word = request.form['word'].encode ('ascii',"ignore")
+        os.system("python analyze.py reagan 10")
+        with open ("Output.txt", "r") as myfile:
+            data=myfile.readlines()
+            print data
         
-        return render_template("tester.html")
+        return render_template ("popularity_results.html", data=data, word=word)
 
 
 if __name__ == '__main__':
