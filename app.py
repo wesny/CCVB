@@ -1,6 +1,7 @@
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
+import json
 import os
 #from alchemy import analyze
 
@@ -22,13 +23,18 @@ def peopleresults():
 def thingresults():
     return render_template("thingresults.html")
 
-@app.route ("/DCtesting")
+@app.route ("/DCtesting/")
 def DCtesting():
-    tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
-    data = Twitter.cruchData (tweets)
-    favorite_vals = data["favorite_vals"]
-    print favorite_vals
-    return render_template ("Post_Popularity.html",favorite_vals=favorite_vals)
+    #tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
+    #data = Twitter.cruchData (tweets)
+    #favorite_vals = data["favorite_vals"]
+    #text_vals = data ["tweet_text"]
+    favorite_vals = [1,2,3]
+    text_vals =  ["1","2","3"]
+
+    
+    print favorite_vals[1]
+    return render_template ("Post_Popularity.html",favoriteVals=favorite_vals, texVals=text_vals)
 
 @app.route("/tester", methods = ['GET', 'POST'])
 def tester():
