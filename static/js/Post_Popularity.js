@@ -195,7 +195,8 @@ $("#svg").on("mouseover", "circle", function(event){
     document.getElementById("dialog").innerHTML = "";
     myVar = this;
     xCor = event.screenX;
-    txt = text_vals[xCor];
+    xVal = Math.round(xScale.invert(xCor));
+    txt = text_vals[xVal];
     var txtNd=document.createTextNode(txt);
     document.getElementById("dialog").appendChild(txtNd);
     $( "#dialog" ).dialog(); 
