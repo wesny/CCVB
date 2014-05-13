@@ -25,16 +25,15 @@ def thingresults():
 
 @app.route ("/DCtesting/")
 def DCtesting():
-    #tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
-    #data = Twitter.cruchData (tweets)
-    #favorite_vals = data["favorite_vals"]
-    #text_vals = data ["tweet_text"]
-    favorite_vals = [1,2,3]
-    text_vals =  ["1","2","3"]
-
+    tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
+    data = Twitter.cruchData (tweets)
+    favorite_vals = data["favorite_vals"]
+    text_vals = data ["tweet_text"]
+    #favorite_vals = [1,2,3]
+    #text_vals =  ['a','b','c']
     
     print favorite_vals[1]
-    return render_template ("Post_Popularity.html",favoriteVals=favorite_vals, texVals=text_vals)
+    return render_template ("Post_Popularity.html",favoriteVals=favorite_vals, textVals=text_vals)
 
 @app.route("/tester", methods = ['GET', 'POST'])
 def tester():

@@ -20,8 +20,8 @@ d1 = []
 
 // Nikhil Goyal's favorite values for recent posts
 
-favorite_vals = $.parseJSON('{{favoriteVals}}');
-text_vals = $.parseJSON('{{textVals}}');
+//favorite_vals = $.parseJSON('{{favoriteVals}}');
+//text_vals = $.parseJSON('{{textVals}}');
 
 for (i=0; i<favorite_vals.length; i++) {
     d1.push ({
@@ -52,7 +52,7 @@ var c = svg.selectAll("circle")
 $("#svg").on("mouseover", "circle", function(event){
     document.getElementById("dialog").innerHTML = "";
     myVar = this;
-    xCor = event.screenX;
+    xCor = event.screenY;
     xVal = Math.round(xScale.invert(xCor));
     txt = text_vals[xVal];
     var txtNd=document.createTextNode(txt);
