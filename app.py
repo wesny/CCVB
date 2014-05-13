@@ -23,9 +23,10 @@ def peopleresults():
 def thingresults():
     return render_template("thingresults.html")
 
-@app.route ("/DCtesting/")
-def DCtesting():
-    tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
+@app.route ("/DCtesting/<user>")
+def DCtesting(user):
+    tweets = Twitter.get_User_Timeline (user)
+    #tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
     data = Twitter.cruchData (tweets)
     favorite_vals = data["favorite_vals"]
     text_vals = data ["tweet_text"]
