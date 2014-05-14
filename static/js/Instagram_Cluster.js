@@ -118,7 +118,7 @@ var clusterIt = function () {
 	.attr('cy',function(d){return yScale( d.features[1]);})
 }
 
-d3.csv("../static/instagram.csv",doit);
+d3.csv("instagram.csv",doit);
 
 var clickme = d3.select("#clickme").on('click', clusterIt);
 //var bd = d3.select("#build").on('click', build);
