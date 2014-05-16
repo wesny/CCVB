@@ -98,6 +98,9 @@ def crunchData (media_array):
            popMediaLink.append (photo["link"])
 
     #Add awesome media to finalData
+    finalData["comments_vals"] = comments_vals
+    finalData["likes_vals"] = likes_vals
+
     finalData["link"] = popMediaLink
     finalData["text"] = popMediaText
     return finalData

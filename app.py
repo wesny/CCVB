@@ -1,6 +1,7 @@
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
+from py import Intagram
 import json
 import os
 #from alchemy import analyze
@@ -23,8 +24,8 @@ def peopleresults():
 def thingresults():
     return render_template("thingresults.html")
 
-@app.route ("/DCtesting/<user>")
-def DCtesting(user):
+@app.route ("/Twitter/<user>")
+def Twitter(user):
     tweets = Twitter.get_User_Timeline (user)
     #tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
     data = Twitter.cruchData (tweets)
@@ -35,6 +36,17 @@ def DCtesting(user):
     
     print favorite_vals[1]
     return render_template ("Post_Popularity.html",favoriteVals=favorite_vals, textVals=text_vals)
+
+@app.route ("/Instagram/<user>")
+def Instagram(user):
+    pics = Instagram.get_User_Data (user)
+    mediaStats = pics["media_stats"]
+    commentVals = mediaStats ["comments_vals"]
+    likesVals =  mediaStats ["likes_vals"]
+    textVals =  mediaStats ["text_vals"]
+    return render_template ("Instagram_Results.html",textVals=textVals, likesVals=likesVals,commentVals=commentVals)
+
+
 
 @app.route("/tester", methods = ['GET', 'POST'])
 def tester():
