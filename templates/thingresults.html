@@ -10,8 +10,19 @@
 {% endblock %}
 {% block foreign %}
 <h2><a href="/">Socialpedia</a></h2>
-<h1 class="center">Results</h1>
-{{data}}
+<h1 class="center">{{word}}'s Popularity:</h1>
+<br>
+<br>
+
+<div class="center">
+  {{data[0]}}
+  <br> 
+  {{data[1]}} 
+  <br> 
+  {{data[2]}} 
+  <br> 
+  {{data[3]}}
+</div> 
 {% endblock %}
 
 {% block script %}

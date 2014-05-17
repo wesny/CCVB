@@ -44,16 +44,26 @@ leftLink.appendChild(document.createElement("br"));
 leftLink.appendChild(leftTextBox);
 leftDiv.appendChild(leftLink);
 
+
 var rightLink = document.createElement("form");
-rightLink.setAttribute('action',"thingresults");
+//rightLink.setAttribute('action',"thingresults");
+rightLink.setAttribute('class',"form-horizontal");
+rightLink.setAttribute('role',"form");
+rightLink.setAttribute('method',"POST");
+var rightId = document.createElement("input");
+rightId.setAttribute('name',"id");
+rightId.setAttribute('type',"hidden");
+rightId.setAttribute('value',"things");
 var rightButton = document.createElement("input");
 rightButton.setAttribute('type',"submit");
 rightButton.setAttribute('value',"THINGS SEARCH");
 rightLink.appendChild(rightButton);
 var rightTextBox = document.createElement("input");
 rightTextBox.setAttribute('type',"text");
+rightTextBox.setAttribute('name',"word");
 rightLink.appendChild(document.createElement("br"));
 rightLink.appendChild(document.createElement("br"));
+rightLink.appendChild(rightId);
 rightLink.appendChild(rightTextBox);
 rightDiv.appendChild(rightLink);
 

@@ -1,7 +1,7 @@
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
-from py import Intagram
+#from py import Instagram
 import json
 import os
 #from alchemy import analyze
@@ -12,9 +12,9 @@ app.config.from_object('py.config')
 env = app.jinja_env
 env.line_statement_prefix = '='
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+#@app.route("/")
+#def index():
+#    return render_template("index.html")
 
 @app.route("/peopleresults")
 def peopleresults():
@@ -48,18 +48,20 @@ def Instagram(user):
 
 
 
-@app.route("/tester", methods = ['GET', 'POST'])
-def tester():
+@app.route("/", methods = ['GET', 'POST'])
+def index():
     if request.method == "GET": 
-        return render_template("tester.html")
-    if request.method == "POST": 
+        return render_template("index.html")
+    if request.method == "POST" and request.form['id'] == "things":
         word = request.form['word'].encode ('ascii',"ignore")
         os.system("python analyze.py reagan 10")
         with open ("Output.txt", "r") as myfile:
             data=myfile.readlines()
             print data
         
-        return render_template ("popularity_results.html", data=data, word=word)
+        return render_template ("thingresults.html", data=data, word=word)
+    if request.method == "POST" and request.form['id'] == "people":
+        return render_template ("peopleresults.html")
 
 
 if __name__ == '__main__':
