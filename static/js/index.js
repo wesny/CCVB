@@ -31,39 +31,15 @@ rightSide.setAttribute('fill', '#eeffee');
 rightSide.setAttribute('id','rightSide');
 s.appendChild(rightSide);
 
-var leftLink = document.createElement("form");
-leftLink.setAttribute('action',"peopleresults");
-var leftButton = document.createElement("input");
-leftButton.setAttribute('type',"submit");
-leftButton.setAttribute('value',"PEOPLE SEARCH");
-leftLink.appendChild(leftButton);
-var leftTextBox = document.createElement("input");
-leftTextBox.setAttribute('type',"text");
-leftLink.appendChild(document.createElement("br"));
-leftLink.appendChild(document.createElement("br"));
-leftLink.appendChild(leftTextBox);
-leftDiv.appendChild(leftLink);
 
 
-var rightLink = document.createElement("form");
-//rightLink.setAttribute('action',"thingresults");
-rightLink.setAttribute('class',"form-horizontal");
-rightLink.setAttribute('role',"form");
-rightLink.setAttribute('method',"POST");
-var rightId = document.createElement("input");
-rightId.setAttribute('name',"id");
-rightId.setAttribute('type',"hidden");
-rightId.setAttribute('value',"things");
-var rightButton = document.createElement("input");
-rightButton.setAttribute('type',"submit");
-rightButton.setAttribute('value',"THINGS SEARCH");
-rightLink.appendChild(rightButton);
-var rightTextBox = document.createElement("input");
-rightTextBox.setAttribute('type',"text");
-rightTextBox.setAttribute('name',"word");
-rightLink.appendChild(document.createElement("br"));
-rightLink.appendChild(document.createElement("br"));
-rightLink.appendChild(rightId);
-rightLink.appendChild(rightTextBox);
-rightDiv.appendChild(rightLink);
+//rightDiv.addEventListener('mouseover', function(e) {
+//    leftDiv.style.opacity = "0.2";
+//    rightDiv.style.opacity = "1";
+//});
+
+//leftDiv.addEventListener('mouseover', function(e) {
+//    rightDiv.style.opacity = "0.2";
+//    leftDiv.style.opacity = "1";
+//});
 
