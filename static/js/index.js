@@ -33,13 +33,15 @@ s.appendChild(rightSide);
 
 
 
-//rightDiv.addEventListener('mouseover', function(e) {
-//    leftDiv.style.opacity = "0.2";
-//    rightDiv.style.opacity = "1";
-//});
+rightDiv.addEventListener('mouseover', function(e) {
+    d3.selectAll('#left-div').transition().duration(350).style('opacity',0.2);
+    d3.selectAll('#right-div').transition().duration(350).style('opacity',1);
+});
 
-//leftDiv.addEventListener('mouseover', function(e) {
-//    rightDiv.style.opacity = "0.2";
-//    leftDiv.style.opacity = "1";
-//});
+leftDiv.addEventListener('mouseover', function(e) {
+    d3.selectAll('#left-div').transition().duration(350).style('opacity',1);
+    d3.selectAll('#right-div').transition().duration(350).style('opacity',0.2);
+});
+
+
 
