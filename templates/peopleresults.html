@@ -3,15 +3,18 @@
 
 {% block title %}People Search Results{% endblock %}
 
-{% block body %}
-{{ super() }}
-{% endblock %}
-{% block svg %}
-{% endblock %}
+
 {% block foreign %} 
 <h2><a href="/">Socialpedia</a></h2>
 <h1 class="center">Results</h1>
 {{ data }}
+{% endblock %}
+
+{% block svg %}
+{% endblock %}
+
+{% block body %}
+{{ super() }}
 {% endblock %}
 
 {% block script %}

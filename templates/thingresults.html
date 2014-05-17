@@ -3,11 +3,6 @@
 
 {% block title %}Things Search Results{% endblock %}
 
-{% block body %}
-{{ super() }}
-{% endblock %}
-{% block svg %}
-{% endblock %}
 {% block foreign %}
 <h2><a href="/">Socialpedia</a></h2>
 <h1 class="center">{{word}}'s Popularity:</h1>
@@ -23,6 +18,13 @@
   <br> 
   {{data[3]}}
 </div> 
+{% endblock %}
+
+{% block svg %}
+{% endblock %}
+
+{% block body %}
+{{ super() }}
 {% endblock %}
 
 {% block script %}
