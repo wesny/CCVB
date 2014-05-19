@@ -36,7 +36,7 @@ def tester():
         return render_template("tester.html")
     if request.method == "POST": 
         word = request.form['word'].encode ('ascii',"ignore")
-        os.system("python analyze.py reagan 10")
+        os.system("python analyze.py " + word + " 10")
         with open ("Output.txt", "r") as myfile:
             data=myfile.readlines()
             print data
