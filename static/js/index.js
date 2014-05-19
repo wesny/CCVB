@@ -31,29 +31,17 @@ rightSide.setAttribute('fill', '#eeffee');
 rightSide.setAttribute('id','rightSide');
 s.appendChild(rightSide);
 
-var leftLink = document.createElement("form");
-leftLink.setAttribute('action',"peopleresults");
-var leftButton = document.createElement("input");
-leftButton.setAttribute('type',"submit");
-leftButton.setAttribute('value',"PEOPLE SEARCH");
-leftLink.appendChild(leftButton);
-var leftTextBox = document.createElement("input");
-leftTextBox.setAttribute('type',"text");
-leftLink.appendChild(document.createElement("br"));
-leftLink.appendChild(document.createElement("br"));
-leftLink.appendChild(leftTextBox);
-leftDiv.appendChild(leftLink);
 
-var rightLink = document.createElement("form");
-rightLink.setAttribute('action',"thingresults");
-var rightButton = document.createElement("input");
-rightButton.setAttribute('type',"submit");
-rightButton.setAttribute('value',"THINGS SEARCH");
-rightLink.appendChild(rightButton);
-var rightTextBox = document.createElement("input");
-rightTextBox.setAttribute('type',"text");
-rightLink.appendChild(document.createElement("br"));
-rightLink.appendChild(document.createElement("br"));
-rightLink.appendChild(rightTextBox);
-rightDiv.appendChild(rightLink);
+
+rightDiv.addEventListener('mouseover', function(e) {
+    d3.selectAll('#left-div').transition().duration(350).style('opacity',0.2);
+    d3.selectAll('#right-div').transition().duration(350).style('opacity',1);
+});
+
+leftDiv.addEventListener('mouseover', function(e) {
+    d3.selectAll('#left-div').transition().duration(350).style('opacity',1);
+    d3.selectAll('#right-div').transition().duration(350).style('opacity',0.2);
+});
+
+
 

@@ -169,9 +169,9 @@ for (i=0; i<favorite_vals.length; i++) {
     d1.push ({
 	'label':i,
 	'x':i,
-	'y':favorite_vals[i]
+	'y':favorite_vals[i],
+	'text':text_vals[i]
     })
-    console.log(favorite_vals[i])
 }
 
 var yScale = d3.scale.linear()
@@ -190,22 +190,20 @@ var c = svg.selectAll("circle")
     .attr('cx',function(d) {return xScale (d.x);})
     .attr('cy',function(d) {return yScale (d.y);})
     .attr('fill','steelblue')
-    .on('mouseover', showText)
-    .on('mouseout', removeText);
 
 $("#svg").on("mouseover", "circle", function(event){
     document.getElementById("dialog").innerHTML = "";
-    xCor = this.dx;
-    yCor = this.dy;
-    var txtNd=document.createTextNode(text_vals[xCor]);
+    myVar = this;
+    xCor = event.screenX;
+    txt = text_vals[xCor];
+    var txtNd=document.createTextNode(txt);
     document.getElementById("dialog").appendChild(txtNd);
     $( "#dialog" ).dialog(); 
-    console.log("Showing Text");
 });
 
 $("#svg").on("mouseout", "circle", function(event){
     $("#dialog").dialog('close');
-}
+});
 
 
 var yAxis = d3.svg.axis()
