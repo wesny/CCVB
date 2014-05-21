@@ -22,6 +22,9 @@ input[type="submit"] {
 
 input[type="text"] {
     font-family: 'Oswald', sans-serif;
+    width:275px;
+    height:30px;
+    font-size:20px;
 }
 
 h1 {
