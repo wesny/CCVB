@@ -1,12 +1,9 @@
 var s = document.getElementById("svg");
-var title = document.createElement("h1");
+var topDiv = document.getElementById("top-div");
 var fullDiv = document.getElementById("full-div");
 var leftDiv = document.getElementById("left-div");
 var rightDiv = document.getElementById("right-div");
 var foreign = document.getElementById("foreign");
-title.appendChild(document.createTextNode("Socialpedia"));
-title.setAttribute('class',"center");
-foreign.insertBefore(title, fullDiv);
 
 
 var topBox = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -46,6 +43,10 @@ rightSide.setAttribute('id','rightSide');
 s.appendChild(rightSide);
 
 
+topDiv.addEventListener('mouseover', function(e) {
+    d3.selectAll('#left-div').transition().duration(350).style('opacity',1);
+    d3.selectAll('#right-div').transition().duration(350).style('opacity',1);
+});
 
 rightDiv.addEventListener('mouseover', function(e) {
     d3.selectAll('#left-div').transition().duration(350).style('opacity',0.2);
