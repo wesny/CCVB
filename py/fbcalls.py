@@ -4,6 +4,7 @@ from facebook import GraphAPI
 import itertools
 import gevent.pool
 import gevent.queue
+from fbclasses import FBUser
 
 f = open('output.json','w')
 
