@@ -49,6 +49,25 @@
     var xScale = d3.scale.linear()
 	.domain([d3.max(d1,function(d){return d.x;})+20,-9 ])
 	.range([width,0]);
+    var yAxis = d3.svg.axis()
+	.scale(yScale)
+	.ticks(10)
+	.orient('left')
+
+    var xAxis = d3.svg.axis()
+	.scale(xScale)
+	.ticks(10)
+	.orient('')
+
+    svg.append("g")
+	.attr('class','axis')
+	.attr('transform','translate (25,0)')
+	.call(yAxis);
+
+    svg.append("g")
+	.attr('class','axis')
+	.attr('transform','translate (0,375)')
+	.call(xAxis);
 
     var c = svg.selectAll("circle")
 	.data(d1)
@@ -75,25 +94,6 @@
     });
 
 
-    var yAxis = d3.svg.axis()
-	.scale(yScale)
-	.ticks(10)
-	.orient('left')
-
-    var xAxis = d3.svg.axis()
-	.scale(xScale)
-	.ticks(10)
-	.orient('')
-
-    svg.append("g")
-	.attr('class','axis')
-	.attr('transform','translate (25,-20)')
-	.call(yAxis);
-
-    svg.append("g")
-	.attr('class','axis')
-	.attr('transform','translate (0,375)')
-	.call(xAxis);
 
     </script>
   </body>

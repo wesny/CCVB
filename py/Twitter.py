@@ -28,6 +28,9 @@ def rate_limit():
 # print json.dumps(user, sort_keys=True, indent=4, separators=(',', ':'))
 
 
+def test():
+    print hello
+
 def get_User_Timeline (username):
     counter = 0
     tweets = []

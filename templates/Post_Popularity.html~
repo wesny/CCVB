@@ -31,9 +31,9 @@
 
 
      favorite_vals = {{favoriteVals|tojson|safe}};
-     text_vals = {{textVals| tojson|safe}};
+     text_vals = {{textVals|tojson|safe}};
 
-    for (i=0; i<favorite_vals.length; i++) {
+     for (i=0; i<favorite_vals.length; i++) {
 	d1.push ({
 	    'label':i,
 	    'x':i,

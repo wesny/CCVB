@@ -25,9 +25,9 @@ def thingresults():
     return render_template("thingresults.html")
 
 @app.route ("/Twitter/<user>")
-def Twitter(user):
+def TwitterPage(user):
     tweets = Twitter.get_User_Timeline (user)
-    #tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
+    # tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
     data = Twitter.cruchData (tweets)
     favorite_vals = data["favorite_vals"]
     text_vals = data ["tweet_text"]
@@ -38,7 +38,7 @@ def Twitter(user):
     return render_template ("Post_Popularity.html",favoriteVals=favorite_vals, textVals=text_vals)
 
 @app.route ("/Instagram/<user>")
-def Instagram(user):
+def Instagram (user):
     pics = Instagram.get_User_Data (user)
     mediaStats = pics["media_stats"]
     commentVals = mediaStats ["comments_vals"]
