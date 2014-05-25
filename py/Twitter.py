@@ -22,11 +22,11 @@ def rate_limit():
 
 # Find a user and get info on him/her. UNNECESSARY DUE TO get_User_Timline
 #def findUser (username):
-    # url = 'https://api.twitter.com/1/users/show.json?screen_name=%s&include_entities=true' % (username)
-    # url = 'https://api.twitter.com/1.1/users/lookup.json?screen_name=%s' % (username)
-    # user = client.request(url)
-    # print json.dumps(user, sort_keys=True, indent=4, separators=(',', ':'))
-  
+# url = 'https://api.twitter.com/1/users/show.json?screen_name=%s&include_entities=true' % (username)
+# url = 'https://api.twitter.com/1.1/users/lookup.json?screen_name=%s' % (username)
+# user = client.request(url)
+# print json.dumps(user, sort_keys=True, indent=4, separators=(',', ':'))
+
 
 def get_User_Timeline (username):
     counter = 0
@@ -69,16 +69,16 @@ def cruchData (tweetArray):
         text_vals.append (tweet["text"])
         favorite_count = favorite_count + tweet["favorite_count"]
         favorite_vals.append (tweet["favorite_count"])
-    avg_retweet_count = retweet_count /  tweet_count
-    avg_fav_count = favorite_count /  tweet_count
-    
+        avg_retweet_count = retweet_count /  tweet_count
+        avg_fav_count = favorite_count /  tweet_count
+        
     #Update finalData array
     finalData["favorite_count"] =  avg_fav_count
     finalData["retweet_count"] =  avg_retweet_count
     finalData["retweet_vals"] = retweet_vals
     finalData["favorite_vals"] = favorite_vals
     finalData["tweet_text"] = text_vals
-   
+    
     popTweets = []
     #Find awesome tweets
     for tweet in tweetArray:
@@ -87,7 +87,7 @@ def cruchData (tweetArray):
         pop = functions.isPopular (favs,favorite_vals)
         pop2 = functions.isPopular (retweets, retweet_vals)
         if pop or pop2:
-           popTweets.append (tweet["text"])
+            popTweets.append (tweet["text"])
 
     #Add awesome tweets to finalData
     finalData["popularTweets"] = popTweets
@@ -95,15 +95,15 @@ def cruchData (tweetArray):
     return finalData
 
 if __name__ == '__main__':
-     tweets = get_User_Timeline ('nikhilgoya_l')
-     data = cruchData (tweets)
-     print json.dumps(data, sort_keys=True, indent=4, separators=(',', ':'))
+    tweets = get_User_Timeline ('nikhilgoya_l')
+    data = cruchData (tweets)
+    print json.dumps(data, sort_keys=True, indent=4, separators=(',', ':'))
 
 
 #NOTES/LONG TERM GOALS 
-    #A. MONGODB Storage for API Calls
-    #This code needs to be modified to cache user data and store it in a mongoDB. Then update with API calls every 15 minutes to avoid too many calls at once. 
-    #Then, when user call a search, we search the mongoDB. If the data has been updated in the past week, we use it. Otherwise, we make a distint call.
-    
+#A. MONGODB Storage for API Calls
+#This code needs to be modified to cache user data and store it in a mongoDB. Then update with API calls every 15 minutes to avoid too many calls at once. 
+#Then, when user call a search, we search the mongoDB. If the data has been updated in the past week, we use it. Otherwise, we make a distint call.
+
     #B. Don't count retweets! COMPLETE
     #C. Get whitelisted (allows unlimited streaming API calls): https://dev.twitter.com/docs/rate-limiting-faq#how-whitelisting

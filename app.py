@@ -33,8 +33,8 @@ def Twitter(user):
     text_vals = data ["tweet_text"]
     #favorite_vals = [1,2,3]
     #text_vals =  ['a','b','c']
-    
-    print favorite_vals[1]
+    #print favorite_vals[1]
+
     return render_template ("Post_Popularity.html",favoriteVals=favorite_vals, textVals=text_vals)
 
 @app.route ("/Instagram/<user>")
@@ -45,7 +45,6 @@ def Instagram(user):
     likesVals =  mediaStats ["likes_vals"]
     textVals =  mediaStats ["text_vals"]
     return render_template ("Instagram_Results.html",textVals=textVals, likesVals=likesVals,commentVals=commentVals)
-
 
 
 @app.route("/", methods = ['GET', 'POST'])
