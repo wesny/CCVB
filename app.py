@@ -37,9 +37,9 @@ def TwitterPage(user):
 
     return render_template ("Post_Popularity.html",favoriteVals=favorite_vals, textVals=text_vals)
 
-@app.route ("/Instagram/<user>")
-def InstagramPage (user):
-    pics = Instagram.get_User_Data (user)
+@app.route ("/Instagram")
+def InstagramPage ():
+    pics = Instagram.get_User_Data ("jennamarbles")
     mediaStats = pics["media_stats"]
     commentVals = mediaStats ["comments_vals"]
     likesVals =  mediaStats ["likes_vals"]

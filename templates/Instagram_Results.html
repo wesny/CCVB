@@ -7,10 +7,30 @@
       <h1> Instragram Popularity Analysis </h1>
       <hr>
       <h3> How popular are your pictures? See Jenna Marbles's instragram photos cluster before your eyes on the basis of their popularity in terms of likes and comments! </h3> 
-      <span> <h2 id= "setup">Click me to Setup</h2> </span>
       <span> <h2 id= "clickme">Click me to Cluster</h2> </span>
-  
-    <script type="text/javascript" src = "../static/js/Instagram_Cluster.js"> </script>
+   
+	<script>
+	 console.log("error");
+	 commentVals = {{commentVals|tojson|safe}};
+	 likesVals = {{likesVals|tojson|safe}};
+	 textVals = {{textVals|tojson|safe}};
+	 
+	 var data = [commentVals, likesVals,textVals];
+
+var csvContent = "data:text/csv;charset=utf-8,";
+data.forEach(function(infoArray, index){
+    dataString = infoArray.join(",");
+    csvContent += index < infoArray.length ? dataString+ "\n" : dataString;
+});
+
+var encodedUri = encodeURI(csvContent);
+var link = document.createElement("a");
+link.setAttribute("href", encodedUri);
+link.setAttribute("download", "my_data.csv");
+link.click();
+console.log ("downloaded file");
+	  </script>
+	<script type="text/javascript" src = "../static/js/Instagram_Cluster_csv.js"> </script>
 
       <h3> Note: Likes are on the X-axis, comments are on the y-axis </h3>
     </body>

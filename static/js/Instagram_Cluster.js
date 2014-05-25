@@ -93,61 +93,56 @@ var centroidCircles = svg.selectAll('centroid')
     .attr('fill',function(d,i){return centroidColors[i]});
 
 
+   items = svg.selectAll("item")
+	    .data(data)
+	    .enter()
+	    .append("circle")
+	    .attr('class','item')
+	    .attr('r',5)
+	    .attr('cx',function(d){return xScale(d.features[0]);})
+	    .attr('cy',function(d){return yScale(d.features[1]);})
+	.attr('stroke-width',3)
+	.attr('fill',function(d){return clustercolors[d.realtype];})
+    	.attr('stroke',function(d){return clustercolors[d.realtype];});
+
+    ccircles = svg.selectAll('centroid')
+	.data(centroids)
+	.enter()
+	.append("circle")
+	.attr('class','centroid')
+	.attr('r',5)
+	.attr('cx',function(d){return xScale(d.features[0]);})
+	.attr('cy',function(d){return yScale(d.features[1]);})
+	.attr('stroke-width',3)
+	.attr('stroke','yellow')
+	.attr('fill',function(d){return clustercolors[d.realtype];});
+};
+
+
 var dist = function(a,b){
     return _.reduce(_.map(_.zip(a,b),function(d) {return (d[0]-d[1])*(d[0]-d[1]);}),
 		    function(a,b) {return a+b;},0);
 }
 
-var assign = function(centroids,data) {
-    _.each(data,function(d) {
-	var mins = _.map(centroids,function(d2){
-	    return dist(d2.features,d.features);
-	});
-	var min = _.min(mins);
-	var minIndex = _.indexOf(mins,min);
-	d['type'] = minIndex;
-    });
-}
 
-var recenter = function(centroids,data) {
-    _.each(centroids,function(d,i,c){
-
-	var subset = _.filter(data,function(d2){
-	    return d.type==d2.type;
-	});
-	subset = _.map(subset,function(d) 
-		       {return d.features;});
-	var z = _.zip(subset);
-	
-	var sums = _.map(z,function(d){
-	    return _.reduce(d,function(a,b){return a+b;});
-	});
-	var avgs = _.map(sums,function(d,i){
-	    return parseInt(d)/z[i].length;
-	});
-	
-	c[i].features = avgs;
-    });
-}
-
-var clusterit = function() {
+var clusterit = function(){
     assign(centroids,data);
-    
-    items
-	.transition()
-	.attr('stroke-width',3)
-	.attr('stroke',function(d) {return centroidColors[d.type]; });
-
     recenter(centroids,data);
-    
-    centroidCircles
-	.data(centroids)
+    d3.selectAll(".centroid")
 	.transition()
-	.delay(function(d,i){return 1000*i;})
-	.duration(3000)
+  	.duration(1000)
+	.attr('stroke-width',3)
+	.attr('stroke','yellow')
 	.attr('cx',function(d){return xScale(d.features[0]);})
-	.attr('cy',function(d){return yScale(d.features[1]);})
-    }
+	.attr('cy',function(d){return yScale(d.features[1]);});
+
+    items
+	.data(data)
+	.attr('stroke-width',3)
+	.attr('stroke',function(d){ return clustercolors[d.type];})
+	.attr('fill',function(d){return clustercolors[d.realtype];});
+
+}
 
 
 
