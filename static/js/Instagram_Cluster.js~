@@ -6,6 +6,8 @@
 // Yellow dots means that a photo has many comments but not many likes. 
 // Blue dots are photos that have many comments and many likes. 
 
+
+// To do: ACTUALLY INTEGRATE THE RENDERING OF THE TEMPLATE
 width = 400;
 height = 400;
 

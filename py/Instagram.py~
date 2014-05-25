@@ -70,6 +70,7 @@ def crunchData (media_array):
     comments_count = 0
     likes_vals = []
     comments_vals = []
+    text_vals = []
     media_count = len (media_array)
 
     #Calculate Average Values
@@ -78,6 +79,8 @@ def crunchData (media_array):
         likes_vals.append (photo["like_count"])
         comments_count = comments_count + photo["comment_count"]
         comments_vals.append (photo["comment_count"])
+        text_vals.append(photo["text"])
+
     avg_likes_count = likes_count / media_count
     avg_comments_count = comments_count /  media_count
     
@@ -97,10 +100,12 @@ def crunchData (media_array):
            popMediaText.append (photo["text"])
            popMediaLink.append (photo["link"])
 
-    #Add awesome media to finalData
+    #all of the actual numbers
     finalData["comments_vals"] = comments_vals
     finalData["likes_vals"] = likes_vals
-
+    finalData["text_vals"] =  text_vals
+    
+    #Add awesome media to finalData
     finalData["link"] = popMediaLink
     finalData["text"] = popMediaText
     return finalData

@@ -1,7 +1,7 @@
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
-#from py import Instagram
+from py import Instagram
 import json
 import os
 #from alchemy import analyze
@@ -38,7 +38,7 @@ def TwitterPage(user):
     return render_template ("Post_Popularity.html",favoriteVals=favorite_vals, textVals=text_vals)
 
 @app.route ("/Instagram/<user>")
-def Instagram (user):
+def InstagramPage (user):
     pics = Instagram.get_User_Data (user)
     mediaStats = pics["media_stats"]
     commentVals = mediaStats ["comments_vals"]
