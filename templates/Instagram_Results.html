@@ -14,13 +14,20 @@
 	 commentVals = {{commentVals|tojson|safe}};
 	 likesVals = {{likesVals|tojson|safe}};
 	 textVals = {{textVals|tojson|safe}};
-	 
-	 var data = [commentVals, likesVals,textVals];
+	 console.log(textVals.length);
+	 console.log(commentVals.length);
+	 console.log(likesVals.length);
+
+	 var data = [["comments","likes","text"]];
+	 for (i=0; i < commentVals.length;i++){
+	      data.push ([commentVals[i],likesVals[i],textVals[i]]);
+		       }
+console.log (data)
 
 var csvContent = "data:text/csv;charset=utf-8,";
 data.forEach(function(infoArray, index){
     dataString = infoArray.join(",");
-    csvContent += index < infoArray.length ? dataString+ "\n" : dataString;
+    csvContent += dataString+ "\n";
 });
 
 var encodedUri = encodeURI(csvContent);
