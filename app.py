@@ -37,15 +37,18 @@ def TwitterPage(user):
 
     return render_template ("Post_Popularity.html",favoriteVals=favorite_vals, textVals=text_vals)
 
-@app.route ("/Instagram")
-def InstagramPage ():
-    pics = Instagram.get_User_Data ("jennamarbles")
-    mediaStats = pics["media_stats"]
-    commentVals = mediaStats ["comments_vals"]
-    likesVals =  mediaStats ["likes_vals"]
-    textVals =  mediaStats ["text_vals"]
-    return render_template ("Instagram_Results_func.html",textVals=textVals, likesVals=likesVals,commentVals=commentVals)
-
+@app.route ("/Instagram/<user>")
+def InstagramPage (user):
+    try: 
+        pics = Instagram.get_User_Data (user)
+        mediaStats = pics["media_stats"]
+        commentVals = mediaStats ["comments_vals"]
+        likesVals =  mediaStats ["likes_vals"]
+        textVals =  mediaStats ["text_vals"]
+        return render_template ("Instagram_Results_func.html",textVals=textVals, likesVals=likesVals,commentVals=commentVals)
+    except:
+        return "data unavailable"
+    
 
 @app.route("/", methods = ['GET', 'POST'])
 def index():
