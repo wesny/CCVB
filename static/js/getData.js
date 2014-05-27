@@ -24,7 +24,7 @@ var clickEvent = function (comments,likes,text) {
 	txt = text[indx];
 	var txtNd=document.createTextNode(txt);
 	document.getElementById("dialog").appendChild(txtNd);
-	$( "#dialog" ).dialog(); 
+	$( "#dialog" ).dialog({dialogClass: "no-close"}); 
     });
 
     $("#svg").on("mouseout", "circle", function(event){
