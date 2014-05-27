@@ -44,7 +44,7 @@ def InstagramPage ():
     commentVals = mediaStats ["comments_vals"]
     likesVals =  mediaStats ["likes_vals"]
     textVals =  mediaStats ["text_vals"]
-    return render_template ("Instagram_Results.html",textVals=textVals, likesVals=likesVals,commentVals=commentVals)
+    return render_template ("Instagram_Results_func.html",textVals=textVals, likesVals=likesVals,commentVals=commentVals)
 
 
 @app.route("/", methods = ['GET', 'POST'])

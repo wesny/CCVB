@@ -16,7 +16,6 @@ var svg = d3.select("body")
     .attr('width',width)
     .style('border', 'solid 1px');
 
-
 var data;
 var doit = function(d){
     console.log ("doing it");
