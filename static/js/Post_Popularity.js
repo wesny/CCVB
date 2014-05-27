@@ -52,7 +52,7 @@ var c = svg.selectAll("circle")
 $("#svg").on("mouseover", "circle", function(event){
     document.getElementById("dialog").innerHTML = "";
     myVar = this;
-    xCor = event.screenY;
+    xCor = event.screenX;
     xVal = Math.round(xScale.invert(xCor));
     txt = text_vals[xVal];
     var txtNd=document.createTextNode(txt);

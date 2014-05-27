@@ -12,3 +12,23 @@ var getData = function (comments,likes,text) {
     };
     return data;
 };
+
+var clickEvent = function (comments,likes,text) {
+    console.log (likes);
+    $("#svg").on("mouseover", "circle", function(event){
+	document.getElementById("dialog").innerHTML = "";
+
+	xCor = this.cx.baseVal.value;
+	xVal = Math.round(xScale.invert(xCor));
+	indx = likes.indexOf (xVal);
+	txt = text[indx];
+	var txtNd=document.createTextNode(txt);
+	document.getElementById("dialog").appendChild(txtNd);
+	$( "#dialog" ).dialog(); 
+    });
+
+    $("#svg").on("mouseout", "circle", function(event){
+	$("#dialog").dialog('close');
+    });
+
+};

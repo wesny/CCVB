@@ -60,7 +60,8 @@ var useData = function (data) {
     }
 
     var assign = function (centroids,data) {
-	_.each(data, function(d){
+	console.log ('assigning values');
+	_.each(data, function(d){	    
 	    var mins = _.map(centroids,function(d2) {
 		return dist(d2.features,d.features);
 	    });
@@ -89,16 +90,16 @@ var useData = function (data) {
     }
 
     var clusterIt = function () {
-	console.log('clustering');
+
 	assign (centroids, data);
 	items
 	//	.transition()
 	//	.delay(function(d,i) {return 50*i})
 	    .attr('stroke-width',3)
 	    .attr('stroke', function (d) {return centroidColors[d.type];});
-
-
+	
 	recenter(centroids,data);
+
 	centroidCirciles
 	    .transition()
 	    .delay(function(d,i){return 1000*i;})
