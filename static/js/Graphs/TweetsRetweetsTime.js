@@ -17,11 +17,11 @@ var CalcTweets = function (retweet_vals,text_vals) {
     d1 = []
     
 
-    for (i=0; i<favorite_vals.length; i++) {
+    for (i=0; i<retweet_vals.length; i++) {
 	d1.push ({
 	    'label':i,
 	    'x':i,
-	    'y':favorite_vals[i],
+	    'y':retweet_vals[i],
 	    'text':text_vals[i]
 	})
     }
