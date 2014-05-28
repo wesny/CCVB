@@ -2,8 +2,8 @@ var s = document.getElementById('svg');
 var foreign = document.getElementById('foreign');
 
 var makeBackground = function() {
-    width = parseInt(document.width);
-    height = parseInt(document.height);
+    var width = parseInt(document.body.clientWidth);
+    var height = parseInt(document.body.clientHeight);
     
     var circles = s.getElementsByTagName('circle');
     var lines = s.getElementsByTagName('line');
