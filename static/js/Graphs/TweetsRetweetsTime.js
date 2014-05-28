@@ -1,4 +1,4 @@
-var CalcTweets2 = function (retweet_vals,text_vals) {    
+var CalcTweets = function (retweet_vals,text_vals) {    
     console.log("here")
     window.onload = function () {
 	document.getElementById("dialog").innerHTML = "";
