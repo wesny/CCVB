@@ -1,39 +1,23 @@
-<!DOCTYPE html>
-
-<html>
-  <head>
-    <script type="text/javascript" src = "../static/js/d3.min.js"> </script>
-    <script type="text/javascript" src = "../static/js/jquery.js"> </script>
-    <script type="text/javascript" src = "../static/js/jquery-ui-1.10.4.min.js"> </script>
-    <script type="text/css" src = "../static/css/jquery-ui-1.10.4.min.css"> </script>
-
-  </head>
-  <body>
-    <h1>Tweet Favorites Over Time</h1>
-    <div id = "dialog"> </div>
-    <script>
-     console.log("here")
-     window.onload = function () {
-     document.getElementById("dialog").innerHTML = "";
+var CalcTweets2 = function (retweet_vals,text_vals) {    
+    console.log("here")
+    window.onload = function () {
+	document.getElementById("dialog").innerHTML = "";
     }
 
-     var height=400, width=1500;
-     var yPadding=10;
-     var xPadding=40;
+    var height=400, width=1500;
+    var yPadding=10;
+    var xPadding=40;
 
-     var svg = d3.select("body").append('svg')
-     .attr('width',width)
-     .attr('height',height)
-     .attr('id','svg')
-     .style('border','1px solid')
-     
+    var svg = d3.select("body").append('svg')
+	.attr('width',width)
+	.attr('height',height)
+	.attr('id','svg')
+	.style('border','1px solid')
+    
     d1 = []
+    
 
-
-     favorite_vals = {{favoriteVals|tojson|safe}};
-     text_vals = {{textVals|tojson|safe}};
-
-     for (i=0; i<favorite_vals.length; i++) {
+    for (i=0; i<favorite_vals.length; i++) {
 	d1.push ({
 	    'label':i,
 	    'x':i,
@@ -93,8 +77,4 @@
 	$("#dialog").dialog('close');
     });
 
-
-
-    </script>
-  </body>
-</html>
+};
