@@ -36,7 +36,7 @@ def TwitterPage(user):
     #text_vals =  ['a','b','c']
     #print favorite_vals[1]
 
-    return render_template ("/Graphs/TweetsFavoritesTime.html",favoriteVals=favorite_vals, textVals=text_vals,retweetVals=retweet_vals)
+    return render_template ("/Graphs/TweetsFavoritesTime.html",favoriteVals=favorite_vals, textVals=text_vals)
 
 @app.route ("/Instagram/<user>")
 def InstagramPage (user):
