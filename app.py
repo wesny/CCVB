@@ -35,7 +35,7 @@ def TwitterPage(user):
     #text_vals =  ['a','b','c']
     #print favorite_vals[1]
 
-    return render_template ("Post_Popularity.html",favoriteVals=favorite_vals, textVals=text_vals)
+    return render_template ("/Graphs/TweetsFavoritesTime.html",favoriteVals=favorite_vals, textVals=text_vals)
 
 @app.route ("/Instagram/<user>")
 def InstagramPage (user):
@@ -45,7 +45,7 @@ def InstagramPage (user):
         commentVals = mediaStats ["comments_vals"]
         likesVals =  mediaStats ["likes_vals"]
         textVals =  mediaStats ["text_vals"]
-        return render_template ("Instagram_Results_func.html",textVals=textVals, likesVals=likesVals,commentVals=commentVals)
+        return render_template ("/Graphs/InstagramLikesFavorites.html",textVals=textVals, likesVals=likesVals,commentVals=commentVals)
     except:
         return "data unavailable"
     
