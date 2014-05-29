@@ -25,7 +25,8 @@ var makeBackground = function() {
 	randpixel.setAttribute('cx',Math.random() * width * 1.5 - width * .25);
 	randpixel.setAttribute('cy',Math.random() * height * 1.5 - height * .25);
 	randpixel.setAttribute('r',dimension);
-	randpixel.setAttribute('fill','#6a55ff');
+//	randpixel.setAttribute('fill','#6a55ff');
+	randpixel.setAttribute('fill','#ffffff');
 	
 	newCircles.push(randpixel);
 	
@@ -34,7 +35,8 @@ var makeBackground = function() {
 	randpixel2.setAttribute('cx',Math.random() * width * 1.5 - width * .25);
 	randpixel2.setAttribute('cy',Math.random() * height * 1.5 - height * .25);
 	randpixel2.setAttribute('r',dimension2);
-	randpixel2.setAttribute('fill','#5a70ff');
+//	randpixel2.setAttribute('fill','#5a70ff');
+	randpixel2.setAttribute('fill','#ffffff');
 
 	newCircles.push(randpixel2);
 	
@@ -43,7 +45,8 @@ var makeBackground = function() {
 	randpixel3.setAttribute('cx',Math.random() * width * 1.5 - width * .25);
 	randpixel3.setAttribute('cy',Math.random() * height * 1.5 - height * .25);
 	randpixel3.setAttribute('r',dimension3);
-	randpixel3.setAttribute('fill','#5e86ff');
+//	randpixel3.setAttribute('fill','#5e86ff');
+	randpixel3.setAttribute('fill','#ffffff');
 
 	newCircles.push(randpixel3);
     }
@@ -75,7 +78,9 @@ var makeBackground = function() {
 	    newline.setAttribute('y2',newCircles[neighbors[j][1]].getAttribute('cy'));
 	  
 	    newline.setAttribute('stroke-width',1);
-	    newline.setAttribute('stroke','#8888ff');
+//	    newline.setAttribute('stroke','#8888ff');
+	    newline.setAttribute('stroke','#ffffff');
+
 	    s.appendChild(newline);
 	}
     }
@@ -89,11 +94,25 @@ var makeBackground = function() {
     var topBox = document.getElementById('topBox');
 
     if (leftSide != null) {
-	s.appendChild(leftSide);
-	s.appendChild(rightSide);
-	s.appendChild(topBox);
+	if(width >= 850) {
+	    leftSide.setAttribute('x', width / 4 - 200.5);
+	    s.appendChild(leftSide);
+	    
+	    rightSide.setAttribute('x', 3 * width / 4 - 200.5);
+	    s.appendChild(rightSide);
+	    
+	    topBox.setAttribute('x', width / 2 - 207);
+	    s.appendChild(topBox);
+	} else {
+	    leftSide.setAttribute('x', "12px");
+	    rightSide.setAttribute('x', "436px");
+	    topBox.setAttribute('x', "218px");
+
+	    s.appendChild(leftSide);
+	    s.appendChild(rightSide);
+	    s.appendChild(topBox);
+	}
     }
-   
     s.appendChild(foreign);
 }
 
