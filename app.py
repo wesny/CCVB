@@ -60,6 +60,17 @@ def TwitterRetweet(user):
 
     return render_template ("/Graphs/TweetsRetweetsTime.html",retweetVals=retweet_vals, textVals=text_vals)
 
+@app.route ("/TwitterProfile/<user>")
+def TwitterProfile(user):
+ try: 
+     tweets = session ["Twitter"]
+ except:
+     tweets = Twitter.get_User_Timeline (user)
+     session ["Twitter"] = tweets
+     data = Twitter.cruchData (tweets)
+     return render_template ("/Graphs/TwitterReport.html",data=data)
+
+
 @app.route ("/Instagram1/<user>")
 def InstagramStats (user):
     try: 
