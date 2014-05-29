@@ -62,6 +62,12 @@ def index():
     if request.method == "POST" and request.form['id'] == "people":
         return render_template ("peopleresults.html")
 
+@app.route('/graphtest/<user>')
+def graphtest(user):
+    c = fbcalls.pull_fb_data(user)
+    j = creat_fb_jsons.createjson_fbpost_likessvstime(c)
+    return render_template('graphs/graph.html'd=j)
+
 
 if __name__ == '__main__':
     app.debug = True;

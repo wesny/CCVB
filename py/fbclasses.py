@@ -2,8 +2,8 @@ class FBUser:
 
 	def __init__(self, id = "default", pta = 0, likes = 0):
 		self.id = id
-		self.pta = pta
-		self.likes = likes
+		self.pta = int(pta)
+		self.likes = int(likes)
 		self.posts = []
 
 	def add_post(self, post):
@@ -14,14 +14,15 @@ class FBUser:
 
 class FBPost:
 
-	def __init__(self, text = "No Text", comments = 0, likes = 0, shares = 0, picture = None, video = None, link = None):
+	def __init__(self, text = "No Text", comments = 0, likes = 0, shares = 0, time = 0, picture = None, video = None, link = None):
 		self.text = text
-		self.comments = comments
-		self.likes = likes
-		self.shares = shares
+		self.comments = int(comments)
+		self.likes = int(likes)
+		self.shares = int(shares)
 		self.picture = picture
 		self.video = video
 		self.link = link
+		self.time = time
 
 	def typeofpost(self):
 		if self.picture:

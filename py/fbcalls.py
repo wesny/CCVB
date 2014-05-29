@@ -31,7 +31,7 @@ def make_batch_string(idlist):
 def make_call(id):
 	dict = {}
 	dict["method"] = "GET"
-	dict["relative_url"] = ("%s?fields=likes.limit(1).summary(true),comments.limit(1).summary(true),shares&limit=5000" % id).encode('ascii','ignore')
+	dict["relative_url"] = ("%s?fields=likes.limit(1).summary(true),comments.limit(1).summary(true),shares,created_time&limit=5000" % id).encode('ascii','ignore')
 	return dict
 
 def make_id_list(json):
@@ -52,6 +52,7 @@ def create_engag_dict(data):
 		y['comments'] = x['comments']['summary']['total_count']
 		y['shares'] = x['shares']['count']
 		y['id'] = x['id']
+		y['time'] = x['created_time']
 		l.append(y)
 	return l
 
@@ -80,7 +81,7 @@ def pull_fb_data(id):
 		z += d
 	data_dicts = z
 	for d in data_dicts:
-		c.add_post(likes = d['likes'], comments = d['comments'], shares = d['shares'])
+		c.add_post(likes = d['likes'], comments = d['comments'], shares = d['shares'], time = d['time'])
 	return c
 
 c = pull_fb_data('barackobama')
