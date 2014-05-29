@@ -2,6 +2,9 @@ from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
 from py import Instagram
+from py import fbcalls
+from py import fbclasses
+from py import create_fb_jsons
 import json
 import os
 #from alchemy import analyze
@@ -66,7 +69,7 @@ def index():
 def graphtest(user):
     c = fbcalls.pull_fb_data(user)
     j = creat_fb_jsons.createjson_fbpost_likessvstime(c)
-    return render_template('graphs/graph.html'd=j)
+    return render_template('graphs/graph.html', d=j)
 
 
 if __name__ == '__main__':

@@ -83,5 +83,5 @@ def pull_fb_data(id):
 	for d in data_dicts:
 		c.add_post(likes = d['likes'], comments = d['comments'], shares = d['shares'], time = d['time'])
 	return c
-
-c = pull_fb_data('barackobama')
+if __name__ == '__main__':
+	c = pull_fb_data('barackobama')
