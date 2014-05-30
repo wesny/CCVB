@@ -6,10 +6,24 @@
     <script type="text/javascript" src = "../static/js/jquery-ui-1.10.4.min.js"> </script>
     <script type="text/css" src = "../static/css/jquery-ui-1.10.4.min.css"> </script>
     <script type="text/css" src = "../static/css/dialogBox.css"> </script>
+    <script type="text/javascript" src = "../static/js/Graphs/TwitterReport.js"> </script>
 
     <body>
-            <h1> My Twitter Profile </h1>
-
+      <h1> My Twitter Profile </h1>
+      <p> 
+	Name: {{data["name"]}}
+	Location: {{data["location"]}}
+	Description: {{data["description"]}}
+	Total Followers: {{data["followers_count"]}}
+	Total Friends: {{data["friends_count"]}}
+	Total Time Listed: {{data["listed_count"]}}
+	Total Statuses: {{data["statuses_count"]}}
+	Average Retweet Count: {{data["retweet_count"]}}
+	Average Favorite Count: {{data["favorite_count"]}}
+      </p>
+      <script>
+	data = {{data|tojson|safe}};
+	DisplayProfile(data);
     </body>
   </head>
 </html>
