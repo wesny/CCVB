@@ -6,21 +6,22 @@
 
 {% block foreign %}
 <div style="width:100%;" class="center" id="top-div">
-  <h1>Socialpedia</h1>
+  <!-- <h1 style="color:#FF8800">Socialpedia</h1> -->
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div style="width:100%;" class="center" id="full-div"> 
   <div style="float:left; width:50%;" id="left-div">
     <br>
     <br>
-    Look up your social media statistics 
-    <br>
-    to determine how effective your posts are.
-    <br>
+    <!-- Look up your social media statistics -->
+    <p style="font-size:40px"> Measure Engagement </p>
+    <!-- to determine how effective your posts are. -->
     <br>
     <form action="peopleresults">
-      <input type="submit" value="PEOPLE SEARCH">
-      <br>
-      <br>
       Facebook Handle:
       <br>
       <input type="text" name="fb">
@@ -32,25 +33,30 @@
       Instagram Handle:
       <br>
       <input type="text" name="instagram">
+      <br>
+      <br>
+      <input type="submit" value="SUBMIT">
     </form>
   </div>
   <div style="float:right; width:50%;" id="right-div">
     <br>
     <br>
-    Find out how popular something is based on
+    <p style="font-size:40px"> Measure Popularity </p>
+    <!-- Find out how popular something is based on -->
     <br>
-    what people are saying about it on social media.
-    <br>
-    <br>
+    <!-- what people are saying about it on social media. -->
     <form class="form-horizontal" role="form" method="POST">
       <input type="hidden" name="id" value="things">
-      <input type="submit" value="THINGS SEARCH">
-      <br>
       <br>
       <br>
       Search Query:
       <br>
       <input type="text" name="word">
+      <br>
+      <br>
+      <br>
+      <br>
+      <input type="submit" value="SUBMIT">
     </form>
   </div>
 </div>

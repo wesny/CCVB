@@ -6,6 +6,7 @@ var rightDiv = document.getElementById("right-div");
 var foreign = document.getElementById("foreign");
 var width = document.body.clientWidth;
 
+/*
 var topBox = document.createElementNS("http://www.w3.org/2000/svg","rect");
 topBox.setAttribute('x', width / 2 - 207);
 topBox.setAttribute('y', '15px');
@@ -17,6 +18,7 @@ topBox.setAttribute('fill', '#eeeeff');
 topBox.setAttribute('stroke', '#d0d0ff');
 topBox.setAttribute('id','topBox');
 s.appendChild(topBox);
+*/
 
 var leftSide = document.createElementNS("http://www.w3.org/2000/svg","rect");
 leftSide.setAttribute('x', width / 4 - 200.5);

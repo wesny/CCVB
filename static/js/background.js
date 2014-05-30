@@ -91,7 +91,7 @@ var makeBackground = function() {
     
     var leftSide = document.getElementById('leftSide'); 
     var rightSide = document.getElementById('rightSide');
-    var topBox = document.getElementById('topBox');
+    //var topBox = document.getElementById('topBox');
 
     if (leftSide != null) {
 	if(width >= 850) {
@@ -101,16 +101,16 @@ var makeBackground = function() {
 	    rightSide.setAttribute('x', 3 * width / 4 - 200.5);
 	    s.appendChild(rightSide);
 	    
-	    topBox.setAttribute('x', width / 2 - 207);
-	    s.appendChild(topBox);
+	    //topBox.setAttribute('x', width / 2 - 207);
+	    //s.appendChild(topBox);
 	} else {
 	    leftSide.setAttribute('x', "12px");
 	    rightSide.setAttribute('x', "436px");
-	    topBox.setAttribute('x', "218px");
+	    //topBox.setAttribute('x', "218px");
 
 	    s.appendChild(leftSide);
 	    s.appendChild(rightSide);
-	    s.appendChild(topBox);
+	    //s.appendChild(topBox);
 	}
     }
     s.appendChild(foreign);
