@@ -71,6 +71,18 @@ def TwitterProfile(user):
      return render_template ("/Graphs/TwitterReport.html",data=data)
 
 
+@app.route ("/InstagramProfile/<user>")
+def InstagramProfile(user):
+ try: 
+     pics = session ["pics"]
+ except:
+     pics = Twitter.get_User_Timeline (user)
+     session ["pics"] = pics
+     data = Instagram.get_User_Data (user)
+     print data
+     return render_template ("/Graphs/TwitterReport.html",data=data)
+
+
 @app.route ("/Instagram1/<user>")
 def InstagramStats (user):
     try: 
