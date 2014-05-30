@@ -4,7 +4,7 @@ from facebook import GraphAPI
 import itertools
 import gevent.pool
 import gevent.queue
-from fbclasses import FBUser
+from fbclasses import FBUser, FBPost
 
 f = open('output.json','w')
 
@@ -81,7 +81,7 @@ def pull_fb_data(id):
 		z += d
 	data_dicts = z
 	for d in data_dicts:
-		c.add_post(likes = d['likes'], comments = d['comments'], shares = d['shares'], time = d['time'])
+		c.add_post(FBPost(likes = d['likes'], comments = d['comments'], shares = d['shares'], time = d['time']))
 	return c
 if __name__ == '__main__':
 	c = pull_fb_data('barackobama')
