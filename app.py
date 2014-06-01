@@ -50,7 +50,8 @@ def TwitterListed(user):
         tweets = Twitter.get_User_Timeline (user)
         session ["Twitter"] = tweets
     data = Twitter.cruchData (tweets)
-    vals = data["listed_vals"]
+    vals = data["eng_vals"]
+    print vals
     return render_template ("/Graphs/ListedTime.html",vals=vals)
 
 @app.route ("/Twitter2/<user>")
