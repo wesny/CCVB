@@ -1,7 +1,7 @@
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
-from py import Instagram
+#from py import Instagram
 import json
 import os
 #from alchemy import analyze
@@ -104,7 +104,7 @@ def index():
         return render_template("index.html")
     if request.method == "POST" and request.form['id'] == "things":
         word = request.form['word'].encode ('ascii',"ignore")
-        os.system("python analyze.py " + word + " 10")
+        os.system("python analyze.py " + word + " 150")
         with open ("Output.txt", "r") as myfile:
             data=myfile.readlines()
             print data
