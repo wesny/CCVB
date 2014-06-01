@@ -47,11 +47,12 @@ s.appendChild(rightSide);
 
 
 document.addEventListener('mousemove', function(e) {
-    if(e.y < 90) {
+    //console.log(e);
+    if(e.clientY < 90) {
 	d3.selectAll('#left-div').transition().duration(350).style('opacity',1);
 	d3.selectAll('#right-div').transition().duration(350).style('opacity',1);
     } else {
-	if(e.x < document.body.clientWidth / 2) {
+	if(e.clientX < document.body.clientWidth / 2) {
 	    d3.selectAll('#left-div').transition().duration(350).style('opacity',1);
 	    d3.selectAll('#right-div').transition().duration(350).style('opacity',0.2);
 	} else {
