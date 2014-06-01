@@ -73,14 +73,12 @@ def TwitterProfile(user):
 
 @app.route ("/InstagramProfile/<user>")
 def InstagramProfile(user):
- try: 
-     pics = session ["pics"]
- except:
-     pics = Twitter.get_User_Timeline (user)
-     session ["pics"] = pics
-     data = Instagram.get_User_Data (user)
-     print data
-     return render_template ("/Graphs/TwitterReport.html",data=data)
+    try: 
+        pics = session ["pics"]
+    except:
+        pics = Instagram.get_User_Data (user)
+        session ["pics"] = pics
+        return render_template ("/Graphs/InstagramReport.html",data=pics)
 
 
 @app.route ("/Instagram1/<user>")

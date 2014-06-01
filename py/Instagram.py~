@@ -53,15 +53,19 @@ def get_media (user_id):
     response = urlopen(url)
     json_raw = response.read()
     json_data = json.loads(json_raw)["data"]
+    # print json_data[0]["caption"]['text']
     allMedia = []
     for image in json_data:
-        allMedia.append ({
-            "like_count":image["likes"]["count"],
-            "comment_count": image["comments"]["count"],
-            "text":image["caption"]["text"],
-            "link":image["link"]
-        })
-    finalMedia = crunchData (allMedia)
+        try:
+            allMedia.append ({
+                "like_count":image["likes"]["count"],
+                "comment_count": image["comments"]["count"],
+                "text":image['caption']['text'],
+                "link":image["link"]
+            })
+        except:
+            print "error"
+    finalMedia = crunchData(allMedia)
     return finalMedia
 
 def crunchData (media_array):

@@ -34,17 +34,28 @@ def get_User_Data (username):
     url = ("https://api.instagram.com/v1/users/%s/?access_token=%s") %(user_id,access_token)
     response = urlopen(url)
     json_raw = response.read()
+    print json.dumps(json_raw, sort_keys=True, indent=4, separators=(',', ':'))
     json_data = json.loads(json_raw)
     full_name = json_data["data"]["full_name"]
+    bio  = json_data["data"]["bio"]
+    website = json_data["data"]["website"]
+    print website
+    print "here"
+    proPic = json_data["data"]["profile_picture"] 
     counts = json_data["data"]["counts"]
     total_media = counts ["media"]
     followed_by  = counts ["followed_by"]
+    follows =  counts ["follows"]
     media = get_media (user_id)
 
     data = {}
     data ["full_name"] = full_name
+    data ["bio"] = bio
+    data ["website"] = website
+    data ["pro_pic"] = proPic
     data ["total_media"] = total_media
     data ["followed_by"] = followed_by
+    data ["follows"] = follows
     data ["media_stats"] = media
     return data
 
@@ -104,6 +115,9 @@ def crunchData (media_array):
            popMediaText.append (photo["text"])
            popMediaLink.append (photo["link"])
 
+    while len(popMediaText) < 3:
+        popMediaText.append ("Media not available");
+
     #all of the actual numbers
     finalData["comments_vals"] = comments_vals
     finalData["likes_vals"] = likes_vals
@@ -116,4 +130,4 @@ def crunchData (media_array):
         
 if __name__ == '__main__':
     data = get_User_Data ('jennamarbles')
-    print data
+   # print data
