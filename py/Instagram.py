@@ -86,7 +86,9 @@ def crunchData (media_array):
     finalData = media_array[0]
     likes_count = 0
     comments_count = 0
+    eng_count = 0
     likes_vals = []
+    eng_vals = []
     comments_vals = []
     text_vals = []
     img_vals = []
@@ -98,6 +100,8 @@ def crunchData (media_array):
         likes_vals.append (photo["like_count"])
         comments_count = comments_count + photo["comment_count"]
         comments_vals.append (photo["comment_count"])
+        eng_count = eng_count + photo["comment_count"] + photo["like_count"]
+        eng_vals.append (photo["comment_count"] + photo["like_count"])
         text_vals.append(photo["text"])
         img_vals.append(photo["thumbnail"]);
 
@@ -133,6 +137,7 @@ def crunchData (media_array):
     finalData["comments_vals"] = comments_vals
     finalData["likes_vals"] = likes_vals
     finalData["text_vals"] =  text_vals
+    finalData["eng_vals"] = eng_vals
     finalData["images"] = img_vals
     
     #Add awesome media to finalData

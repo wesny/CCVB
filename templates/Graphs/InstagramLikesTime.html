@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script type="text/javascript" src = "../../static/js/d3.min.js"> </script>
+    <script type="text/javascript" src = "../../static/js/xcharts.js"> </script>
+    <script type="text/javascript" src = "../../static/js/Graphs/InstagramLikesTime.js"> </script>
+    <script type="text/javascript" src = "../static/js/jquery-1.10.2.js"> </script>
+    <script type="text/javascript" src = "../static/js/jquery-ui-1.10.4.min.js"> </script>
+    <link rel="stylesheet" type="text/css" href = "../../static/css/xcharts.css"> </link>
+    <link rel="stylesheet" type="text/css" href = "../static/css/jquery-ui-1.10.4.min.css"> </link>
+
+  </head>
+  <body>
+    <h1>Instagram Likes Over Time </h1>
+    <div id = "dialog"> </div>
+    <figure style="width: 1200px; height: 300px;" id="myChart"></figure>
+    <script>
+      likes = {{likes_val|tojson|safe}};
+      img  = {{img_vals|tojson|safe}};
+      text = {{text_vals|tojson|safe}};
+      retData(likes,text,img);
+    </script>
+  </body>
+</html>

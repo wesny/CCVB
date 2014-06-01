@@ -1,6 +1,6 @@
 var retData = function (vals) {
     data = {
-	"xScale": "ordinal",
+	"xScale": "linear",
 	"yScale": "linear",
 	"type": "line",
 	"main": [
