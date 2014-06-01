@@ -34,13 +34,10 @@ def get_User_Data (username):
     url = ("https://api.instagram.com/v1/users/%s/?access_token=%s") %(user_id,access_token)
     response = urlopen(url)
     json_raw = response.read()
-    print json.dumps(json_raw, sort_keys=True, indent=4, separators=(',', ':'))
     json_data = json.loads(json_raw)
     full_name = json_data["data"]["full_name"]
     bio  = json_data["data"]["bio"]
     website = json_data["data"]["website"]
-    print website
-    print "here"
     proPic = json_data["data"]["profile_picture"] 
     counts = json_data["data"]["counts"]
     total_media = counts ["media"]
@@ -66,13 +63,19 @@ def get_media (user_id):
     json_data = json.loads(json_raw)["data"]
     # print json_data[0]["caption"]['text']
     allMedia = []
+
+    #img_ex =  json_data[0]
+    #print json.dumps(img_ex, sort_keys=True, indent=4, separators=(',', ':'))
+    #print img_ex["images"]["thumbnail"]["url"]
+    
     for image in json_data:
         try:
             allMedia.append ({
                 "like_count":image["likes"]["count"],
                 "comment_count": image["comments"]["count"],
                 "text":image['caption']['text'],
-                "link":image["link"]
+                "link":image["link"],
+                "thumbnail":image["images"]["thumbnail"]["url"]
             })
         except:
             print "error"
@@ -86,6 +89,7 @@ def crunchData (media_array):
     likes_vals = []
     comments_vals = []
     text_vals = []
+    img_vals = []
     media_count = len (media_array)
 
     #Calculate Average Values
@@ -95,6 +99,7 @@ def crunchData (media_array):
         comments_count = comments_count + photo["comment_count"]
         comments_vals.append (photo["comment_count"])
         text_vals.append(photo["text"])
+        img_vals.append(photo["thumbnail"]);
 
     avg_likes_count = likes_count / media_count
     avg_comments_count = comments_count /  media_count
@@ -102,9 +107,11 @@ def crunchData (media_array):
     #Update finalData array
     finalData["like_count"] = avg_likes_count
     finalData["comment_count"] = avg_comments_count
+    
    
     popMediaText = []
     popMediaLink = []
+    popMediaImage = []
     #Find awesome media
     for photo in media_array:
         likes = photo["like_count"]
@@ -114,18 +121,24 @@ def crunchData (media_array):
         if pop or pop2:
            popMediaText.append (photo["text"])
            popMediaLink.append (photo["link"])
+           popMediaImage.append (photo["thumbnail"])
 
     while len(popMediaText) < 3:
-        popMediaText.append ("Media not available");
+        popMediaText.append ("Media not available")
+        popMediaImage.append ("http://www.lse.ac.uk/CPNSS/visitorsprogramme/visitorpics/keep-calm-no-image-available.png")
+        popMediaLink.append("http://www.lse.ac.uk/CPNSS/visitorsprogramme/visitorpics/keep-calm-no-image-available.png")
+
 
     #all of the actual numbers
     finalData["comments_vals"] = comments_vals
     finalData["likes_vals"] = likes_vals
     finalData["text_vals"] =  text_vals
+    finalData["images"] = img_vals
     
     #Add awesome media to finalData
     finalData["link"] = popMediaLink
     finalData["text"] = popMediaText
+    finalData["thumbnails"] = popMediaImage
     return finalData
         
 if __name__ == '__main__':
