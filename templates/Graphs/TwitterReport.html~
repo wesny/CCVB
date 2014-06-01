@@ -9,17 +9,36 @@
     <script type="text/javascript" src = "../static/js/Graphs/TwitterReport.js"> </script>
 
     <body>
-      <h1> My Twitter Profile </h1>
-      <p> 
-	Name: {{data["name"]}}
-	Location: {{data["location"]}}
-	Description: {{data["description"]}}
-	Total Followers: {{data["followers_count"]}}
-	Total Friends: {{data["friends_count"]}}
-	Total Time Listed: {{data["listed_count"]}}
-	Total Statuses: {{data["statuses_count"]}}
-	Average Retweet Count: {{data["retweet_count"]}}
-	Average Favorite Count: {{data["favorite_count"]}}
+      <h1>{{data["name"]}}'s Twitter Profile </h1>
+      <table> 
+	<tr> 
+	  <td> 
+	<b> Name: </b> {{data["name"]}} <br>
+	<b> Location: </b> {{data["location"]}} <br>
+	<b> Description: </b> {{data["description"]}} <br>
+	<b> Total Followers: </b> {{data["followers_count"]}} <br>
+	<b> Total Friends: </b> {{data["friends_count"]}} <br>
+	<b> Total Time Listed: </b> {{data["listed_count"]}}<br>
+	<b> Total Statuses: </b> {{data["statuses_count"]}}<br>
+	<b> Average Retweet Count: </b> {{data["retweet_count"]}}<br>
+	<b> Average Favorite Count:</b> {{data["favorite_count"]}}<br>
+	  </td>
+	  <td>
+	    <img src={{data["profilePicture"]}} alt="Profile Picture" style="width:200px;height:200px">
+	  </td>
+	</tr>
+	<table>
+
+	<b> Most Popular Tweets: </b> 
+	<ol>
+	  <li> {{data["popularTweets"][0]}} </li> 
+	  <li> {{data["popularTweets"][1]}} </li>
+	  <li> {{data["popularTweets"][2]}} </li>
+	  <li> {{data["popularTweets"][3]}} </li>
+	  <li> {{data["popularTweets"][4]}} </li> 
+	</ol> 
+
+
       </p>
       <script>
 	data = {{data|tojson|safe}};

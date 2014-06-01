@@ -42,6 +42,18 @@ def TwitterFavorite(user):
 
     return render_template ("/Graphs/TweetsFavoritesTime.html",favoriteVals=favorite_vals, textVals=text_vals)
 
+@app.route ("/Twitter3/<user>")
+def TwitterListed(user):
+    try: 
+        tweets = session ["Twitter"]
+    except:
+        tweets = Twitter.get_User_Timeline (user)
+        session ["Twitter"] = tweets
+    data = Twitter.cruchData (tweets)
+    vals = data["eng_vals"]
+    print vals
+    return render_template ("/Graphs/ListedTime.html",vals=vals)
+
 @app.route ("/Twitter2/<user>")
 def TwitterRetweet(user):
     try: 
