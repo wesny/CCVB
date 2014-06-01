@@ -47,21 +47,20 @@ s.appendChild(rightSide);
 
 
 document.addEventListener('mousemove', function(e) {
-    //console.log(e);
-    if(e.clientY < 90) {
-	d3.selectAll('#left-div').transition().duration(350).style('opacity',1);
-	d3.selectAll('#right-div').transition().duration(350).style('opacity',1);
+    var opacity = document.getElementById('left-div').style.getPropertyValue('opacity');
+    if(Math.abs(opacity - 0.2) > .000001 && Math.abs(opacity - 0.99) > .000001){
     } else {
-	if(e.clientX < document.body.clientWidth / 2) {
-	    d3.selectAll('#left-div').transition().duration(350).style('opacity',1);
-	    d3.selectAll('#right-div').transition().duration(350).style('opacity',0.2);
+	if(e.clientY < 90) {
+	    d3.selectAll('#left-div').transition().duration(350).style('opacity',.99);
+	    d3.selectAll('#right-div').transition().duration(350).style('opacity',.99);
 	} else {
-	    d3.selectAll('#left-div').transition().duration(350).style('opacity',0.2);
-	    d3.selectAll('#right-div').transition().duration(350).style('opacity',1); 
+	    if(e.clientX < document.body.clientWidth / 2) {
+		d3.selectAll('#left-div').transition().duration(350).style('opacity',.99);
+		d3.selectAll('#right-div').transition().duration(350).style('opacity',0.2);
+	    } else {
+		d3.selectAll('#left-div').transition().duration(350).style('opacity',0.2);
+		d3.selectAll('#right-div').transition().duration(350).style('opacity',.99); 
+	    }
 	}
     }
 });
-	    
-
-
-
