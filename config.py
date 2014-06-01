@@ -1,2 +1,2 @@
-consumer_key='yUvBD22vl1wFQmROS8sNaLheg'
-consumer_secret='23cIZSnSs4QcEmjoDYx5k0DweWz3BY1xSboLon7zmdkzAhVshb'
+consumer_key='SrL5mey9kkw3dyw6Lmn07hblM'
+consumer_secret='G5skHlHfFLeMo8udlp2HHnWN9owAJcC1OI9EkUcWfmAOIajEPb'
