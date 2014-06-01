@@ -132,6 +132,19 @@ def InstagramEngagements(user):
     vals = pics["media_stats"]["eng_vals"]
     return render_template ("/Graphs/InstagramEngTime.html",vals=vals)
 
+@app.route ("/Instagram3/<user>")
+def InstagamLikesTime(user):
+    try: 
+        pics = session ["pics"]
+    except:
+        pics = Instagram.get_User_Data (user)
+        session ["pics"] = pics
+
+    likes_val= pics["media_stats"]["likes_vals"]
+    img_vals = pics["media_stats"]["images"]
+    text_vals = pics["media_stats"]["text_vals"]
+    return render_template ("/Graphs/InstagramLikesTime.html", likes_val= likes_val,img_vals=img_vals,text_vals=text_vals)
+
 @app.route("/", methods = ['GET', 'POST'])
 def index():
     if request.method == "GET": 
