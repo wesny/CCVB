@@ -67,7 +67,8 @@ def get_media (user_id):
     #img_ex =  json_data[0]
     #print json.dumps(img_ex, sort_keys=True, indent=4, separators=(',', ':'))
     #print img_ex["images"]["thumbnail"]["url"]
-    
+    print json.dumps(json_data[0], sort_keys=True, indent=4, separators=(',', ':'))
+    commenter = {};
     for image in json_data:
         try:
             allMedia.append ({
@@ -77,6 +78,15 @@ def get_media (user_id):
                 "link":image["link"],
                 "thumbnail":image["images"]["thumbnail"]["url"]
             })
+            comments = image["comments"]["data"]
+            for comment in comments:
+                id = comment["from"]["id"]
+                username = comment["from"]["username"]
+                name = comment["from"]["full_name"]
+                try:
+                    commenter[id][2] = commenter[id][2] + 1
+                except:
+                    commenter[id] = [username,name,1]
         except:
             print "error"
     finalMedia = crunchData(allMedia)
@@ -120,6 +130,7 @@ def crunchData (media_array):
     for photo in media_array:
         likes = photo["like_count"]
         comments = photo["comment_count"]
+        
         pop = functions.isPopular (likes,likes_vals)
         pop2 = functions.isPopular (comments, comments_vals)
         if pop or pop2:
