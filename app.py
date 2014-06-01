@@ -1,7 +1,7 @@
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
-#from py import Instagram
+from py import Instagram
 import json
 import os
 #from alchemy import analyze
@@ -42,17 +42,6 @@ def TwitterFavorite(user):
 
     return render_template ("/Graphs/TweetsFavoritesTime.html",favoriteVals=favorite_vals, textVals=text_vals)
 
-@app.route ("/Twitter3/<user>")
-def TwitterListed(user):
-    try: 
-        tweets = session ["Twitter"]
-    except:
-        tweets = Twitter.get_User_Timeline (user)
-        session ["Twitter"] = tweets
-    data = Twitter.cruchData (tweets)
-    vals = data["eng_vals"]
-    print vals
-    return render_template ("/Graphs/ListedTime.html",vals=vals)
 
 @app.route ("/Twitter2/<user>")
 def TwitterRetweet(user):
@@ -72,6 +61,31 @@ def TwitterRetweet(user):
 
     return render_template ("/Graphs/TweetsRetweetsTime.html",retweetVals=retweet_vals, textVals=text_vals)
 
+@app.route ("/Twitter3/<user>")
+def TwitterEngagements(user):
+    try: 
+        tweets = session ["Twitter"]
+    except:
+        tweets = Twitter.get_User_Timeline (user)
+        session ["Twitter"] = tweets
+    data = Twitter.cruchData (tweets)
+    vals = data["eng_vals"]
+    print vals
+    return render_template ("/Graphs/TwitterEngTime.html",vals=vals)
+
+@app.route ("/Twitter4/<user>")
+def TwitterRetFav(user):
+    try: 
+        tweets = session ["Twitter"]
+    except:
+        tweets = Twitter.get_User_Timeline (user)
+        session ["Twitter"] = tweets
+    data = Twitter.cruchData (tweets)
+    favorites = data["favorite_vals"]
+    retweets = data["retweet_vals"]
+    text_vals = data ["tweet_text"]
+    return render_template ("/Graphs/TwitterRetFav.html",favorites=favorites,retweets=retweets,text_vals=text_vals)
+
 @app.route ("/TwitterProfile/<user>")
 def TwitterProfile(user):
  try: 
@@ -81,7 +95,6 @@ def TwitterProfile(user):
      session ["Twitter"] = tweets
      data = Twitter.cruchData (tweets)
      return render_template ("/Graphs/TwitterReport.html",data=data)
-
 
 @app.route ("/InstagramProfile/<user>")
 def InstagramProfile(user):
@@ -94,19 +107,30 @@ def InstagramProfile(user):
 
 
 @app.route ("/Instagram1/<user>")
-def InstagramStats (user):
+def InstagramCluster (user):
     try: 
-        pics = Instagram.get_User_Data (user)
-        session ["Instagram"] = pics
-        mediaStats = pics["media_stats"]
-        commentVals = mediaStats ["comments_vals"]
-        likesVals =  mediaStats ["likes_vals"]
-        textVals =  mediaStats ["text_vals"]
-        return render_template ("/Graphs/InstagramLikesFavorites.html",textVals=textVals, likesVals=likesVals,commentVals=commentVals)
+        pics = session ["pics"]
     except:
-        session ["Instagram"] = []
-        return "data unavailable"
+        pics = Instagram.get_User_Data (user)
+        session ["pics"] = pics
+
+    mediaStats = pics["media_stats"]
+    commentVals = mediaStats ["comments_vals"]
+    likesVals =  mediaStats ["likes_vals"]
+    textVals =  mediaStats ["text_vals"]
+    return render_template ("/Graphs/InstagramLikesFavorites.html",textVals=textVals, likesVals=likesVals,commentVals=commentVals)
+
+
+@app.route ("/Instagram2/<user>")
+def InstagramEngagements(user):
+    try: 
+        pics = session ["pics"]
+    except:
+        pics = Instagram.get_User_Data (user)
+        session ["pics"] = pics
     
+    vals = pics["media_stats"]["eng_vals"]
+    return render_template ("/Graphs/InstagramEngTime.html",vals=vals)
 
 @app.route("/", methods = ['GET', 'POST'])
 def index():
