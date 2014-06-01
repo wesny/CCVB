@@ -37,6 +37,11 @@ var retData = function (favs,rets,textVal) {
 	},
 	"mouseout": function (x) {
 	    $(tt).hide();
+	},
+	"click": function(x,i) {
+	    x = String(textVal[i]);
+	    console.log(textVal[i]);
+	    alert(x);
 	}
     };
 
