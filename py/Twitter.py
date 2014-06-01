@@ -60,8 +60,10 @@ def cruchData (tweetArray):
     finalData = tweetArray[0]
     favorite_count = 0
     retweet_count = 0
+    listed_count = 0
     favorite_vals = []
     retweet_vals = []
+    listed_vals = []
     text_vals = []
     tweet_count = len (tweetArray)
 
@@ -72,14 +74,19 @@ def cruchData (tweetArray):
         text_vals.append (tweet["text"])
         favorite_count = favorite_count + tweet["favorite_count"]
         favorite_vals.append (tweet["favorite_count"])
+        listed_count = listed_count + tweet["listed_count"]
+        listed_vals.append (tweet["listed_count"])
         avg_retweet_count = retweet_count /  tweet_count
         avg_fav_count = favorite_count /  tweet_count
+        avg_listed_count = listed_count / tweet_count
         
     #Update finalData array
     finalData["favorite_count"] =  avg_fav_count
     finalData["retweet_count"] =  avg_retweet_count
+    finalData["listed_count"] = avg_listed_count
     finalData["retweet_vals"] = retweet_vals
     finalData["favorite_vals"] = favorite_vals
+    finalData["listed_vals"] = listed_vals
     finalData["tweet_text"] = text_vals
     
     popTweets = []
