@@ -6,43 +6,54 @@
     <script type="text/javascript" src = "../static/js/jquery-ui-1.10.4.min.js"> </script>
     <script type="text/css" src = "../static/css/jquery-ui-1.10.4.min.css"> </script>
     <script type="text/css" src = "../static/css/dialogBox.css"> </script>
-    <script type="text/javascript" src = "../static/js/Graphs/TwitterReport.js"> </script>
 
     <body>
-      <h1>{{data["name"]}}'s Twitter Profile </h1>
+      <h1>{{data["full_name"]}}'s Instagram Profile </h1>
       <table> 
 	<tr> 
 	  <td> 
-	<b> Name: </b> {{data["name"]}} <br>
-	<b> Location: </b> {{data["location"]}} <br>
-	<b> Description: </b> {{data["description"]}} <br>
-	<b> Total Followers: </b> {{data["followers_count"]}} <br>
-	<b> Total Friends: </b> {{data["friends_count"]}} <br>
-	<b> Total Time Listed: </b> {{data["listed_count"]}}<br>
-	<b> Total Statuses: </b> {{data["statuses_count"]}}<br>
-	<b> Average Retweet Count: </b> {{data["retweet_count"]}}<br>
-	<b> Average Favorite Count:</b> {{data["favorite_count"]}}<br>
+
+	<b> Name: </b> {{data["full_name"]}} <br>
+	<b> Bio: </b> {{data["bio"]}} <br>
+	<b> Website: </b> {{data["website"]}} <br>
+	<b> Total Followers: </b> {{data["followed_by"]}} <br>
+	<b> Total Media: </b> {{data["total_media"]}}<br>
+	<b> Average Like Count: </b> {{data["media_stats"]["like_count"]}}<br>
+	<b> Average Comment Count:</b> {{data["media_stats"]["comment_count"]}}<br>
 	  </td>
 	  <td>
-	    <img src={{data["profilePicture"]}} alt="Profile Picture" style="width:200px;height:200px">
+	    <img src={{data["pro_pic"]}} alt="Profile Picture" style="width:200px;height:200px">
 	  </td>
 	</tr>
 	<table>
 
-	<b> Most Popular Tweets: </b> 
-	<ol>
-	  <li> {{data["popularTweets"][0]}} </li> 
-	  <li> {{data["popularTweets"][1]}} </li>
-	  <li> {{data["popularTweets"][2]}} </li>
-	  <li> {{data["popularTweets"][3]}} </li>
-	  <li> {{data["popularTweets"][4]}} </li> 
-	</ol> 
+	<b> Most Popular Media: </b> 
+	<table> 
+	<tr>
+	  <td> 
+	    <a href={{data["media_stats"]["link"][0]}} target="_blank">
+	      <img src={{data["media_stats"]["thumbnails"][0]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+	    </a>
+	    <p align=center>{{data["media_stats"]["text"][0]}} </p>
+	  </td> 
+	  <td> 
+	    <a href={{data["media_stats"]["link"][1]}} target="_blank">
+	      <img src={{data["media_stats"]["thumbnails"][1]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+	    </a>
+	    <p align=center>    {{data["media_stats"]["text"][1]}} </p> 
+	  </td>
+	  <td>
+	    <a href={{data["media_stats"]["link"][2]}} target="_blank">
+	      <img src={{data["media_stats"]["thumbnails"][2]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+	    </a>	   
+	   <p align=center>        {{data["media_stats"]["text"][2]}} </p> 
+	  </td>
+	</tr>
+	</table> 
 
-
-      </p>
-      <script>
-	data = {{data|tojson|safe}};
-	DisplayProfile(data);
-    </body>
-  </head>
+<script>
+  data = {{data|tojson|safe}};
+</script>
+</body>
+</head>
 </html>

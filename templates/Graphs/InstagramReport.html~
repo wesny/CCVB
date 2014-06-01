@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script type="text/javascript" src = "../static/js/lodash.js"> </script>
+    <script type="text/javascript" src = "../static/js/d3.min.js"> </script>
+    <script type="text/javascript" src = "../static/js/jquery-1.10.2.js"> </script>
+    <script type="text/javascript" src = "../static/js/jquery-ui-1.10.4.min.js"> </script>
+    <script type="text/css" src = "../static/css/jquery-ui-1.10.4.min.css"> </script>
+    <script type="text/css" src = "../static/css/dialogBox.css"> </script>
+    <script type="text/javascript" src = "../static/js/Graphs/TwitterReport.js"> </script>
+
+    <body>
+      <h1>{{data["name"]}}'s Twitter Profile </h1>
+      <table> 
+	<tr> 
+	  <td> 
+	<b> Name: </b> {{data["name"]}} <br>
+	<b> Location: </b> {{data["location"]}} <br>
+	<b> Description: </b> {{data["description"]}} <br>
+	<b> Total Followers: </b> {{data["followers_count"]}} <br>
+	<b> Total Friends: </b> {{data["friends_count"]}} <br>
+	<b> Total Time Listed: </b> {{data["listed_count"]}}<br>
+	<b> Total Statuses: </b> {{data["statuses_count"]}}<br>
+	<b> Average Retweet Count: </b> {{data["retweet_count"]}}<br>
+	<b> Average Favorite Count:</b> {{data["favorite_count"]}}<br>
+	  </td>
+	  <td>
+	    <img src={{data["profilePicture"]}} alt="Profile Picture" style="width:200px;height:200px">
+	  </td>
+	</tr>
+	<table>
+
+	<b> Most Popular Tweets: </b> 
+	<ol>
+	  <li> {{data["popularTweets"][0]}} </li> 
+	  <li> {{data["popularTweets"][1]}} </li>
+	  <li> {{data["popularTweets"][2]}} </li>
+	  <li> {{data["popularTweets"][3]}} </li>
+	  <li> {{data["popularTweets"][4]}} </li> 
+	</ol> 
+
+
+      </p>
+      <script>
+	data = {{data|tojson|safe}};
+	DisplayProfile(data);
+    </body>
+  </head>
+</html>

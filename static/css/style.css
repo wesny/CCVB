@@ -12,7 +12,7 @@ div {
 }
 
 input[type="submit"] {
-    background: url(../images/button.png);
+    background: url(../images/graybutton.png);
     width:262px;
     height:102px;
     border: 0;
