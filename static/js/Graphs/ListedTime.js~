@@ -1,0 +1,39 @@
+var retData = function() {
+    data = {
+	"xScale": "ordinal",
+	"yScale": "linear",
+	"type": "bar",
+	"main": [
+	    {
+		"className": ".pizza",
+		"data": [
+		    {
+			"x": "Pepperoni",
+			"y": 12
+		    },
+		    {
+			"x": "Cheese",
+			"y": 8
+		    }
+		]
+	    }
+	],
+	"comp": [
+	    {
+		"className": ".pizza",
+		"type": "line-dotted",
+		"data": [
+		    {
+			"x": "Pepperoni",
+			"y": 10
+		    },
+		    {
+			"x": "Cheese",
+			"y": 4
+		    }
+		]
+	    }
+	]
+    }
+    return data;
+}
