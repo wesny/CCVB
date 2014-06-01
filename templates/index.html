@@ -6,7 +6,6 @@
 
 {% block foreign %}
 <div style="width:100%;" class="center" id="top-div">
-  <!-- <h1 style="color:#FF8800">Socialpedia</h1> -->
 </div>
 <br>
 <br>
@@ -15,23 +14,20 @@
   <div style="float:left; width:50%;" id="left-div">
     <br>
     <br>
-    <!-- Look up your social media statistics -->
     <p style="font-size:40px"> Measure Engagement </p>
-    <!-- to determine how effective your posts are. -->
     <br>
-    <form action="peopleresults">
+    <form class="form-group" role="form" method="POST">
       Facebook Handle:
       <br>
-      <input type="text" name="fb">
+      <input type="text" name="fb" class="form-control">
       <br>
       Twitter Handle:
       <br>
-      <input type="text" name="twitter">
+      <input type="text" name="twitter" class="form-control">
       <br>
       Instagram Handle:
       <br>
-      <input type="text" name="instagram">
-      <br>
+      <input type="text" name="instagram" class="form-control">
       <br>
       <input type="submit" value="SUBMIT">
     </form>
@@ -40,17 +36,14 @@
     <br>
     <br>
     <p style="font-size:40px"> Measure Popularity </p>
-    <!-- Find out how popular something is based on -->
     <br>
-    <!-- what people are saying about it on social media. -->
-    <form class="form-horizontal" role="form" method="POST">
+    <form class="form-group" role="form" method="POST">
       <input type="hidden" name="id" value="things">
       <br>
       <br>
       Search Query:
       <br>
-      <input type="text" name="word">
-      <br>
+      <input type="text" name="word" class="form-control">
       <br>
       <br>
       <br>
