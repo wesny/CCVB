@@ -34,27 +34,25 @@
 	    <a href={{data["media_stats"]["link"][0]}} target="_blank">
 	      <img src="http://www.searchdiscovery.com/wp-content/uploads/2013/06/instagram.jpg" alt="Popular Post 1" style="width:300px;height:200px"> <br>
 	    </a>
-	      {{data["media_stats"]["text"][0]}}
+	    <p align=center>{{data["media_stats"]["text"][0]}} </p>
 	  </td> 
 	  <td> 
 	    <a href={{data["media_stats"]["link"][1]}} target="_blank">
 	      <img src="http://www.searchdiscovery.com/wp-content/uploads/2013/06/instagram.jpg" alt="Popular Post 1" style="width:300px;height:200px"> <br>
 	    </a>
-	    {{data["media_stats"]["text"][1]}}
+	    <p align=center>    {{data["media_stats"]["text"][1]}} </p> 
 	  </td>
 	  <td>
 	    <a href={{data["media_stats"]["link"][2]}} target="_blank">
 	      <img src="http://www.searchdiscovery.com/wp-content/uploads/2013/06/instagram.jpg" alt="Popular Post 1" style="width:300px;height:200px"> <br>
 	    </a>	   
-	    {{data["media_stats"]["text"][2]}}
+	   <p align=center>        {{data["media_stats"]["text"][2]}} </p> 
 	  </td>
 	</tr>
 	</table> 
 
 <script>
   data = {{data|tojson|safe}};
-  console.log (data["media_stats"]["link"][0]);
-  console.log (data["website"]);
 </script>
 </body>
 </head>

@@ -78,7 +78,7 @@ def InstagramProfile(user):
     except:
         pics = Instagram.get_User_Data (user)
         session ["pics"] = pics
-        return render_template ("/Graphs/InstagramReport.html",data=pics)
+    return render_template ("/Graphs/InstagramReport.html",data=pics)
 
 
 @app.route ("/Instagram1/<user>")
