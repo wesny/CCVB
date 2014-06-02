@@ -1,6 +1,11 @@
 var s = document.getElementById('svg');
 var foreign = document.getElementById('foreign');
-var intro = true;
+
+if(document.getElementById('full-div') != null) {
+    var intro = true;
+} else {
+    var intro = false;
+}
 
 var makeBackground = function() {
     var width = parseInt(document.body.clientWidth);
@@ -95,7 +100,7 @@ var makeBackground = function() {
     if(intro) {
 	var introMessage1 = document.createElementNS("http://www.w3.org/2000/svg","text");
 	introMessage1.appendChild(document.createTextNode("Re-inventing Social Media"));
-	introMessage1.setAttribute('x',width/2 - 465);
+	introMessage1.setAttribute('x',width/2 - 510);
 	introMessage1.setAttribute('y',200);
 	introMessage1.setAttribute('fill','#888888');
 	introMessage1.setAttribute('style',"font-family:'Simonetta', cursive; font-size:90px");
@@ -104,7 +109,7 @@ var makeBackground = function() {
 
 	var introMessage2 = document.createElementNS("http://www.w3.org/2000/svg","text");
 	introMessage2.appendChild(document.createTextNode("Analytics For The Average Joe"));
-	introMessage2.setAttribute('x',width/2 - 510);
+	introMessage2.setAttribute('x',width/2 - 575);
 	introMessage2.setAttribute('y',300);
 	introMessage2.setAttribute('fill','#888888');
 	introMessage2.setAttribute('style',"font-family:'Simonetta', cursive; font-size:90px");
@@ -129,7 +134,7 @@ var makeBackground = function() {
 
 
 	d3.timer(function() {
-	    d3.selectAll('rect').transition().duration(2000).style('opacity',0.99);
+	    d3.selectAll('rect').transition().duration(2000).style('opacity',0.95);
 	    d3.selectAll('div').style('opacity',0).transition().duration(2000).style('opacity',0.99);
 	    return true;
 	}, 8000);
@@ -141,6 +146,21 @@ var makeBackground = function() {
 	}, 6000);
 	    
 	intro = false;
+
+	d3.timer(function() {
+	    var delete1 = document.getElementById('intro1');
+	    if(delete1 != null) {
+		s.removeChild(delete1);
+	    }
+	    var delete2 = document.getElementById('intro2');
+	    if(delete2 != null) {
+		s.removeChild(delete2);
+	    }
+	    var delete3 = document.getElementById('intro3');
+	    if(delete3 != null) {
+		s.removeChild(delete3);
+	    }
+	}, 10500);
     }
     
     var leftSide = document.getElementById('leftSide'); 
@@ -167,6 +187,7 @@ var makeBackground = function() {
 	    //s.appendChild(topBox);
 	}
     }
+
     s.removeChild(foreign);
     s.appendChild(foreign);
 }
