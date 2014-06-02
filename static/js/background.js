@@ -91,6 +91,58 @@ var makeBackground = function() {
 	s.appendChild(newCircles[i]);
     }
 
+
+    if(intro) {
+	var introMessage1 = document.createElementNS("http://www.w3.org/2000/svg","text");
+	introMessage1.appendChild(document.createTextNode("Re-inventing social media"));
+	introMessage1.setAttribute('x',width/2 - 465);
+	introMessage1.setAttribute('y',200);
+	introMessage1.setAttribute('fill','#00FF00');
+	introMessage1.setAttribute('style',"font-family:'Lobster', cursive; font-size:90px");
+	introMessage1.setAttribute('id','intro1');
+	s.appendChild(introMessage1);
+
+	var introMessage2 = document.createElementNS("http://www.w3.org/2000/svg","text");
+	introMessage2.appendChild(document.createTextNode("analytics for the average Joe"));
+	introMessage2.setAttribute('x',width/2 - 510);
+	introMessage2.setAttribute('y',300);
+	introMessage2.setAttribute('fill','#00FF00');
+	introMessage2.setAttribute('style',"font-family:'Lobster', cursive; font-size:90px");
+	introMessage2.setAttribute('id','intro2');
+	s.appendChild(introMessage2);
+
+
+	var introMessage3 = document.createElementNS("http://www.w3.org/2000/svg","text");
+	introMessage3.appendChild(document.createTextNode("Socialpedia"));
+	introMessage3.setAttribute('x',width/2 - 360);
+	introMessage3.setAttribute('y',250);
+	introMessage3.setAttribute('fill','#00FF00');
+	introMessage3.setAttribute('style','font-family:"Lobster", cursive; font-size:150px');
+	introMessage3.setAttribute('id','intro3');
+
+
+	d3.selectAll('#intro1').style('opacity',0).transition().duration(3000).style('opacity',0.99).attr('y',300).transition().duration(3000).style('opacity',0).attr('y',400);
+	d3.selectAll('#intro2').style('opacity',0).transition().duration(3000).style('opacity',0.99).attr('y',400).transition().duration(3000).style('opacity',0).attr('y',500);
+
+
+	d3.selectAll('rect').style('opacity',0);
+
+
+	d3.timer(function() {
+	    d3.selectAll('rect').transition().duration(2000).style('opacity',0.99);
+	    d3.selectAll('div').style('opacity',0).transition().duration(2000).style('opacity',0.99);
+	    return true;
+	}, 8000);
+
+	d3.timer(function() {
+	    s.appendChild(introMessage3);
+	    d3.selectAll('#intro3').style('opacity',0.5).transition().duration(2000).style('opacity',0.99).attr('y',350).transition().duration(2000).style('opacity',0).attr('y',450);
+	    return true;
+	}, 6000);
+	    
+	intro = false;
+    }
+    
     var leftSide = document.getElementById('leftSide'); 
     var rightSide = document.getElementById('rightSide');
     //var topBox = document.getElementById('topBox');
@@ -115,51 +167,8 @@ var makeBackground = function() {
 	    //s.appendChild(topBox);
 	}
     }
-
-    if(intro) {
-	var introMessage1 = document.createElementNS("http://www.w3.org/2000/svg","text");
-	introMessage1.appendChild(document.createTextNode("Re-inventing social media"));
-	introMessage1.setAttribute('x',width/2 - 465);
-	introMessage1.setAttribute('y',200);
-	introMessage1.setAttribute('fill','#00FF00');
-	introMessage1.setAttribute('style','font-family:"Lobster" cursive; font-size:90px');
-	introMessage1.setAttribute('id','intro1');
-	s.appendChild(introMessage1);
-
-	var introMessage2 = document.createElementNS("http://www.w3.org/2000/svg","text");
-	introMessage2.appendChild(document.createTextNode("analytics for the average Joe"));
-	introMessage2.setAttribute('x',width/2 - 510);
-	introMessage2.setAttribute('y',300);
-	introMessage2.setAttribute('fill','#00FF00');
-	introMessage2.setAttribute('style','font-family:"Lobster" cursive; font-size:90px');
-	introMessage2.setAttribute('id','intro2');
-	s.appendChild(introMessage2);
-
-
-	var introMessage3 = document.createElementNS("http://www.w3.org/2000/svg","text");
-	introMessage3.appendChild(document.createTextNode("Socialpedia"));
-	introMessage3.setAttribute('x',width/2 - 360);
-	introMessage3.setAttribute('y',250);
-	introMessage3.setAttribute('fill','#00FF00');
-	introMessage3.setAttribute('style','font-family:"Lobster" cursive; font-size:150px');
-	introMessage3.setAttribute('id','intro3');
-
-    
-	d3.selectAll('#intro1').style('opacity',.5).transition().duration(3000).style('opacity',.99).attr('y',300).transition().duration(3000).style('opacity',0).attr('y',400);
-	d3.selectAll('#intro2').style('opacity',.5).transition().duration(3000).style('opacity',.99).attr('y',400).transition().duration(3000).style('opacity',0).attr('y',500);
-
-	d3.selectAll('rect').style('opacity',0)
-	setTimeout(function() {
-	    d3.selectAll('rect').transition().duration(2000).style('opacity',.99);
-	    d3.selectAll('div').transition().duration(2000).style('opacity',.99);}, 8000);
-
-	setTimeout(function() {
-	    s.appendChild(introMessage3);
-	    d3.selectAll('#intro3').style('opacity',.5).transition().duration(2000).style('opacity',.99).attr('y',350).transition().duration(2000).style('opacity',0).attr('y',450);
-	}, 6000);
-	    
-	intro = false;
-    }
+    s.removeChild(foreign);
+    s.appendChild(foreign);
 }
 
 
