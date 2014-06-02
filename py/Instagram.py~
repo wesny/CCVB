@@ -36,15 +36,23 @@ def get_User_Data (username):
     json_raw = response.read()
     json_data = json.loads(json_raw)
     full_name = json_data["data"]["full_name"]
+    bio  = json_data["data"]["bio"]
+    website = json_data["data"]["website"]
+    proPic = json_data["data"]["profile_picture"] 
     counts = json_data["data"]["counts"]
     total_media = counts ["media"]
     followed_by  = counts ["followed_by"]
+    follows =  counts ["follows"]
     media = get_media (user_id)
 
     data = {}
     data ["full_name"] = full_name
+    data ["bio"] = bio
+    data ["website"] = website
+    data ["pro_pic"] = proPic
     data ["total_media"] = total_media
     data ["followed_by"] = followed_by
+    data ["follows"] = follows
     data ["media_stats"] = media
     return data
 
@@ -55,14 +63,30 @@ def get_media (user_id):
     json_data = json.loads(json_raw)["data"]
     # print json_data[0]["caption"]['text']
     allMedia = []
+
+    #img_ex =  json_data[0]
+    #print json.dumps(img_ex, sort_keys=True, indent=4, separators=(',', ':'))
+    #print img_ex["images"]["thumbnail"]["url"]
+    print json.dumps(json_data[0], sort_keys=True, indent=4, separators=(',', ':'))
+    commenter = {};
     for image in json_data:
         try:
             allMedia.append ({
                 "like_count":image["likes"]["count"],
                 "comment_count": image["comments"]["count"],
                 "text":image['caption']['text'],
-                "link":image["link"]
+                "link":image["link"],
+                "thumbnail":image["images"]["thumbnail"]["url"]
             })
+            comments = image["comments"]["data"]
+            for comment in comments:
+                id = comment["from"]["id"]
+                username = comment["from"]["username"]
+                name = comment["from"]["full_name"]
+                try:
+                    commenter[id][2] = commenter[id][2] + 1
+                except:
+                    commenter[id] = [username,name,1]
         except:
             print "error"
     finalMedia = crunchData(allMedia)
@@ -72,9 +96,12 @@ def crunchData (media_array):
     finalData = media_array[0]
     likes_count = 0
     comments_count = 0
+    eng_count = 0
     likes_vals = []
+    eng_vals = []
     comments_vals = []
     text_vals = []
+    img_vals = []
     media_count = len (media_array)
 
     #Calculate Average Values
@@ -83,7 +110,10 @@ def crunchData (media_array):
         likes_vals.append (photo["like_count"])
         comments_count = comments_count + photo["comment_count"]
         comments_vals.append (photo["comment_count"])
+        eng_count = eng_count + photo["comment_count"] + photo["like_count"]
+        eng_vals.append (photo["comment_count"] + photo["like_count"])
         text_vals.append(photo["text"])
+        img_vals.append(photo["thumbnail"]);
 
     avg_likes_count = likes_count / media_count
     avg_comments_count = comments_count /  media_count
@@ -91,29 +121,42 @@ def crunchData (media_array):
     #Update finalData array
     finalData["like_count"] = avg_likes_count
     finalData["comment_count"] = avg_comments_count
+    
    
     popMediaText = []
     popMediaLink = []
+    popMediaImage = []
     #Find awesome media
     for photo in media_array:
         likes = photo["like_count"]
         comments = photo["comment_count"]
+        
         pop = functions.isPopular (likes,likes_vals)
         pop2 = functions.isPopular (comments, comments_vals)
         if pop or pop2:
            popMediaText.append (photo["text"])
            popMediaLink.append (photo["link"])
+           popMediaImage.append (photo["thumbnail"])
+
+    while len(popMediaText) < 3:
+        popMediaText.append ("Media not available")
+        popMediaImage.append ("http://www.lse.ac.uk/CPNSS/visitorsprogramme/visitorpics/keep-calm-no-image-available.png")
+        popMediaLink.append("http://www.lse.ac.uk/CPNSS/visitorsprogramme/visitorpics/keep-calm-no-image-available.png")
+
 
     #all of the actual numbers
     finalData["comments_vals"] = comments_vals
     finalData["likes_vals"] = likes_vals
     finalData["text_vals"] =  text_vals
+    finalData["eng_vals"] = eng_vals
+    finalData["images"] = img_vals
     
     #Add awesome media to finalData
     finalData["link"] = popMediaLink
     finalData["text"] = popMediaText
+    finalData["thumbnails"] = popMediaImage
     return finalData
         
 if __name__ == '__main__':
     data = get_User_Data ('jennamarbles')
-    print data
+   # print data
