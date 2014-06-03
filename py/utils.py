@@ -16,9 +16,5 @@ def getUserTwitter (username):
 
 if __name__ == '__main__':
     addUserTwitter ('cahnda',[1,2,3,4])
-    print findUserTwitter ('cahnda')
-    print findUserTwitter ('yoyo')
     print getUserTwitter('cahnda')
-    print getUserTwitter('cahnja')
-
 
