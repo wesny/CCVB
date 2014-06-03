@@ -1,9 +1,11 @@
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
+from py import utils
 from py import Instagram
 import json
 import os
+
 #from alchemy import analyze
 
 app = Flask(__name__)
@@ -26,9 +28,8 @@ def thingresults():
 
 @app.route ("/Twitter1/<user>")
 def TwitterFavorite(user):
-    
     tweets = Twitter.get_User_Timeline (user)
-    session ["Twitter"] = tweets
+    session ["Twitter_" + user] = tweets
     # tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
     data = Twitter.cruchData (tweets)
     favorite_vals = data["favorite_vals"]
@@ -43,11 +44,8 @@ def TwitterFavorite(user):
 
 @app.route ("/Twitter2/<user>")
 def TwitterRetweet(user):
-    try: 
-        tweets = session ["Twitter"]
-    except:
-        tweets = Twitter.get_User_Timeline (user)
-        session ["Twitter"] = tweets
+    tweets = Twitter.get_User_Timeline (user)
+    session ["Twitter"] = tweets
     # tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
     data = Twitter.cruchData (tweets)
     favorite_vals = data["favorite_vals"]
