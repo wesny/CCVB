@@ -110,9 +110,13 @@ def crunchData (media_array,commenter):
     stalkersParsedNames = [val.encode ('ascii',"ignore") for val in stalkersNames if len (val) > 2]
     stalkersUserNames = [commenter[arr][0]  for arr in commenter if functions.isPopular(commenter[arr][2],commentVals)]
     stalkersParsedUserNames = [val.encode ('ascii',"ignore") for val in stalkersUserNames if len (val) > 2]
+
+    while len(stalkersUserNames) < 5:
+        stalkersParsedUserNames.append("N/A")
+        stalkersParsedNames.append("N/A")
+
     finalData['stalkerNames'] = stalkersParsedNames
     finalData['stalkersUserNames'] = stalkersParsedUserNames
-
     
     #Calculate Average Values
     for photo in media_array:
@@ -166,7 +170,7 @@ def crunchData (media_array,commenter):
     finalData["text"] = popMediaText
     finalData["thumbnails"] = popMediaImage
     return finalData
-        
+
 if __name__ == '__main__':
     data = get_User_Data ('jennamarbles')
    # print data

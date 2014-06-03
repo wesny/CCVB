@@ -12,13 +12,14 @@
       <table> 
 	<tr> 
 	  <td> 
-	    <b> Name: </b> {{data["full_name"]}} <br>
-	    <b> Bio: </b> {{data["bio"]}} <br>
-	    <b> Website: </b> {{data["website"]}} <br>
-	    <b> Total Followers: </b> {{data["followed_by"]}} <br>
-	    <b> Total Media: </b> {{data["total_media"]}}<br>
-	    <b> Average Like Count: </b> {{data["media_stats"]["like_count"]}}<br>
-	    <b> Average Comment Count:</b> {{data["media_stats"]["comment_count"]}}<br>
+
+	<b> Name: </b> {{data["full_name"]}} <br>
+	<b> Bio: </b> {{data["bio"]}} <br>
+	<b> Website: </b> {{data["website"]}} <br>
+	<b> Total Followers: </b> {{data["followed_by"]}} <br>
+	<b> Total Media: </b> {{data["total_media"]}}<br>
+	<b> Average Like Count: </b> {{data["media_stats"]["like_count"]}}<br>
+	<b> Average Comment Count:</b> {{data["media_stats"]["comment_count"]}}<br>
 	  </td>
 	  <td>
 	    <img src={{data["pro_pic"]}} alt="Profile Picture" style="width:200px;height:200px">
@@ -26,7 +27,7 @@
 	</tr>
 	<table>
 
-<h3>	<b> Most Popular Media: </b> </h3> 
+	<b> Most Popular Media: </b> 
 	<table> 
 	<tr>
 	  <td> 
@@ -49,31 +50,6 @@
 	  </td>
 	</tr>
 	</table> 
-<br>
-<h3> YOUR INSTAGRAM STALKERS: (Top Commenters) </h3>
-
-	<ol>
-	  <li>
-	   <b> Name: </b> {{data["media_stats"]["stalkerNames"][0]}} <br>
-	   <b> User: </b> {{data["media_stats"]["stalkersUserNames"][0]}}
-	  </li>
-	  <li>
-	 <b>   Name:  </b>{{data["media_stats"]["stalkerNames"][1]}} <br> 
-	  <b>  User: </b> {{data["media_stats"]["stalkersUserNames"][1]}}
-	  </li>
-	  <li>
-	    <b> Name: </b> {{data["media_stats"]["stalkerNames"][2]}} <br>
-	   <b>  User: </b> {{data["media_stats"]["stalkersUserNames"][2]}}
-	  </li>
-	  <li>
-	   <b> Name: </b>{{data["media_stats"]["stalkerNames"][3]}} <br>
-	   <b> User: </b>{{data["media_stats"]["stalkersUserNames"][3]}}
-	  </li>
-	  <li>
-	  <b>  Name: </b>{{data["media_stats"]["stalkerNames"][4]}} <br>
-	  <b>  User: </b>{{data["media_stats"]["stalkersUserNames"][4]}}
-	  </li>
-	</ol>
 
 <script>
   data = {{data|tojson|safe}};
