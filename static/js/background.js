@@ -100,29 +100,29 @@ var makeBackground = function() {
     if(intro) {
 	var introMessage1 = document.createElementNS("http://www.w3.org/2000/svg","text");
 	introMessage1.appendChild(document.createTextNode("Re-inventing Social Media"));
-	introMessage1.setAttribute('x',width/2 - 510);
+	introMessage1.setAttribute('x',width/2 - 480);
 	introMessage1.setAttribute('y',200);
 	introMessage1.setAttribute('fill','#888888');
-	introMessage1.setAttribute('style',"font-family:'Simonetta', cursive; font-size:90px");
+	introMessage1.setAttribute('style',"font-family:'Changa One', cursive; font-size:80px");
 	introMessage1.setAttribute('id','intro1');
 	s.appendChild(introMessage1);
 
 	var introMessage2 = document.createElementNS("http://www.w3.org/2000/svg","text");
 	introMessage2.appendChild(document.createTextNode("Analytics For The Average Joe"));
-	introMessage2.setAttribute('x',width/2 - 575);
+	introMessage2.setAttribute('x',width/2 - 535);
 	introMessage2.setAttribute('y',300);
 	introMessage2.setAttribute('fill','#888888');
-	introMessage2.setAttribute('style',"font-family:'Simonetta', cursive; font-size:90px");
+	introMessage2.setAttribute('style',"font-family:'Changa One', cursive; font-size:80px");
 	introMessage2.setAttribute('id','intro2');
 	s.appendChild(introMessage2);
 
 
 	var introMessage3 = document.createElementNS("http://www.w3.org/2000/svg","text");
 	introMessage3.appendChild(document.createTextNode("Socialpedia"));
-	introMessage3.setAttribute('x',width/2 - 360);
+	introMessage3.setAttribute('x',width/2 - 405);
 	introMessage3.setAttribute('y',250);
 	introMessage3.setAttribute('fill','#888888');
-	introMessage3.setAttribute('style','font-family:"Simonetta", cursive; font-size:150px');
+	introMessage3.setAttribute('style','font-family:"Changa One", cursive; font-size:150px');
 	introMessage3.setAttribute('id','intro3');
 
 
@@ -146,6 +146,7 @@ var makeBackground = function() {
 	}, 6000);
 	    
 	intro = false;
+
 
 	d3.timer(function() {
 	    var delete1 = document.getElementById('intro1');
