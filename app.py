@@ -26,11 +26,9 @@ def thingresults():
 
 @app.route ("/Twitter1/<user>")
 def TwitterFavorite(user):
-    try: 
-        tweets = session ["Twitter"]
-    except:
-        tweets = Twitter.get_User_Timeline (user)
-        session ["Twitter"] = tweets
+    
+    tweets = Twitter.get_User_Timeline (user)
+    session ["Twitter"] = tweets
     # tweets = Twitter.get_User_Timeline ('nikhilgoya_l')
     data = Twitter.cruchData (tweets)
     favorite_vals = data["favorite_vals"]
@@ -63,11 +61,8 @@ def TwitterRetweet(user):
 
 @app.route ("/Twitter3/<user>")
 def TwitterEngagements(user):
-    try: 
-        tweets = session ["Twitter"]
-    except:
-        tweets = Twitter.get_User_Timeline (user)
-        session ["Twitter"] = tweets
+    tweets = Twitter.get_User_Timeline (user)
+    session ["Twitter"] = tweets
     data = Twitter.cruchData (tweets)
     vals = data["eng_vals"]
     print vals
@@ -75,11 +70,8 @@ def TwitterEngagements(user):
 
 @app.route ("/Twitter4/<user>")
 def TwitterRetFav(user):
-    try: 
-        tweets = session ["Twitter"]
-    except:
-        tweets = Twitter.get_User_Timeline (user)
-        session ["Twitter"] = tweets
+    tweets = Twitter.get_User_Timeline (user)
+    session ["Twitter"] = tweets
     data = Twitter.cruchData (tweets)
     favorites = data["favorite_vals"]
     retweets = data["retweet_vals"]
@@ -88,9 +80,6 @@ def TwitterRetFav(user):
 
 @app.route ("/TwitterProfile/<user>")
 def TwitterProfile(user):
- try: 
-     tweets = session ["Twitter"]
- except:
      tweets = Twitter.get_User_Timeline (user)
      session ["Twitter"] = tweets
      data = Twitter.cruchData (tweets)
@@ -98,22 +87,15 @@ def TwitterProfile(user):
 
 @app.route ("/InstagramProfile/<user>")
 def InstagramProfile(user):
-    try: 
-        pics = session ["pics"]
-    except:
-        pics = Instagram.get_User_Data (user)
-        session ["pics"] = pics
+    pics = Instagram.get_User_Data (user)
+    session ["pics"] = pics
     return render_template ("/Graphs/InstagramReport.html",data=pics)
 
 
 @app.route ("/Instagram1/<user>")
 def InstagramCluster (user):
-    try: 
-        pics = session ["pics"]
-    except:
-        pics = Instagram.get_User_Data (user)
-        session ["pics"] = pics
-
+    pics = Instagram.get_User_Data (user)
+    session ["pics"] = pics
     mediaStats = pics["media_stats"]
     commentVals = mediaStats ["comments_vals"]
     likesVals =  mediaStats ["likes_vals"]
@@ -123,22 +105,16 @@ def InstagramCluster (user):
 
 @app.route ("/Instagram2/<user>")
 def InstagramEngagements(user):
-    try: 
-        pics = session ["pics"]
-    except:
-        pics = Instagram.get_User_Data (user)
-        session ["pics"] = pics
+    pics = Instagram.get_User_Data (user)
+    session ["pics"] = pics
     
     vals = pics["media_stats"]["eng_vals"]
     return render_template ("/Graphs/InstagramEngTime.html",vals=vals)
 
 @app.route ("/Instagram3/<user>")
 def InstagamLikesTime(user):
-    try: 
-        pics = session ["pics"]
-    except:
-        pics = Instagram.get_User_Data (user)
-        session ["pics"] = pics
+    pics = Instagram.get_User_Data (user)
+    session ["pics"] = pics
 
     likes_val= pics["media_stats"]["likes_vals"]
     img_vals = pics["media_stats"]["images"]

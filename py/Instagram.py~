@@ -89,10 +89,10 @@ def get_media (user_id):
                     commenter[id] = [username,name,1]
         except:
             print "error"
-    finalMedia = crunchData(allMedia)
+    finalMedia = crunchData(allMedia,commenter)
     return finalMedia
 
-def crunchData (media_array):
+def crunchData (media_array,commenter):
     finalData = media_array[0]
     likes_count = 0
     comments_count = 0
@@ -103,7 +103,17 @@ def crunchData (media_array):
     text_vals = []
     img_vals = []
     media_count = len (media_array)
+    
+    #Finding stalkers!
+    commentVals = [float (commenter[arr][2]) for arr in commenter]
+    stalkersNames = [commenter[arr][1]  for arr in commenter if functions.isPopular(commenter[arr][2],commentVals)]
+    stalkersParsedNames = [val.encode ('ascii',"ignore") for val in stalkersNames if len (val) > 2]
+    stalkersUserNames = [commenter[arr][0]  for arr in commenter if functions.isPopular(commenter[arr][2],commentVals)]
+    stalkersParsedUserNames = [val.encode ('ascii',"ignore") for val in stalkersUserNames if len (val) > 2]
+    finalData['stalkerNames'] = stalkersParsedNames
+    finalData['stalkersUserNames'] = stalkersParsedUserNames
 
+    
     #Calculate Average Values
     for photo in media_array:
         likes_count = likes_count + photo["like_count"]
