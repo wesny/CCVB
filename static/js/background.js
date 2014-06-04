@@ -8,6 +8,14 @@ if(document.getElementById('full-div') != null) {
 }
 
 var makeBackground = function() {
+    var leftButton = document.getElementById("left-button");
+    var rightButton = document.getElementById("right-button");
+    var leftForm = document.getElementById("left-form");
+    var rightForm = document.getElementById("right-form");
+    leftButton = leftForm.removeChild(leftButton);
+    rightButton = rightForm.removeChild(rightButton);
+
+
     var width = parseInt(document.body.clientWidth);
     var height = parseInt(document.body.clientHeight);
     
@@ -134,6 +142,8 @@ var makeBackground = function() {
 
 
 	d3.timer(function() {
+	    leftForm.appendChild(leftButton);
+	    rightForm.appendChild(rightButton);
 	    d3.selectAll('rect').transition().duration(2000).style('opacity',0.95);
 	    d3.selectAll('div').style('opacity',0).transition().duration(2000).style('opacity',0.99);
 	    return true;
