@@ -1,7 +1,6 @@
 import pymongo
 from datetime import datetime
 myTime = datetime.now()
-fakeDate = datetime.date(2014,03,14)
 
 connection = pymongo.MongoClient ("ds029658.mongolab.com", 29658)
 db = connection ["heroku_app25983966"]

@@ -30,6 +30,9 @@ def thingresults():
 def TwitterFavorite(user):
     try:
        tweets = utils.getUserTwitter(user)
+       if tweets == -1:
+           tweets = Twitter.get_User_Timeline (user)
+           utils.addUserTwitter (user,tweets)
     except:
         tweets = Twitter.get_User_Timeline (user)
         utils.addUserTwitter (user,tweets)
@@ -48,6 +51,9 @@ def TwitterFavorite(user):
 def TwitterRetweet(user):
     try:
         tweets = utils.getUserTwitter(user)
+        if tweets == -1:
+            tweets = Twitter.get_User_Timeline (user)
+            utils.addUserTwitter (user,tweets)
     except:
         tweets = Twitter.get_User_Timeline (user)
         utils.addUserTwitter (user,tweets)
@@ -65,6 +71,9 @@ def TwitterRetweet(user):
 def TwitterEngagements(user):
     try:
         tweets = utils.getUserTwitter(user)
+        if tweets == -1:
+            tweets = Twitter.get_User_Timeline (user)
+            utils.addUserTwitter (user,tweets)
     except:
         tweets = Twitter.get_User_Timeline (user)
         utils.addUserTwitter (user,tweets)    
@@ -77,6 +86,9 @@ def TwitterEngagements(user):
 def TwitterRetFav(user):
     try:
         tweets = utils.getUserTwitter(user)
+        if tweets == -1:
+            tweets = Twitter.get_User_Timeline (user)
+            utils.addUserTwitter (user,tweets)
     except:
         tweets = Twitter.get_User_Timeline (user)
         utils.addUserTwitter (user,tweets)   
@@ -90,6 +102,9 @@ def TwitterRetFav(user):
 def TwitterProfile(user):
     try:
         tweets = utils.getUserTwitter(user)
+        if tweets == -1:
+            tweets = Twitter.get_User_Timeline (user)
+            utils.addUserTwitter (user,tweets)
     except:
         tweets = Twitter.get_User_Timeline (user)
         utils.addUserTwitter (user,tweets)   
@@ -100,6 +115,9 @@ def TwitterProfile(user):
 def InstagramProfile(user):
     try:
         pics = utils.getUserInstagram(user)
+        if pics == -1:
+            pics = Instagram.get_User_Data (user)
+            utils.addUserInstagram(user,pics)
     except:
         pics = Instagram.get_User_Data (user)
         utils.addUserInstagram(user,pics)
@@ -110,6 +128,9 @@ def InstagramProfile(user):
 def InstagramCluster (user):
     try:
         pics = utils.getUserInstagram(user)
+        if pics == -1:
+            pics = Instagram.get_User_Data (user)
+            utils.addUserInstagram(user,pics)
     except:
         pics = Instagram.get_User_Data (user)
         utils.addUserInstagram(user,pics)
@@ -124,6 +145,9 @@ def InstagramCluster (user):
 def InstagramEngagements(user):
     try:
         pics = utils.getUserInstagram(user)
+        if pics == -1:
+            pics = Instagram.get_User_Data (user)
+            utils.addUserInstagram(user,pics)
     except:
         pics = Instagram.get_User_Data (user)
         utils.addUserInstagram(user,pics)
@@ -135,6 +159,9 @@ def InstagramEngagements(user):
 def InstagamLikesTime(user):
     try:
         pics = utils.getUserInstagram(user)
+        if pics == -1:
+            pics = Instagram.get_User_Data (user)
+            utils.addUserInstagram(user,pics)
     except:
         pics = Instagram.get_User_Data (user)
         utils.addUserInstagram(user,pics)
