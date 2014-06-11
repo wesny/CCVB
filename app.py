@@ -6,6 +6,7 @@ from py import Instagram
 import json
 import os
 
+session["user"] = ""
 #from alchemy import analyze
 
 app = Flask(__name__)
@@ -28,14 +29,13 @@ def thingresults():
 
 @app.route ("/Twitter1/<user>")
 def TwitterFavorite(user):
-    try:
-       tweets = utils.getUserTwitter(user)
-       if tweets == -1:
-           tweets = Twitter.get_User_Timeline (user)
-           utils.addUserTwitter (user,tweets)
-    except:
+    if (session["TwitterUser"] == user):
+        tweets = session["tweets"]
+    else:
+        session["TwitterUser"] = user
         tweets = Twitter.get_User_Timeline (user)
-        utils.addUserTwitter (user,tweets)
+        session["tweets"] = tweets
+
     data = Twitter.cruchData (tweets)
     favorite_vals = data["favorite_vals"]
     text_vals = data ["tweet_text"]
@@ -46,17 +46,14 @@ def TwitterFavorite(user):
 
     return render_template ("/Graphs/TweetsFavoritesTime.html",favoriteVals=favorite_vals, textVals=text_vals)
 
-
 @app.route ("/Twitter2/<user>")
 def TwitterRetweet(user):
-    try:
-        tweets = utils.getUserTwitter(user)
-        if tweets == -1:
-            tweets = Twitter.get_User_Timeline (user)
-            utils.addUserTwitter (user,tweets)
-    except:
+    if (session["TwitterUser"] == user):
+        tweets = session["tweets"]
+    else:
+        session["TwitterUser"] = user
         tweets = Twitter.get_User_Timeline (user)
-        utils.addUserTwitter (user,tweets)
+        session["tweets"] = tweets
     data = Twitter.cruchData (tweets)
     favorite_vals = data["favorite_vals"]
     text_vals = data ["tweet_text"]
@@ -69,14 +66,12 @@ def TwitterRetweet(user):
 
 @app.route ("/Twitter3/<user>")
 def TwitterEngagements(user):
-    try:
-        tweets = utils.getUserTwitter(user)
-        if tweets == -1:
-            tweets = Twitter.get_User_Timeline (user)
-            utils.addUserTwitter (user,tweets)
-    except:
+    if (session["TwitterUser"] == user):
+        tweets = session["tweets"]
+    else:
+        session["TwitterUser"] = user
         tweets = Twitter.get_User_Timeline (user)
-        utils.addUserTwitter (user,tweets)    
+        session["tweets"] = tweets
     data = Twitter.cruchData (tweets)
     vals = data["eng_vals"]
     print vals
@@ -84,14 +79,12 @@ def TwitterEngagements(user):
 
 @app.route ("/Twitter4/<user>")
 def TwitterRetFav(user):
-    try:
-        tweets = utils.getUserTwitter(user)
-        if tweets == -1:
-            tweets = Twitter.get_User_Timeline (user)
-            utils.addUserTwitter (user,tweets)
-    except:
+    if (session["TwitterUser"] == user):
+        tweets = session["tweets"]
+    else:
+        session["TwitterUser"] = user
         tweets = Twitter.get_User_Timeline (user)
-        utils.addUserTwitter (user,tweets)   
+        session["tweets"] = tweets 
     data = Twitter.cruchData (tweets)
     favorites = data["favorite_vals"]
     retweets = data["retweet_vals"]
@@ -100,40 +93,35 @@ def TwitterRetFav(user):
 
 @app.route ("/TwitterProfile/<user>")
 def TwitterProfile(user):
-    try:
-        tweets = utils.getUserTwitter(user)
-        if tweets == -1:
-            tweets = Twitter.get_User_Timeline (user)
-            utils.addUserTwitter (user,tweets)
-    except:
+    if (session["TwitterUser"] == user):
+        tweets = session["tweets"]
+    else:
+        session["TwitterUser"] = user
         tweets = Twitter.get_User_Timeline (user)
-        utils.addUserTwitter (user,tweets)   
+        session["tweets"] = tweets
     data = Twitter.cruchData (tweets)
     return render_template ("/Graphs/TwitterReport.html",data=data)
 
 @app.route ("/InstagramProfile/<user>")
 def InstagramProfile(user):
-    try:
-        pics = utils.getUserInstagram(user)
-        if pics == -1:
-            pics = Instagram.get_User_Data (user)
-            utils.addUserInstagram(user,pics)
-    except:
+    if (session["InstagramUser"] == user):
+        pics = session["pics"]
+    else:
+        session["InstagramUser"] = user
         pics = Instagram.get_User_Data (user)
-        utils.addUserInstagram(user,pics)
+        session["pics"] = pics
     return render_template ("/Graphs/InstagramReport.html",data=pics)
 
 
 @app.route ("/Instagram1/<user>")
 def InstagramCluster (user):
-    try:
-        pics = utils.getUserInstagram(user)
-        if pics == -1:
-            pics = Instagram.get_User_Data (user)
-            utils.addUserInstagram(user,pics)
-    except:
+    if (session["InstagramUser"] == user):
+        pics = session["pics"]
+    else:
+        session["InstagramUser"] = user
         pics = Instagram.get_User_Data (user)
-        utils.addUserInstagram(user,pics)
+        session["pics"] = pics
+
     mediaStats = pics["media_stats"]
     commentVals = mediaStats ["comments_vals"]
     likesVals =  mediaStats ["likes_vals"]
@@ -143,28 +131,24 @@ def InstagramCluster (user):
 
 @app.route ("/Instagram2/<user>")
 def InstagramEngagements(user):
-    try:
-        pics = utils.getUserInstagram(user)
-        if pics == -1:
-            pics = Instagram.get_User_Data (user)
-            utils.addUserInstagram(user,pics)
-    except:
+     if (session["InstagramUser"] == user):
+        pics = session["pics"]
+    else:
+        session["InstagramUser"] = user
         pics = Instagram.get_User_Data (user)
-        utils.addUserInstagram(user,pics)
+        session["pics"] = pics
     
     vals = pics["media_stats"]["eng_vals"]
     return render_template ("/Graphs/InstagramEngTime.html",vals=vals)
 
 @app.route ("/Instagram3/<user>")
 def InstagamLikesTime(user):
-    try:
-        pics = utils.getUserInstagram(user)
-        if pics == -1:
-            pics = Instagram.get_User_Data (user)
-            utils.addUserInstagram(user,pics)
-    except:
+    if (session["InstagramUser"] == user):
+        pics = session["pics"]
+    else:
+        session["InstagramUser"] = user
         pics = Instagram.get_User_Data (user)
-        utils.addUserInstagram(user,pics)
+        session["pics"] = pics
 
     likes_val= pics["media_stats"]["likes_vals"]
     img_vals = pics["media_stats"]["images"]
