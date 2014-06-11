@@ -16,7 +16,6 @@ count = 1
 #api = InstagramAPI(client_id="CLIENT_ID", client_secret='CLIENT_SECRET')
 api = InstagramAPI(access_token=access_token)
 
-
 def get_User_ID (username):
     #find user_id
     #user =  api.user_search(username, 1)[0]   
