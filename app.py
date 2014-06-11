@@ -18,9 +18,9 @@ env.line_statement_prefix = '='
 #def index():
 #    return render_template("index.html")
 
+
 @app.route("/peopleresults")
 def peopleresults():
-    session["user"] = ""
     return render_template("peopleresults.html")
 
 @app.route("/thingresults")
@@ -157,6 +157,8 @@ def InstagamLikesTime(user):
 
 @app.route("/", methods = ['GET', 'POST'])
 def index():
+    session["TwitterUser"] = ""
+    session["InstagramUser"] = ""
     if request.method == "GET": 
         return render_template("index.html")
     if request.method == "POST" and request.form['id'] == "things":
