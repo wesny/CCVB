@@ -1,12 +1,11 @@
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
-from py import utils
+#from py import utils
 from py import Instagram
 import json
 import os
 
-session["user"] = ""
 #from alchemy import analyze
 
 app = Flask(__name__)
@@ -21,6 +20,7 @@ env.line_statement_prefix = '='
 
 @app.route("/peopleresults")
 def peopleresults():
+    session["user"] = ""
     return render_template("peopleresults.html")
 
 @app.route("/thingresults")
@@ -131,7 +131,7 @@ def InstagramCluster (user):
 
 @app.route ("/Instagram2/<user>")
 def InstagramEngagements(user):
-     if (session["InstagramUser"] == user):
+    if (session["InstagramUser"] == user):
         pics = session["pics"]
     else:
         session["InstagramUser"] = user
