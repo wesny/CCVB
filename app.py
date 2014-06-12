@@ -24,7 +24,7 @@ def peopleresults():
     graphshtml = []
     graphsjs = []
     #Add functions here and append to graphshtml and graphjs.  Every div needs to be a pgraph
-    s = "<div class= 'pgraph instagram summary'> Hello World  </div class= 'pgraph instagram summary'>"
+    s = "<div class= 'pgraph instagram summary'> Hello World  </div>"
     graphshtml.append(s)
     return render_template("peopleresults.html", graphshtml = graphshtml, graphsjs = graphsjs)
 
