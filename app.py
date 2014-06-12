@@ -23,7 +23,10 @@ env.line_statement_prefix = '='
 
 @app.route("/peopleresults")
 def peopleresults():
-    return render_template("peopleresults.html")
+    graphshtml = []
+    graphsjs = []
+    #Add functions here and append to graphshtml and graphjs.  Every div needs to be a pgraph
+    return render_template("peopleresults.html", graphshtml = graphshtml, graphsjs = graphsjs)
 
 @app.route("/thingresults")
 def thingresults():
@@ -72,7 +75,6 @@ def graphtest(user):
     c = fbcalls.pull_fb_data(user)
     j = create_fb_jsons.createjson_fbpost_likessvstime(c)
     return render_template('graphs.html', d=j)
-
 
 if __name__ == '__main__':
     app.debug = True;

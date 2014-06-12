@@ -3,6 +3,7 @@
 = block head
 <link href={{ url_for('static', filename='css/xcharts.css') }} rel='stylesheet' type='text/css'>
 <link href={{ url_for('static', filename='css/peopleresults.css') }} rel='stylesheet' type='text/css'>
+<link href={{ url_for('static', filename='css/jquery-ui-1.10.4.min.css') }} rel='stylesheet' type='text/css'>
 = endblock
 {% block title %}People Search Results{% endblock %}
 
@@ -35,9 +36,9 @@ Sort:
 </div>
 </div>
 <div class="graphs">
-	<div class="pgraph">Graph1</div>
-	<div class="pgraph">Graph2</div>
-	<div class="pgraph">Graph3</div>
+	= for graph in graphshtml
+		graphs
+	= endfor
 </div>
 </div>
 <script type="text/javascript" src={{ url_for('static', filename='js/xcharts.js') }} charset="utf-8"></script>
@@ -47,6 +48,11 @@ Sort:
 <script type="text/javascript" src = {{ url_for('static', filename="js/jquery-ui-1.10.4.min.js") }}></script>
 <script type="text/javascript" src={{ url_for('static', filename='js/isotope.pkgd.min.js')}}></script>
 <script type="text/javascript" src = {{ url_for('static', filename='js/peopleresults.js') }}> </script>
+<script type="text/javascript">
+	= for graph in graphsjs
+		graph
+	= endfor
+</script>
 
 
 {% endblock %}
