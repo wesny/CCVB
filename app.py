@@ -116,6 +116,7 @@ def InstagramProfile(user):
 @app.route ("/Instagram1/<user>")
 def InstagramCluster (user):
     if (session["InstagramUser"] == user):
+        print "Session"
         pics = session["pics"]
     else:
         session["InstagramUser"] = user
