@@ -4,7 +4,6 @@ from urllib2 import urlopen
 from instagram.client import InstagramAPI
 import functions
 
-
 #AccountCreated
 #https://github.com/Instagram/python-instagram
 #pip install python-instagram SUCCESSFUL
@@ -15,6 +14,8 @@ access_token='1267672900.1fb234f.ab78269e1b754039b0e900a966e14fdb'
 count = 1
 #api = InstagramAPI(client_id="CLIENT_ID", client_secret='CLIENT_SECRET')
 api = InstagramAPI(access_token=access_token)
+
+print "here"
 
 def get_User_ID (username):
     #find user_id
@@ -28,6 +29,7 @@ def get_User_ID (username):
 
 def get_User_Data (username):
     user_id = get_User_ID (username)
+    print "here"
     #find user
     #doing it myself because the library is aweful...
     url = ("https://api.instagram.com/v1/users/%s/?access_token=%s") %(user_id,access_token)
@@ -56,6 +58,7 @@ def get_User_Data (username):
     return data
 
 def get_media (user_id):
+    print "here3"
     url = ("https://api.instagram.com/v1/users/%s/media/recent/?access_token=%s") % (user_id,access_token)
     response = urlopen(url)
     json_raw = response.read()
@@ -99,6 +102,8 @@ def get_media (user_id):
         except:
             print "error"
     finalMedia = crunchData(allMedia,commenter,liker)
+    print "here4"
+
     return finalMedia
 
 def crunchData (media_array,commenter,liker):
@@ -112,7 +117,7 @@ def crunchData (media_array,commenter,liker):
     text_vals = []
     img_vals = []
     media_count = len (media_array)
-    
+    print "here5"
     #Finding stalkers! COMMENTS
     commentVals = [float (commenter[arr][2]) for arr in commenter]
     stalkersNames = [commenter[arr][1]  for arr in commenter if functions.isPopular(commenter[arr][2],commentVals)]
@@ -120,13 +125,13 @@ def crunchData (media_array,commenter,liker):
     stalkersUserNames = [commenter[arr][0]  for arr in commenter if functions.isPopular(commenter[arr][2],commentVals)]
     stalkersParsedUserNames = [val.encode ('ascii',"ignore") for val in stalkersUserNames if len (val) > 2]
     
-    while len(stalkersUserNames) < 5:
+    while len(stalkersParsedUserNames) < 5:
         stalkersParsedUserNames.append("N/A")
         stalkersParsedNames.append("N/A")
 
     finalData['stalkerCommentsNames'] = stalkersParsedNames
     finalData['stalkersCommentsUserNames'] = stalkersParsedUserNames
-   
+    print "here6"
     #Finding stalkers! LIKES
     likeVals = [float (liker[arr][2]) for arr in liker]
     stalkersNames = [liker[arr][1]  for arr in liker if functions.isPopular(liker[arr][2],likeVals)]
@@ -134,7 +139,7 @@ def crunchData (media_array,commenter,liker):
     stalkersUserNames = [liker[arr][0]  for arr in liker if functions.isPopular(liker[arr][2],likeVals)]
     stalkersParsedUserNames = [val.encode ('ascii',"ignore") for val in stalkersUserNames if len (val) > 2]
 
-    while len(stalkersUserNames) < 5:
+    while len(stalkersParsedUserNames) < 5:
         stalkersParsedUserNames.append("N/A")
         stalkersParsedNames.append("N/A")
   

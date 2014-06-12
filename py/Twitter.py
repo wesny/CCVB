@@ -36,17 +36,17 @@ def get_User_Timeline (username):
     tweets = []
     #get the users timeline to evaluate their tweet content
     url =  'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=%s&count=200' % (username)
-    print url
     user_timeline = client.request(url)
    # print json.dumps(user_timeline, sort_keys=True, indent=4, separators=(',', ':'))
 
-    for tweet in  user_timeline:
+    for tweet in user_timeline:
         txt = tweet["text"]
-        id = tweet["id_str"]
-        #url = "https://api.twitter.com/1.1/statuses/%s/retweeted_by.json" % (id)
-        #print url
+        id = tweet["id"]
+        
+        #WORKING HERE
+        url = "http://api.twitter.com/1.1/statuses/retweets/149915024826187777.json?count=100"
+
         #response = client.request(url)
-        #print response
 
         if txt.find("RT") == -1:
             tweets.append ({
@@ -117,7 +117,7 @@ def cruchData (tweetArray):
 if __name__ == '__main__':
     tweets = get_User_Timeline ('jennamarbles')
     data = cruchData (tweets)
-    #print json.dumps(data, sort_keys=True, indent=4, separators=(',', ':'))
+    print json.dumps(data, sort_keys=True, indent=4, separators=(',', ':'))
 
 
 #NOTES/LONG TERM GOALS 
