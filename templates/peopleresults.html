@@ -13,7 +13,6 @@
 
 {% block body %}
 
-
 <h2><a href="/">Socialpedia</a></h2>
 <h1 class="center">Results</h1>
 <div>
@@ -67,20 +66,20 @@
 			<figure style="width: 1200px; height: 300px;" id="TW-RTvsFav"></figure>
 		</div>
 		<div class= "pgraph instagram summary">
-			<h1>{{igprofiledata["full_name"]}}'s Instagram Profile </h1>
+			<h1>{{data["igprofiledata"]["full_name"]}}'s Instagram Profile </h1>
 			<table> 
 				<tr> 
 					<td> 
-						<b> Name: </b> {{igprofiledata["full_name"]}} <br>
-						<b> Bio: </b> {{igprofiledata["bio"]}} <br>
-						<b> Website: </b> {{igprofiledata["website"]}} <br>
-						<b> Total Followers: </b> {{igprofiledata["followed_by"]}} <br>
-						<b> Total Media: </b> {{igprofiledata["total_media"]}}<br>
-						<b> Average Like Count: </b> {{igprofiledata["media_stats"]["like_count"]}}<br>
-						<b> Average Comment Count:</b> {{igprofiledata["media_stats"]["comment_count"]}}<br>
+						<b> Name: </b> {{data["igprofiledata"]["full_name"]}} <br>
+						<b> Bio: </b> {{data["igprofiledata"]["bio"]}} <br>
+						<b> Website: </b> {{data["igprofiledata"]["website"]}} <br>
+						<b> Total Followers: </b> {{data["igprofiledata"]["followed_by"]}} <br>
+						<b> Total Media: </b> {{data["igprofiledata"]["total_media"]}}<br>
+						<b> Average Like Count: </b> {{data["igprofiledata"]["media_stats"]["like_count"]}}<br>
+						<b> Average Comment Count:</b> {{data["igprofiledata"]["media_stats"]["comment_count"]}}<br>
 					</td>
 					<td>
-						<img src={{igprofiledata["pro_pic"]}} alt="Profile Picture" style="width:200px;height:200px">
+						<img src={{data["igprofiledata"]["pro_pic"]}} alt="Profile Picture" style="width:200px;height:200px">
 					</td>
 				</tr>
 			</table>
@@ -88,24 +87,24 @@
 
 			<ol>
 				<li>
-					<b> Name: </b> {{igprofiledata["media_stats"]["stalkerCommentsNames"][0]}} <br>
-					<b> User: </b> {{igprofiledata["media_stats"]["stalkersCommentsUserNames"][0]}}
+					<b> Name: </b> {{data["igprofiledata"]["media_stats"]["stalkerCommentsNames"][0]}} <br>
+					<b> User: </b> {{data["igprofiledata"]["media_stats"]["stalkersCommentsUserNames"][0]}}
 				</li>
 				<li>
-					<b>   Name:  </b>{{igprofiledata["media_stats"]["stalkerCommentsNames"][1]}} <br> 
-					<b>  User: </b> {{igprofiledata["media_stats"]["stalkersCommentsUserNames"][1]}}
+					<b>   Name:  </b>{{data["igprofiledata"]["media_stats"]["stalkerCommentsNames"][1]}} <br> 
+					<b>  User: </b> {{data["igprofiledata"]["media_stats"]["stalkersCommentsUserNames"][1]}}
 				</li>
 				<li>
-					<b> Name: </b> {{igprofiledata["media_stats"]["stalkerCommentsNames"][2]}} <br>
-					<b>  User: </b> {{igprofiledata["media_stats"]["stalkersCommentsUserNames"][2]}}
+					<b> Name: </b> {{data["igprofiledata"]["media_stats"]["stalkerCommentsNames"][2]}} <br>
+					<b>  User: </b> {{data["igprofiledata"]["media_stats"]["stalkersCommentsUserNames"][2]}}
 				</li>
 				<li>
-					<b> Name: </b>{{igprofiledata["media_stats"]["stalkerCommentsNames"][3]}} <br>
-					<b> User: </b>{{igprofiledata["media_stats"]["stalkersCommentsUserNames"][3]}}
+					<b> Name: </b>{{data["igprofiledata"]["media_stats"]["stalkerCommentsNames"][3]}} <br>
+					<b> User: </b>{{data["igprofiledata"]["media_stats"]["stalkersCommentsUserNames"][3]}}
 				</li>
 				<li>
-					<b>  Name: </b>{{igprofiledata["media_stats"]["stalkerCommentsNames"][4]}} <br>
-					<b>  User: </b>{{igprofiledata["media_stats"]["stalkersCommentsUserNames"][4]}}
+					<b>  Name: </b>{{data["igprofiledata"]["media_stats"]["stalkerCommentsNames"][4]}} <br>
+					<b>  User: </b>{{data["igprofiledata"]["media_stats"]["stalkersCommentsUserNames"][4]}}
 				</li>
 			</ol>
 
@@ -113,24 +112,24 @@
 
 			<ol>
 				<li>
-					<b> Name: </b> {{igprofiledata["media_stats"]["stalkerLikesNames"][0]}} <br>
-					<b> Username: </b> {{igprofiledata["media_stats"]["stalkersLikesUserNames"][0]}}
+					<b> Name: </b> {{data["igprofiledata"]["media_stats"]["stalkerLikesNames"][0]}} <br>
+					<b> Username: </b> {{data["igprofiledata"]["media_stats"]["stalkersLikesUserNames"][0]}}
 				</li>
 				<li>
-					<b>   Name:  </b>{{igprofiledata["media_stats"]["stalkerLikesNames"][1]}} <br> 
-					<b>  Username: </b> {{igprofiledata["media_stats"]["stalkersLikesUserNames"][1]}}
+					<b>   Name:  </b>{{data["igprofiledata"]["media_stats"]["stalkerLikesNames"][1]}} <br> 
+					<b>  Username: </b> {{data["igprofiledata"]["media_stats"]["stalkersLikesUserNames"][1]}}
 				</li>
 				<li>
-					<b> Name: </b> {{igprofiledata["media_stats"]["stalkerLikesNames"][2]}} <br>
-					<b>  Username: </b> {{igprofiledata["media_stats"]["stalkersLikesUserNames"][2]}}
+					<b> Name: </b> {{data["igprofiledata"]["media_stats"]["stalkerLikesNames"][2]}} <br>
+					<b>  Username: </b> {{data["igprofiledata"]["media_stats"]["stalkersLikesUserNames"][2]}}
 				</li>
 				<li>
-					<b> Name: </b>{{igprofiledata["media_stats"]["stalkerLikesNames"][3]}} <br>
-					<b> Username: </b>{{igprofiledata["media_stats"]["stalkersLikesUserNames"][3]}}
+					<b> Name: </b>{{data["igprofiledata"]["media_stats"]["stalkerLikesNames"][3]}} <br>
+					<b> Username: </b>{{data["igprofiledata"]["media_stats"]["stalkersLikesUserNames"][3]}}
 				</li>
 				<li>
-					<b>  Name: </b>{{igprofiledata["media_stats"]["stalkerLikesNames"][4]}} <br>
-					<b>  Username: </b>{{igprofiledata["media_stats"]["stalkersLikesUserNames"][4]}}
+					<b>  Name: </b>{{data["igprofiledata"]["media_stats"]["stalkerLikesNames"][4]}} <br>
+					<b>  Username: </b>{{data["igprofiledata"]["media_stats"]["stalkersLikesUserNames"][4]}}
 				</li>
 			</ol>
 
@@ -140,43 +139,43 @@
 			<table> 
 				<tr>
 					<td> 
-						<a href={{igpopulardata["media_stats"]["link"][0]}} target="_blank">
-							<img src={{igpopulardata["media_stats"]["thumbnails"][0]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+						<a href={{data["igpopulardata"]["media_stats"]["link"][0]}} target="_blank">
+							<img src={{data["igpopulardata"]["media_stats"]["thumbnails"][0]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
 						</a>
-						<p align=center>{{igpopulardata["media_stats"]["text"][0]}} </p>
+						<p align=center>{{data["igpopulardata"]["media_stats"]["text"][0]}} </p>
 					</td> 
 					<td> 
-						<a href={{igpopulardata["media_stats"]["link"][1]}} target="_blank">
-							<img src={{igpopulardata["media_stats"]["thumbnails"][1]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+						<a href={{data["igpopulardata"]["media_stats"]["link"][1]}} target="_blank">
+							<img src={{data["igpopulardata"]["media_stats"]["thumbnails"][1]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
 						</a>
-						<p align=center>    {{igpopulardata["media_stats"]["text"][1]}} </p> 
+						<p align=center>    {{data["igpopulardata"]["media_stats"]["text"][1]}} </p> 
 					</td>
 					<td>
-						<a href={{igpopulardata["media_stats"]["link"][2]}} target="_blank">
-							<img src={{igpopulardata["media_stats"]["thumbnails"][2]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+						<a href={{data["igpopulardata"]["media_stats"]["link"][2]}} target="_blank">
+							<img src={{data["igpopulardata"]["media_stats"]["thumbnails"][2]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
 						</a>	   
-						<p align=center>        {{igpopulardata["media_stats"]["text"][2]}} </p> 
+						<p align=center>        {{data["igpopulardata"]["media_stats"]["text"][2]}} </p> 
 					</td>
 				</tr>
 			</table> 
 		</div>
 		<div class="pgraph twitter summary">
-			<h1>{{twprofiledata["name"]}}'s Twitter Profile </h1>
+			<h1>{{data["twprofiledata"]["name"]}}'s Twitter Profile </h1>
 			<table> 
 				<tr> 
 					<td> 
-						<b> Name: </b> {{twprofiledata["name"]}} <br>
-						<b> Location: </b> {{twprofiledata["location"]}} <br>
-						<b> Description: </b> {{twprofiledata["description"]}} <br>
-						<b> Total Followers: </b> {{twprofiledata["followers_count"]}} <br>
-						<b> Total Friends: </b> {{twprofiledata["friends_count"]}} <br>
-						<b> Total Time Listed: </b> {{twprofiledata["listed_count"]}}<br>
-						<b> Total Statuses: </b> {{twprofiledata["statuses_count"]}}<br>
-						<b> Average Retweet Count: </b> {{twprofiledata["retweet_count"]}}<br>
-						<b> Average Favorite Count:</b> {{twprofiledata["favorite_count"]}}<br>
+						<b> Name: </b> {{data["twprofiledata"]["name"]}} <br>
+						<b> Location: </b> {{data["twprofiledata"]["location"]}} <br>
+						<b> Description: </b> {{data["twprofiledata"]["description"]}} <br>
+						<b> Total Followers: </b> {{data["twprofiledata"]["followers_count"]}} <br>
+						<b> Total Friends: </b> {{data["twprofiledata"]["friends_count"]}} <br>
+						<b> Total Time Listed: </b> {{data["twprofiledata"]["listed_count"]}}<br>
+						<b> Total Statuses: </b> {{data["twprofiledata"]["statuses_count"]}}<br>
+						<b> Average Retweet Count: </b> {{data["twprofiledata"]["retweet_count"]}}<br>
+						<b> Average Favorite Count:</b> {{data["twprofiledata"]["favorite_count"]}}<br>
 					</td>
 					<td>
-						<img src={{twprofiledata["profilePicture"]}} alt="Profile Picture" style="width:200px;height:200px">
+						<img src={{data["twprofiledata"]["profilePicture"]}} alt="Profile Picture" style="width:200px;height:200px">
 					</td>
 				</tr>
 			</table>
@@ -184,11 +183,11 @@
 
 				<b> Most Popular Tweets: </b> 
 				<ol>
-					<li> {{twprofiledata["popularTweets"][0]}} </li> 
-					<li> {{twprofiledata["popularTweets"][1]}} </li>
-					<li> {{twprofiledata["popularTweets"][2]}} </li>
-					<li> {{twprofiledata["popularTweets"][3]}} </li>
-					<li> {{data["popularTweets"][4]}} </li> 
+					<li> {{data["twprofiledata"]["popularTweets"][0]}} </li> 
+					<li> {{data["twprofiledata"]["popularTweets"][1]}} </li>
+					<li> {{data["twprofiledata"]["popularTweets"][2]}} </li>
+					<li> {{data["twprofiledata"]["popularTweets"][3]}} </li>
+					<li> {{data["twprofiledata"]["popularTweets"][4]}} </li> 
 				</ol> 
 			</table>
 		</div>
