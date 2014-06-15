@@ -9,7 +9,6 @@ from py import fbclasses
 from py import create_fb_jsons
 import json
 import os
-#from alchemy import analyze
 
 app = Flask(__name__)
 app.config.from_object('py.config')
@@ -17,16 +16,11 @@ app.config.from_object('py.config')
 env = app.jinja_env
 env.line_statement_prefix = '='
 
-#@app.route("/")
-#def index():
-#    return render_template("index.html")
-
 @app.route("/peopleresults")
 def peopleresults():
-    graphshtml = []
     graphsjs = []
     #Add functions here and append to graphshtml and graphjs.  Every div needs to be a pgraph
-    return render_template("peopleresults.html", graphshtml = graphshtml, graphsjs = graphsjs)
+    return render_template("peopleresults.html", graphsjs = graphsjs)
 
 @app.route("/thingresults")
 def thingresults():
