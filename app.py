@@ -27,24 +27,24 @@ def peopleresults():
     
     #API Calls
     #Instagram API
-     if (session["InstagramUser"] == user):
-        pics = session["pics"]
-    else:
-        session["InstagramUser"] = user
-        pics = Instagram.get_User_Data (user)
-        session["pics"] = pics
+   #  if (session["InstagramUser"] == user):
+    #    pics = session["pics"]
+    #else:
+     #   session["InstagramUser"] = user
+      #  pics = Instagram.get_User_Data (user)
+       # session["pics"] = pics
     #TwitterAPI
-    if (session["TwitterUser"] == user):
-        tweets = session["tweets"]
-    else:
-        session["TwitterUser"] = user
-        tweets = Twitter.get_User_Timeline (user)
-        session["tweets"] = tweets
+    #if (session["TwitterUser"] == user):
+    #    tweets = session["tweets"]
+    #else:
+     #   session["TwitterUser"] = user
+      #  tweets = Twitter.get_User_Timeline (user)
+       # session["tweets"] = tweets
 
     #Practice Div
-    s = "<div class= 'pgraph instagram summary'> Hello World  </div>"
-    graphshtml.append(s)
-    return render_template("peopleresults.html", graphshtml = graphshtml, graphsjs = graphsjs)
+    #s = "<div class= 'pgraph instagram summary'> Hello World  </div>"
+    #graphshtml.append(s)
+    #return render_template("peopleresults.html", graphshtml = graphshtml, graphsjs = graphsjs)
 
 @app.route("/thingresults")
 def thingresults():
