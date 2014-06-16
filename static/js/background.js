@@ -8,13 +8,14 @@ if(document.getElementById('full-div') != null) {
 }
 
 var makeBackground = function() {
-    var leftButton = document.getElementById("left-button");
-    var rightButton = document.getElementById("right-button");
-    var leftForm = document.getElementById("left-form");
-    var rightForm = document.getElementById("right-form");
-    leftButton = leftForm.removeChild(leftButton);
-    rightButton = rightForm.removeChild(rightButton);
-
+    if(intro) {
+	var leftButton = document.getElementById("left-button");
+	var rightButton = document.getElementById("right-button");
+	var leftForm = document.getElementById("left-form");
+	var rightForm = document.getElementById("right-form");
+	leftButton = leftForm.removeChild(leftButton);
+	rightButton = rightForm.removeChild(rightButton);
+    }
 
     var width = parseInt(document.body.clientWidth);
     var height = parseInt(document.body.clientHeight);

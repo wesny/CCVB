@@ -6,20 +6,12 @@
 {% block foreign %}
 <!-- <h2><a href="/">Socialpedia</a></h2> -->
 <br>
-<br>
-<h1 class="center">{{word}}'s Popularity:</h1>
-<br>
-<br>
+<h1 class="center" style="color:#888888">{{word}}'s Popularity:</h1>
+<div id="piechart_3d" style="width: 900px; height: 600px; margin-left: auto;
+			     margin-right: auto;"></div>
 
-<div class="center">
-  {{data[0]}}
-  <br> 
-  {{data[1]}} 
-  <br> 
-  {{data[2]}} 
-  <br> 
-  {{data[3]}}
-</div> 
+<div id="tweetbox" style="margin-left: auto; margin-right: auto; color:white">
+
 {% endblock %}
 
 {% block svg %}
@@ -30,7 +22,60 @@
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src = {{ url_for('static', filename='js/thingresults.js') }}> </script>
+<script type="text/javascript">
+var fullString = "{{data[0]}}"
+
+      var firstIndex = fullString.indexOf("(")
+      var firstString = fullString.substring(firstIndex-2,firstIndex)
+      var positive = parseInt(firstString)
+
+      var secondIndex = fullString.indexOf("(", firstIndex+1)
+      var secondString = fullString.substring(secondIndex-2,secondIndex)
+      var negative = parseInt(secondString)
+
+      var thirdIndex = fullString.indexOf("(", secondIndex+1)
+      var thirdString = fullString.substring(thirdIndex-2,thirdIndex)
+      var neutral = parseInt(thirdString)
+
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Feeling', 'Percentage'],
+          ['Positive', positive ],
+          ['Negative', negative ],
+          ['Neutral', neutral ],
+        ]);
+
+        var options = {
+          title: '',
+      backgroundColor: 'transparent', 
+      legend: {position: 'labeled', textStyle: {color: 'white'}, alginment: 'center'},
+     slices: {
+            0: { color: 'green' },
+            1: { color: 'red' },
+      2: {color: 'blue'}
+          }
+      
+      };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+</script>
+<script type="text/javascript"> 
+  var x = {{data2|tojson|safe}}
+  var y = x.length
+  function myFunction() {for (i=1; i < y; i++) { 
+				       document.write("<center>")
+				       document.write(x[i])
+				       document.write("<br>")
+				       document.write("<center>")}}
+				       
+				       myFunction()
+</script>
 {% endblock %}
 
 </html>

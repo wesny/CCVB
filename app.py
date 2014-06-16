@@ -196,7 +196,7 @@ def index():
             print data2
 
         
-        return render_template ("thingresults2.html", data=data, data2=data2, word=word)
+        return render_template ("thingresults.html", data=data, data2=data2, word=word)
     if request.method == "POST" and request.form['id'] == "people":
         return render_template ("peopleresults2.html")
 
