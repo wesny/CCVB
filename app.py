@@ -20,6 +20,26 @@ env.line_statement_prefix = '='
 def peopleresults():
     data = {}
     #Add functions here and append to graphshtml and graphjs.  Every div needs to be a pgraph
+
+    #API Calls
+    #Instagram API
+    if (session["InstagramUser"] == user):
+        pics = session["pics"]
+    else:
+        session["InstagramUser"] = user
+        pics = Instagram.get_User_Data (user)
+        session["pics"] = pics
+        #TwitterAPI
+    if (session["TwitterUser"] == user):
+            tweets = session["tweets"]
+    else:
+        session["TwitterUser"] = user
+        tweets = Twitter.get_User_Timeline (user)
+        session["tweets"] = tweets
+
+    data["twitter"] = tweets
+    data["instagram"] = instagram
+    
     return render_template("peopleresults.html", data = data)
 
 @app.route("/thingresults")
