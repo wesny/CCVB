@@ -18,7 +18,7 @@ env.line_statement_prefix = '='
 
 @app.route("/peopleresults")
 def peopleresults():
-    data = []
+    data = {}
     #Add functions here and append to graphshtml and graphjs.  Every div needs to be a pgraph
     return render_template("peopleresults.html", data = data)
 
