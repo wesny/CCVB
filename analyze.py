@@ -24,6 +24,7 @@ from alchemyapi import AlchemyAPI
 
 
 answer = ""
+answer2 = ""
 
 try:
 	import config
@@ -344,6 +345,22 @@ def output(tweets):
 
 		print ''
 
+        f = open("Output2.txt", "w")
+
+	for tweet in tweets:
+		f.write('@' + tweet['screen_name'] +'\n')
+		f.write( 'Date: ' + tweet['created_at'] +'\n')
+                f.write(tweet['text'] +'\n')
+		
+		if 'entity' in tweet['sentiment']:
+			f.write('Entity Sentiment:' + tweet['sentiment']['entity']['type'] + '(Score:' + str(tweet['sentiment']['entity']['score']) + ')' +'\n')
+
+		if 'doc' in tweet['sentiment']:
+			 f.write('Document Sentiment:' + tweet['sentiment']['doc']['type'] + '(Score:' + str(tweet['sentiment']['doc']['score']) + ')' +'\n')
+
+		f.write('' +'\n')
+        
+        f.close()
 
 
 def stats(tweets):
@@ -408,10 +425,10 @@ def stats(tweets):
 	if data['doc']['total'] > 0:
 		print 'Document-Level Sentiment:'
                 global answer
-		answer = answer + 'Positive: %d (%.2f%%)' % (data['doc']['positive'], 100.0*data['doc']['positive']/data['doc']['total']) + "\n"
-		answer = answer + 'Negative: %d (%.2f%%)' % (data['doc']['negative'], 100.0*data['doc']['negative']/data['doc']['total']) + "\n"
-		answer = answer + 'Neutral: %d (%.2f%%)' % (data['doc']['neutral'], 100.0*data['doc']['neutral']/data['doc']['total']) + "\n"
-		answer = answer + 'Total: %d (%.2f%%)' % (data['doc']['total'], 100.0*data['doc']['total']/data['doc']['total']) + "\n"
+		answer = answer + 'Positive: %d (%.2f%%)' % (data['doc']['positive'], 100.0*data['doc']['positive']/data['doc']['total'])
+		answer = answer + 'Negative: %d (%.2f%%)' % (data['doc']['negative'], 100.0*data['doc']['negative']/data['doc']['total'])
+		answer = answer + 'Neutral: %d (%.2f%%)' % (data['doc']['neutral'], 100.0*data['doc']['neutral']/data['doc']['total'])
+		answer = answer + 'Total: %d (%.2f%%)' % (data['doc']['total'], 100.0*data['doc']['total']/data['doc']['total'])
 
         text_file = open("Output.txt", "w")
 
