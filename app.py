@@ -2,7 +2,7 @@ from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
 #from py import utils
-from py import Instagram
+#from py import Instagram
 import json
 import os
 
@@ -169,15 +169,18 @@ def index():
         return render_template("index.html")
     if request.method == "POST" and request.form['id'] == "things":
         word = request.form['word'].encode ('ascii',"ignore")
-        os.system("python analyze.py " + word + " 150")
+        os.system("python analyze.py " + word + " 10")
         with open ("Output.txt", "r") as myfile:
             data=myfile.readlines()
             print data
-        
-        return render_template ("thingresults.html", data=data, word=word)
-    if request.method == "POST" and request.form['id'] == "people":
-        return render_template ("peopleresults.html")
+        with open ("Output2.txt", "r") as myfile:
+            data2=myfile.readlines()
+            print data2
 
+        
+        return render_template ("thingresults2.html", data=data, data2=data2, word=word)
+    if request.method == "POST" and request.form['id'] == "people":
+        return render_template ("peopleresults2.html")
 
 if __name__ == '__main__':
     app.debug = True;
