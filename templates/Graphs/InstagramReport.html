@@ -26,33 +26,7 @@
 	  </td>
 	</tr>
 	<table>
-     </div class= "pgraph instagram">
-
-<h3>	<b> Most Popular Media: </b> </h3> 
-	<table> 
-	<tr>
-	  <td> 
-	    <a href={{data["media_stats"]["link"][0]}} target="_blank">
-	      <img src={{data["media_stats"]["thumbnails"][0]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
-	    </a>
-	    <p align=center>{{data["media_stats"]["text"][0]}} </p>
-	  </td> 
-	  <td> 
-	    <a href={{data["media_stats"]["link"][1]}} target="_blank">
-	      <img src={{data["media_stats"]["thumbnails"][1]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
-	    </a>
-	    <p align=center>    {{data["media_stats"]["text"][1]}} </p> 
-	  </td>
-	  <td>
-	    <a href={{data["media_stats"]["link"][2]}} target="_blank">
-	      <img src={{data["media_stats"]["thumbnails"][2]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
-	    </a>	   
-	   <p align=center>        {{data["media_stats"]["text"][2]}} </p> 
-	  </td>
-	</tr>
-	</table> 
-<br>
-<h3> YOUR INSTAGRAM STALKERS: (Top Commenters) </h3>
+	  <h3> YOUR INSTAGRAM STALKERS: (Top Commenters) </h3>
 
 	<ol>
 	  <li>
@@ -101,6 +75,35 @@
 	  <b>  Username: </b>{{data["media_stats"]["stalkersLikesUserNames"][4]}}
 	  </li>
 	</ol>
+
+     </div class= "pgraph instagram summary">
+    
+     <div class = "phraph instagram posts">
+<h3>	<b> Most Popular Media: </b> </h3> 
+	<table> 
+	<tr>
+	  <td> 
+	    <a href={{data["media_stats"]["link"][0]}} target="_blank">
+	      <img src={{data["media_stats"]["thumbnails"][0]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+	    </a>
+	    <p align=center>{{data["media_stats"]["text"][0]}} </p>
+	  </td> 
+	  <td> 
+	    <a href={{data["media_stats"]["link"][1]}} target="_blank">
+	      <img src={{data["media_stats"]["thumbnails"][1]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+	    </a>
+	    <p align=center>    {{data["media_stats"]["text"][1]}} </p> 
+	  </td>
+	  <td>
+	    <a href={{data["media_stats"]["link"][2]}} target="_blank">
+	      <img src={{data["media_stats"]["thumbnails"][2]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+	    </a>	   
+	   <p align=center>        {{data["media_stats"]["text"][2]}} </p> 
+	  </td>
+	</tr>
+	</table> 
+<br>
+     </div class = "phraph instagram posts">
 
 <script>
   data = {{data|tojson|safe}};
