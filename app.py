@@ -36,8 +36,8 @@ def peopleresults():
         session["TwitterUser"] = user
         tweets = Twitter.get_User_Timeline (user)
         session["tweets"] = tweets
-
-    data["twitter"] = tweets
+    tweetsUpdate = Twitter.cruchData (tweets)
+    data["twitter"] = tweetsUpdate
     data["instagram"] = instagram
     
     return render_template("peopleresults.html", data = data)
