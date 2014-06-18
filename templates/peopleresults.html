@@ -12,35 +12,192 @@
 {% endblock %}
 
 {% block body %}
-
-
 <h2><a href="/">Socialpedia</a></h2>
 <h1 class="center">Results</h1>
 <div>
-<div class='selector'>
-Filter:
-<div class='button-group'>
-	<button class='button'>All</button>
-	<button class='button'>Facebook</button>
-	<button class='button'>Twitter</button>
-	<button class='button'>Instagram</button>
-</div>
-</div>
-<div class='selector'>
-Sort:
-<div class='button-group'>
+	<div class='selector'>
+		Filter:
+		<div class='button-group'>
+			<button class='button'>All</button>
+			<button class='button'>Facebook</button>
+			<button class='button'>Twitter</button>
+			<button class='button'>Instagram</button>
+		</div>
+	</div>
+	<div class='selector'>
+		Sort:
+		<div class='button-group'>
+			<button class='button'>All</button>
+			<button class='button'>Summary</button>
+			<button class='button'>Graphs</button>
+			<button class='button'>Posts</button>
+		</div>
+	</div>
+	<div class="graphs">
+		<div class="pgraph twitter graphs">
+			<h1>Twitter Retweets vs. Favorites</h1>
+			<div id = "TW-RTvsFav-dialog"> </div>
+			<figure style="width: 1200px; height: 300px;" id="TW-RTvsFav"></figure>
+		</div>
+		<div class="pgraph instagram graphs">
+			<h1>Instagram Likes vs. Time</h1>
+			<div id = "IG-LivsTi-dialog"> </div>
+			<figure style="width: 1200px; height: 300px;" id="IG-LivsTi"></figure>
+		</div>
+		<div class="pgraph twitter graphs">
+			<h1>Twitter Favorites vs. Time</h1>
+			<div id = "TW-FavvsTi-dialog"> </div>
+			<figure style="width: 1200px; height: 300px;" id="TW-FavvsTi"></figure>
+		</div>
+		<div class="pgraph twitter graphs">
+			<h1>Twitter Retweets vs. Time</h1>
+			<div id = "TW-RTvsTi-dialog"> </div>
+			<figure style="width: 1200px; height: 300px;" id="TW-RTvsTi"></figure>
+		</div>
+		<div class="pgraph twitter graphs">
+			<h1>Twitter Engagement VS Time</h1>
+			<div id = "TW-EngvsTi-dialog"> </div>
+			<figure style="width: 400px; height: 300px;" id="TW-EngvsTi"></figure>
+		</div>
+		<div class="pgraph instagram graphs">
+			<h1>Instagram Engagement vs. Time </h1>
+			<div id = "IG-EngvsTi-dialog"> </div>
+			<figure style="width: 1200px; height: 300px;" id="IG-EngvsTi"></figure>
+		</div>
+		<div class="pgraph instagram graphs">
+			<h1>Instagram Comments vs. Likes </h1>
+			<div id = "IG-LivsvsCm-dialog"> </div>
+			<span> <h2 id= "clickme">Click me to Cluster</h2> </span>
+			<figure style="width: 1200px; height: 300px;" id="IG-LivsvsCm"></figure>
+		</div>
 
-	<button class='button'>All</button>
-	<button class='button'>Summary</button>
-	<button class='button'>Graphs</button>
-	<button class='button'>Posts</button>
-</div>
-</div>
-<div class="graphs">
-	= for graph in graphshtml
-		{{graph}}
-	= endfor
-</div>
+		<div class="pgraph instagram summary">
+			<h1>{{data["instagram"]["full_name"]}}'s Instagram Profile </h1>
+			<table> 
+				<tr> 
+					<td> 
+						<b> Name: </b> {{data["instagram"]["full_name"]}} <br>
+						<b> Bio: </b> {{data["instagram"]["bio"]}} <br>
+						<b> Website: </b> {{data["instagram"]["website"]}} <br>
+						<b> Total Followers: </b> {{data["instagram"]["followed_by"]}} <br>
+						<b> Total Media: </b> {{data["instagram"]["total_media"]}}<br>
+						<b> Average Like Count: </b> {{data["instagram"]["media_stats"]["like_count"]}}<br>
+						<b> Average Comment Count:</b> {{data["instagram"]["media_stats"]["comment_count"]}}<br>
+					</td>
+					<td>
+						<img src={{data["instagram"]["pro_pic"]}} alt="Profile Picture" style="width:200px;height:200px">
+					</td>
+				</tr>
+			</table>
+			<h3> YOUR INSTAGRAM STALKERS: (Top Commenters) </h3>
+
+			<ol>
+				<li>
+					<b> Name: </b> {{data["instagram"]["media_stats"]["stalkerCommentsNames"][0]}} <br>
+					<b> User: </b> {{data["instagram"]["media_stats"]["stalkersCommentsUserNames"][0]}}
+				</li>
+				<li>
+					<b>   Name:  </b>{{data["instagram"]["media_stats"]["stalkerCommentsNames"][1]}} <br> 
+					<b>  User: </b> {{data["instagram"]["media_stats"]["stalkersCommentsUserNames"][1]}}
+				</li>
+				<li>
+					<b> Name: </b> {{data["instagram"]["media_stats"]["stalkerCommentsNames"][2]}} <br>
+					<b>  User: </b> {{data["instagram"]["media_stats"]["stalkersCommentsUserNames"][2]}}
+				</li>
+				<li>
+					<b> Name: </b>{{data["instagram"]["media_stats"]["stalkerCommentsNames"][3]}} <br>
+					<b> User: </b>{{data["instagram"]["media_stats"]["stalkersCommentsUserNames"][3]}}
+				</li>
+				<li>
+					<b>  Name: </b>{{data["instagram"]["media_stats"]["stalkerCommentsNames"][4]}} <br>
+					<b>  User: </b>{{data["instagram"]["media_stats"]["stalkersCommentsUserNames"][4]}}
+				</li>
+			</ol>
+
+			<h3> YOUR INSTAGRAM STALKERS: (Top Likers) </h3>
+
+			<ol>
+				<li>
+					<b> Name: </b> {{data["instagram"]["media_stats"]["stalkerLikesNames"][0]}} <br>
+					<b> Username: </b> {{data["instagram"]["media_stats"]["stalkersLikesUserNames"][0]}}
+				</li>
+				<li>
+					<b>   Name:  </b>{{data["instagram"]["media_stats"]["stalkerLikesNames"][1]}} <br> 
+					<b>  Username: </b> {{data["instagram"]["media_stats"]["stalkersLikesUserNames"][1]}}
+				</li>
+				<li>
+					<b> Name: </b> {{data["instagram"]["media_stats"]["stalkerLikesNames"][2]}} <br>
+					<b>  Username: </b> {{data["instagram"]["media_stats"]["stalkersLikesUserNames"][2]}}
+				</li>
+				<li>
+					<b> Name: </b>{{data["instagram"]["media_stats"]["stalkerLikesNames"][3]}} <br>
+					<b> Username: </b>{{data["instagram"]["media_stats"]["stalkersLikesUserNames"][3]}}
+				</li>
+				<li>
+					<b>  Name: </b>{{data["instagram"]["media_stats"]["stalkerLikesNames"][4]}} <br>
+					<b>  Username: </b>{{data["instagram"]["media_stats"]["stalkersLikesUserNames"][4]}}
+				</li>
+			</ol>
+
+		</div>
+		<div class = "pgraph instagram posts">
+			<h3>	<b> Most Popular Media: </b> </h3> 
+			<table> 
+				<tr>
+					<td> 
+						<a href={{data["instagram"]["media_stats"]["link"][0]}} target="_blank">
+							<img src={{data["instagram"]["media_stats"]["thumbnails"][0]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+						</a>
+						<p align=center>{{data["instagram"]["media_stats"]["text"][0]}} </p>
+					</td> 
+					<td> 
+						<a href={{data["instagram"]["media_stats"]["link"][1]}} target="_blank">
+							<img src={{data["instagram"]["media_stats"]["thumbnails"][1]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+						</a>
+						<p align=center>    {{data["instagram"]["media_stats"]["text"][1]}} </p> 
+					</td>
+					<td>
+						<a href={{data["instagram"]["media_stats"]["link"][2]}} target="_blank">
+							<img src={{data["instagram"]["media_stats"]["thumbnails"][2]}} alt="Popular Post 1" style="width:300px;height:200px"> <br>
+						</a>	   
+						<p align=center>        {{data["instagram"]["media_stats"]["text"][2]}} </p> 
+					</td>
+				</tr>
+			</table> 
+		</div>
+		<div class="pgraph twitter summary">
+			<h1>{{data["twitter"]["name"]}}'s Twitter Profile </h1>
+			<table> 
+				<tr> 
+					<td> 
+						<b> Name: </b> {{data["twitter"]["name"]}} <br>
+						<b> Location: </b> {{data["twitter"]["location"]}} <br>
+						<b> Description: </b> {{data["twitter"]["description"]}} <br>
+						<b> Total Followers: </b> {{data["twitter"]["followers_count"]}} <br>
+						<b> Total Friends: </b> {{data["twitter"]["friends_count"]}} <br>
+						<b> Total Time Listed: </b> {{data["twitter"]["listed_count"]}}<br>
+						<b> Total Statuses: </b> {{data["twitter"]["statuses_count"]}}<br>
+						<b> Average Retweet Count: </b> {{data["twitter"]["retweet_count"]}}<br>
+						<b> Average Favorite Count:</b> {{data["twitter"]["favorite_count"]}}<br>
+					</td>
+					<td>
+						<img src={{data["twitter"]["profilePicture"]}} alt="Profile Picture" style="width:200px;height:200px">
+					</td>
+				</tr>
+			</table>
+			<table>
+
+				<b> Most Popular Tweets: </b> 
+				<ol>
+					<li> {{data["twitter"]["popularTweets"][0]}} </li> 
+					<li> {{data["twitter"]["popularTweets"][1]}} </li>
+					<li> {{data["twitter"]["popularTweets"][2]}} </li>
+					<li> {{data["twitter"]["popularTweets"][3]}} </li>
+					<li> {{data["twitter"]["popularTweets"][4]}} </li> 
+				</ol> 
+			</table>
+		</div>
+	</div>
 </div>
 <script type="text/javascript" src={{ url_for('static', filename='js/xcharts.js') }} charset="utf-8"></script>
 <script type="text/javascript" src = {{ url_for('static', filename="js/d3.min.js") }}></script>
@@ -50,9 +207,25 @@ Sort:
 <script type="text/javascript" src={{ url_for('static', filename='js/isotope.pkgd.min.js')}}></script>
 <script type="text/javascript" src = {{ url_for('static', filename='js/peopleresults.js') }}> </script>
 <script type="text/javascript">
-	= for graph in graphsjs
-		graph
-	= endfor
+
+data = {{data|tojson|safe}};
+tweets = data["twitter"]
+pics = data["pics"]
+
+InstagramEngTime(pics);
+InstagramLikesTime(pics);
+TwitterRetFav(tweets);
+TwitterRetweetsTime(tweets);
+TweetsFavTime(tweets);
+TwitterEngTime(tweets);
+
+window.onload = function () {
+document.getElementById("IG-LivsvsCm-dialog").innerHTML = "";
+}
+
+clusterData = getDataCLUSTER(pics);
+useDataCLUSTER(clusterData);
+clickEventCLUSTER(pics);
 </script>
 
 

@@ -1,12 +1,14 @@
+#
+
 from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
-#from py import utils
-#from py import Instagram
+from py import Instagram
+from py import fbcalls
+from py import fbclasses
+from py import create_fb_jsons
 import json
 import os
-
-#from alchemy import analyze
 
 app = Flask(__name__)
 app.config.from_object('py.config')
@@ -14,37 +16,22 @@ app.config.from_object('py.config')
 env = app.jinja_env
 env.line_statement_prefix = '='
 
-#@app.route("/")
-#def index():
-#    return render_template("index.html")
-
-
 @app.route("/peopleresults")
-def peopleresults():
-    graphshtml = []
-    graphsjs = []
-    #Add functions here and append to graphshtml and graphjs.  Every div needs to be a pgraph
-    
+def peopleresults(IGUser, FBUser, TWUser):
+    data = {}
     #API Calls
     #Instagram API
-   #  if (session["InstagramUser"] == user):
-    #    pics = session["pics"]
-    #else:
-     #   session["InstagramUser"] = user
-      #  pics = Instagram.get_User_Data (user)
-       # session["pics"] = pics
-    #TwitterAPI
-    #if (session["TwitterUser"] == user):
-    #    tweets = session["tweets"]
-    #else:
-     #   session["TwitterUser"] = user
-      #  tweets = Twitter.get_User_Timeline (user)
-       # session["tweets"] = tweets
-
-    #Practice Div
-    #s = "<div class= 'pgraph instagram summary'> Hello World  </div>"
-    #graphshtml.append(s)
-    #return render_template("peopleresults.html", graphshtml = graphshtml, graphsjs = graphsjs)
+    if IGUser:
+        pics = Instagram.get_User_Data (user)
+        session["pics"] = pics
+        data["instagram"] = pics
+    if TWUser:
+        session["TwitterUser"] = user
+        tweets = Twitter.get_User_Timeline (user)
+        session["tweets"] = tweets
+        tweetsUpdate = Twitter.cruchData (tweets)
+        data["twitter"] = tweetsUpdate
+    return render_template("peopleresults.html", data = data)
 
 @app.route("/thingresults")
 def thingresults():
@@ -198,7 +185,8 @@ def index():
         
         return render_template ("thingresults2.html", data=data, data2=data2, word=word)
     if request.method == "POST" and request.form['id'] == "people":
-        return render_template ("peopleresults2.html")
+        #return render_template ("peopleresults2.html")
+        peopleresults(request.form['instagram'], request.form['fb'], request.form['twitter'])
 
 if __name__ == '__main__':
     app.debug = True;
