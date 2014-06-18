@@ -17,29 +17,20 @@ env = app.jinja_env
 env.line_statement_prefix = '='
 
 @app.route("/peopleresults")
-def peopleresults():
+def peopleresults(IGUser, FBUser, TWUser):
     data = {}
-    #Add functions here and append to graphshtml and graphjs.  Every div needs to be a pgraph
-
     #API Calls
     #Instagram API
-    if (session["InstagramUser"] == user):
-        pics = session["pics"]
-    else:
-        session["InstagramUser"] = user
+    if IGUser:
         pics = Instagram.get_User_Data (user)
         session["pics"] = pics
-        #TwitterAPI
-    if (session["TwitterUser"] == user):
-            tweets = session["tweets"]
-    else:
+        data["instagram"] = pics
+    if TWUser:
         session["TwitterUser"] = user
         tweets = Twitter.get_User_Timeline (user)
         session["tweets"] = tweets
-    tweetsUpdate = Twitter.cruchData (tweets)
-    data["twitter"] = tweetsUpdate
-    data["instagram"] = instagram
-    
+        tweetsUpdate = Twitter.cruchData (tweets)
+        data["twitter"] = tweetsUpdate
     return render_template("peopleresults.html", data = data)
 
 @app.route("/thingresults")
@@ -82,7 +73,7 @@ def index():
         
         return render_template ("thingresults.html", data=data, word=word)
     if request.method == "POST" and request.form['id'] == "people":
-        return render_template ("peopleresults.html")
+        peopleresults(request.form['instagram'], request.form['fb'], request.form['twitter'])
 
 @app.route('/graphtest/<user>')
 def graphtest(user):
