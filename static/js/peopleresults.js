@@ -33,6 +33,7 @@ var InstagramEngTime = function (pics) {
 	arr.push(myVal);
 	data["main"][0]["data"] = arr;
     };
+    console.log("instagramengtime")
     var myChart = new xChart("line", data, "IG-EngvsTi");
 };
 
@@ -62,6 +63,7 @@ var TwitterEngTime = function (tweets) {
 	arr.push(myVal);
 	data["main"][0]["data"] = arr;
     };
+    console.log("twitterengtime")
     var myChart = new xChart("line", data, "TW-EngvsTi");
 };
 
@@ -113,7 +115,7 @@ var InstagramLikesTime = function (pics) {
 
 	},
     };
-
+    console.log("instagramlikestime")
     var myChart = new xChart('line-dotted', data, '#IG-LivsTi', opts);
 };
 
@@ -496,7 +498,7 @@ var clickEventCLUSTER = function (pics) {
 
 };
 
-var $container = $('.graphs').isotope({
-	itemSelector: '.pgraph',
-	layoutMode: 'masonry',
-});
+// var $container = $('.graphs').isotope({
+// 	itemSelector: '.pgraph',
+// 	layoutMode: 'masonry',
+// });

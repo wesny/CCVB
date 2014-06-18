@@ -21,17 +21,20 @@ def peopleresults(IGUser, FBUser, TWUser):
     data = {}
     #API Calls
     #Instagram API
+    print IGUser
+    print FBUser
+    print TWUser
     if IGUser:
-        pics = Instagram.get_User_Data (user)
+        pics = Instagram.get_User_Data (IGUser)
         session["pics"] = pics
         data["instagram"] = pics
     if TWUser:
-        session["TwitterUser"] = user
-        tweets = Twitter.get_User_Timeline (user)
+        session["TwitterUser"] = TWUser
+        tweets = Twitter.get_User_Timeline (TWUser)
         session["tweets"] = tweets
         tweetsUpdate = Twitter.cruchData (tweets)
         data["twitter"] = tweetsUpdate
-    return render_template("peopleresults.html", data = data)
+    return data
 
 @app.route("/thingresults")
 def thingresults():
@@ -181,12 +184,13 @@ def index():
         with open ("Output2.txt", "r") as myfile:
             data2=myfile.readlines()
             print data2
-
+        os.remove("Output.txt")
+        os.remove("Output2.txt")
         
         return render_template ("thingresults2.html", data=data, data2=data2, word=word)
     if request.method == "POST" and request.form['id'] == "people":
-        #return render_template ("peopleresults2.html")
-        peopleresults(request.form['instagram'], request.form['fb'], request.form['twitter'])
+        data = peopleresults(request.form['instagram'], request.form['fb'], request.form['twitter'])
+        return render_template("peopleresults.html", data = data)
 
 if __name__ == '__main__':
     app.debug = True;
