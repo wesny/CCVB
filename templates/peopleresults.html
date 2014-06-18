@@ -18,41 +18,41 @@
 	<h2><a href="/">Socialpedia</a></h2>
 	<h1 class="center">Results</h1>
 	<div>
-		<div class='selector'>
-			Filter:
+		<!-- <div class='selector'>
+			Filter By Network:
 			<div class='button-group filters'>
 				<button class='button is-checked' filter="*">All</button>
-				<button class='button' filter="facebook">Facebook</button>
-				<button class='button' filter="twitter">Twitter</button>
-				<button class='button' filter="instagram">Instagram</button>
+				<button class='button' filter=".facebook">Facebook</button>
+				<button class='button' filter=".twitter">Twitter</button>
+				<button class='button' filter=".instagram">Instagram</button>
 			</div>
 		</div>
 		<div class='selector'>
-			Sort:
+			Filter By Type:
 			<div class='button-group sorters'>
 				<button class='button is-checked' filter="*">All</button>
-				<button class='button' filter="summary">Summary</button>
-				<button class='button' filter="graphs">Graphs</button>
-				<button class='button' filter="posts">Posts</button>
+				<button class='button' filter=".summary">Summary</button>
+				<button class='button' filter=".graphs">Graphs</button>
+				<button class='button' filter=".posts">Posts</button>
 			</div>
-		</div>
+		</div> -->
 		<div class="graphs">
-			<div class="pgraph twitter graphs">
+			<div class="pgraph twitter graphs" style="width: 500px; height: 300px">
 				<h3>Twitter Retweets vs. Favorites</h3>
 				<div id = "TW-RTvsFav-dialog"> </div>
 				<figure style="width: 500px; height: 250px;" id="TW-RTvsFav"></figure>
 			</div>
-			<div class="pgraph instagram graphs">
+			<div class="pgraph instagram graphs" style="width: 500px; height: 300px">
 				<h3>Instagram Likes vs. Time</h3>
 				<div id = "IG-LivsTi-dialog"> </div>
 				<figure style="width: 500px; height: 250px;" id="IG-LivsTi"></figure>
 			</div>
-			<div class="pgraph twitter graphs">
+			<div class="pgraph twitter graphs" style="width: 500px; height: 300px">
 				<h3>Twitter Engagement VS Time</h3>
 				<div id = "TW-EngvsTi-dialog"> </div>
 				<figure style="width: 400px; height: 250px;" id="TW-EngvsTi"></figure>
 			</div>
-			<div class="pgraph instagram graphs">
+			<div class="pgraph instagram graphs" style="width: 500px; height: 300px">
 				<h3>Instagram Engagement vs. Time </h3>
 				<div id = "IG-EngvsTi-dialog"> </div>
 				<figure style="width: 500px; height: 250px;" id="IG-EngvsTi"></figure>
@@ -174,72 +174,66 @@
 					</tr>
 				</table>
 			</div>
-			<div class="pgraph twitter posts"
-			<table>
-
-				<b> Most Popular Tweets: </b> 
-				<ol>
-					<li> {{data["twitter"]["popularTweets"][0]}} </li> 
-					<li> {{data["twitter"]["popularTweets"][1]}} </li>
-					<li> {{data["twitter"]["popularTweets"][2]}} </li>
-					<li> {{data["twitter"]["popularTweets"][3]}} </li>
-					<li> {{data["twitter"]["popularTweets"][4]}} </li> 
-				</ol> 
-			</table>
+			<div class="pgraph twitter posts">
+				<table>
+					<b> Most Popular Tweets: </b> 
+					<ol>
+						<li> {{data["twitter"]["popularTweets"][0]}} </li> 
+						<li> {{data["twitter"]["popularTweets"][1]}} </li>
+						<li> {{data["twitter"]["popularTweets"][2]}} </li>
+						<li> {{data["twitter"]["popularTweets"][3]}} </li>
+						<li> {{data["twitter"]["popularTweets"][4]}} </li> 
+					</ol> 
+				</table>
+			</div>
 		</div>
 	</div>
-</div>
-<script type="text/javascript" src={{ url_for('static', filename='js/xcharts.js') }} charset="utf-8"></script>
-<script type="text/javascript" src = {{ url_for('static', filename="js/d3.js") }}></script>
-<script type="text/javascript" src = {{ url_for('static', filename="js/lodash.js") }}></script>
-<script type="text/javascript" src = {{ url_for('static', filename="js/jquery-1.10.2.js") }}></script>
-<script type="text/javascript" src = {{ url_for('static', filename="js/jquery-ui-1.10.4.min.js") }}></script>
-<script type="text/javascript" src={{ url_for('static', filename='js/isotope.pkgd.min.js')}}></script>
-<script type="text/javascript" src = {{ url_for('static', filename='js/peopleresults.js') }}> </script>
-<script type="text/javascript">
+	<script type="text/javascript" src={{ url_for('static', filename='js/xcharts.js') }} charset="utf-8"></script>
+	<script type="text/javascript" src = {{ url_for('static', filename="js/d3.js") }}></script>
+	<script type="text/javascript" src = {{ url_for('static', filename="js/lodash.js") }}></script>
+	<script type="text/javascript" src = {{ url_for('static', filename="js/jquery-1.10.2.js") }}></script>
+	<script type="text/javascript" src = {{ url_for('static', filename="js/jquery-ui-1.10.4.min.js") }}></script>
+	<script type="text/javascript" src={{ url_for('static', filename='js/isotope.pkgd.min.js')}}></script>
+	<script type="text/javascript" src = {{ url_for('static', filename='js/peopleresults.js') }}> </script>
+	<script type="text/javascript">
 
-	data = {{data|tojson|safe}};
-	tweets = data["twitter"]
-	pics = data["instagram"]
+		data = {{data|tojson|safe}};
+		tweets = data["twitter"]
+		pics = data["instagram"]
 
 
-	InstagramEngTime(pics);
-	TwitterEngTime(tweets);
-	InstagramLikesTime(pics);
-	TwitterRetFav(tweets);
+		InstagramEngTime(pics);
+		TwitterEngTime(tweets);
+		InstagramLikesTime(pics);
+		TwitterRetFav(tweets);
 
-	
 
-	window.load(function () {
-		document.getElementById("IG-LivsvsCm-dialog").innerHTML = "";
-		var $container = $('.graphs').isotope({
-			itemSelector: '.pgraph',
-			layoutMode: 'masonry',
-		});	
 
-		$('.button-group').each( function( i, buttonGroup ) {
-			var $buttonGroup = $( buttonGroup );
-			$buttonGroup.on( 'click', 'button', function() {
-				$buttonGroup.find('.is-checked').removeClass('is-checked');
-				$( this ).addClass('is-checked');
-			});
+		$(window).load(function () {
+			var $container = $('.graphs').isotope({
+				itemSelector: '.pgraph',
+				layoutMode: 'masonry',
+			});	
+
+			// $('.button-group').each( function( i, buttonGroup ) {
+			// 	var $buttonGroup = $( buttonGroup );
+			// 	$buttonGroup.on( 'click', 'button', function() {
+			// 		$buttonGroup.find('.is-checked').removeClass('is-checked');
+			// 		$( this ).addClass('is-checked');
+			// 	});
+			// });
+
+			// $('.filters').on( 'click', 'button', function() {
+			// 	var filterValue = $( this ).attr('filter');
+			// 	$container.isotope({ filter: filterValue });
+			// });
+
+			// $('.sorters').on( 'click', 'button', function() {
+			// 	var filterValue = $( this ).attr('filter');
+			// 	$container.isotope({ filter: filterValue });
+			// });
 		});
-
-		$('.filters').on( 'click', 'button', function() {
-			var filterValue = $( this ).attr('filter');
-			$container.isotope({ filter: filterValue });
-			$(window).resize();
-			$container.isotope('relayout');
-		});
-
-		$('.sorters').on( 'click', 'button', function() {
-			var filterValue = $( this ).attr('filter');
-			$container.isotope({ sort: filterValue });
-			$(window).resize();
-			$container.isotope('relayout');
-		});
-	});
-</script>
+	</script>
 
 </body>
 

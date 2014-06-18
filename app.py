@@ -200,7 +200,16 @@ def index():
         
         return render_template ("thingresults2.html", data=data, data2=data2, word=word)
     if request.method == "POST" and request.form['id'] == "people":
-        data = peopleresults(request.form['instagram'], request.form['fb'], request.form['twitter'])
+        instagram = ""
+        fb = ""
+        twitter = ""
+        try:
+            instagram = request.form['instagram']
+            fb = request.form['fb']
+            twitter = request.form['twitter']
+        except:
+            return render_template("index.html")
+        data = peopleresults(instagram, fb, twitter)
         return render_template("peopleresults.html", data = data)
 
 if __name__ == '__main__':

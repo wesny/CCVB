@@ -25,7 +25,7 @@ var InstagramEngTime = function (pics) {
 		arr.push(myVal);
 		data["main"][0]["data"] = arr;
 	};
-	var myChart = new xChart("line-dotted", data, "#IG-EngvsTi");
+	var IGEngvsTi = new xChart("line-dotted", data, "#IG-EngvsTi");
 };
 
 // TwitterEngTime
@@ -55,15 +55,15 @@ var TwitterEngTime = function (tweets) {
 		data["main"][0]["data"] = arr;
 	};
 	console.log("twitterengtime")
-	var myChart = new xChart("line", data, "#TW-EngvsTi");
+	var TWEngvsTi = new xChart("line", data, "#TW-EngvsTi");
 };
 
 //InstragramLikesTime
 var InstagramLikesTime = function (pics) {
-	likes= pics["media_stats"]["likes_vals"]
-	imgval = pics["media_stats"]["images"]
-	textVal = pics["media_stats"]["text_vals"]
-
+	likes= pics["media_stats"]["likes_vals"];
+	imgval = pics["media_stats"]["images"];
+	textVal = pics["media_stats"]["text_vals"];
+	console.log(textVal);
 	data = {
 		"xScale": "linear",
 		"yScale": "linear",
@@ -81,23 +81,23 @@ var InstagramLikesTime = function (pics) {
 			"y": likes[i]
 		};
 
-		arr = data["main"][0]["data"]
+		arr = data["main"][0]["data"];
 		arr.push(myVal);
 		data["main"][0]["data"] = arr;
 	};
 
 	var opts = {
 		"mouseover": function (d,i) {
-			txt = textVal[i];
-			var txtNd=document.createTextNode(txt);
+			//txt = textVal[i];
+			//var txtNd=document.createTextNode(txt);
 			imageSRC = imgval[i];
-			var imgNd = document.createElement('img')
+			var imgNd = document.createElement('img');
 			imgNd.src = imageSRC;
-			var br = document.createElement("br");
+			//var br = document.createElement("br");
 
-			document.getElementById("IG-LivsTi-dialog").appendChild(imgNd)
-			document.getElementById("IG-LivsTi-dialog").appendChild(br)
-			document.getElementById("IG-LivsTi-dialog").appendChild(txtNd);
+			document.getElementById("IG-LivsTi-dialog").appendChild(imgNd);
+			//document.getElementById("IG-LivsTi-dialog").appendChild(br);
+			//document.getElementById("IG-LivsTi-dialog").appendChild(txtNd);
 			$( "#IG-LivsTi-dialog" ).dialog(); 
 		},
 		"mouseout": function (x,i) {
@@ -106,7 +106,7 @@ var InstagramLikesTime = function (pics) {
 
 		},
 	};
-	var myChart = new xChart('line-dotted', data, '#IG-LivsTi', opts);
+	var IGLivsTi = new xChart('line-dotted', data, '#IG-LivsTi', opts);
 };
 
 //TwitterRetFav
@@ -136,5 +136,5 @@ var TwitterRetFav = function (tweets) {
 		arr.push(myVal);
 		data["main"][0]["data"] = arr;
 	};
-	var myChart = new xChart('line-dotted', data, '#TW-RTvsFav');
+	var TWRTvsFav = new xChart('line-dotted', data, '#TW-RTvsFav');
 };
