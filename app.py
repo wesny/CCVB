@@ -25,15 +25,26 @@ def peopleresults(IGUser, FBUser, TWUser):
     print FBUser
     print TWUser
     if IGUser:
-        pics = Instagram.get_User_Data (IGUser)
-        session["pics"] = pics
-        data["instagram"] = pics
+        #Testing
+        if "pics" in session and "IGUser" in session and session["IGUser"] == IGUser:
+            data['instagram'] = pics
+        #endTesting
+        else:
+            session['IGUser'] = IGUser
+            pics = Instagram.get_User_Data (IGUser)
+            session["pics"] = pics
+            data["instagram"] = pics
     if TWUser:
-        session["TwitterUser"] = TWUser
-        tweets = Twitter.get_User_Timeline (TWUser)
-        session["tweets"] = tweets
-        tweetsUpdate = Twitter.cruchData (tweets)
-        data["twitter"] = tweetsUpdate
+        #Testing
+        if "tweets" in session and "TWUser" in session and session['TWUser'] == TWUser:
+            data["twitter"] = session["tweets"]
+        #endTesting
+        else:
+            session["TWUser"] = TWUser
+            tweets = Twitter.get_User_Timeline (TWUser)
+            session["tweets"] = tweets
+            tweetsUpdate = Twitter.cruchData (tweets)
+            data["twitter"] = tweetsUpdate
     return data
 
 @app.route("/thingresults")

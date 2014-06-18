@@ -57,3 +57,8 @@
 	float:left;
 	width:100%;
 }
+
+.pgraph{
+  position: absolute;
+  float:left;
+}

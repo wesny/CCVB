@@ -2,12 +2,12 @@
 
 <head>
 	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../static/css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="../static/css/style.css" type="text/css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Changa+One' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Cinzel:900' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href="../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../static/css/style.css" type="text/css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Changa+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cinzel:900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 	<link href={{ url_for('static', filename='css/xcharts.css') }} rel='stylesheet' type='text/css'>
 	<link href={{ url_for('static', filename='css/peopleresults.css') }} rel='stylesheet' type='text/css'>
 	<link href={{ url_for('static', filename='css/jquery-ui-1.10.4.min.css') }} rel='stylesheet' type='text/css'>
@@ -20,47 +20,45 @@
 	<div>
 		<div class='selector'>
 			Filter:
-			<div class='button-group filters'>
-				<button class='button is-checked' filter="*">All</button>
-				<button class='button' filter="facebook">Facebook</button>
-				<button class='button' filter="twitter">Twitter</button>
-				<button class='button' filter="instagram">Instagram</button>
+			<div class='button-group'>
+				<button class='button'>All</button>
+				<button class='button'>Facebook</button>
+				<button class='button'>Twitter</button>
+				<button class='button'>Instagram</button>
 			</div>
 		</div>
 		<div class='selector'>
 			Sort:
-			<div class='button-group sorters'>
-				<button class='button is-checked' filter="*">All</button>
-				<button class='button' filter="summary">Summary</button>
-				<button class='button' filter="graphs">Graphs</button>
-				<button class='button' filter="posts">Posts</button>
+			<div class='button-group'>
+				<button class='button'>All</button>
+				<button class='button'>Summary</button>
+				<button class='button'>Graphs</button>
+				<button class='button'>Posts</button>
 			</div>
 		</div>
 		<div class="graphs">
 			<div class="pgraph twitter graphs">
-				<h3>Twitter Retweets vs. Favorites</h3>
+				<h1>Twitter Retweets vs. Favorites</h1>
 				<div id = "TW-RTvsFav-dialog"> </div>
-				<figure style="width: 500px; height: 250px;" id="TW-RTvsFav"></figure>
+				<figure style="width: 900px; height: 300px;" id="TW-RTvsFav"></figure>
 			</div>
 			<div class="pgraph instagram graphs">
-				<h3>Instagram Likes vs. Time</h3>
+				<h1>Instagram Likes vs. Time</h1>
 				<div id = "IG-LivsTi-dialog"> </div>
-				<figure style="width: 500px; height: 250px;" id="IG-LivsTi"></figure>
+				<figure style="width: 900px; height: 300px;" id="IG-LivsTi"></figure>
 			</div>
 			<div class="pgraph twitter graphs">
-				<h3>Twitter Engagement VS Time</h3>
+				<h1>Twitter Engagement VS Time</h1>
 				<div id = "TW-EngvsTi-dialog"> </div>
-				<figure style="width: 400px; height: 250px;" id="TW-EngvsTi"></figure>
+				<figure style="width: 400px; height: 300px;" id="TW-EngvsTi"></figure>
 			</div>
 			<div class="pgraph instagram graphs">
-				<h3>Instagram Engagement vs. Time </h3>
+				<h1>Instagram Engagement vs. Time </h1>
 				<div id = "IG-EngvsTi-dialog"> </div>
-				<figure style="width: 500px; height: 250px;" id="IG-EngvsTi"></figure>
+				<figure style="width: 900px; height: 300px;" id="IG-EngvsTi"></figure>
 			</div>
 			<div class="pgraph instagram summary">
-				<br>
-				<br>
-				<h3>{{data["instagram"]["full_name"]}}'s Instagram Profile </h3>
+				<h1>{{data["instagram"]["full_name"]}}'s Instagram Profile </h1>
 				<table> 
 					<tr> 
 						<td> 
@@ -154,7 +152,7 @@
 				</table> 
 			</div>
 			<div class="pgraph twitter summary">
-				<h3>{{data["twitter"]["name"]}}'s Twitter Profile </h3>
+				<h1>{{data["twitter"]["name"]}}'s Twitter Profile </h1>
 				<table> 
 					<tr> 
 						<td> 
@@ -173,73 +171,43 @@
 						</td>
 					</tr>
 				</table>
-			</div>
-			<div class="pgraph twitter posts"
-			<table>
+				<table>
 
-				<b> Most Popular Tweets: </b> 
-				<ol>
-					<li> {{data["twitter"]["popularTweets"][0]}} </li> 
-					<li> {{data["twitter"]["popularTweets"][1]}} </li>
-					<li> {{data["twitter"]["popularTweets"][2]}} </li>
-					<li> {{data["twitter"]["popularTweets"][3]}} </li>
-					<li> {{data["twitter"]["popularTweets"][4]}} </li> 
-				</ol> 
-			</table>
+					<b> Most Popular Tweets: </b> 
+					<ol>
+						<li> {{data["twitter"]["popularTweets"][0]}} </li> 
+						<li> {{data["twitter"]["popularTweets"][1]}} </li>
+						<li> {{data["twitter"]["popularTweets"][2]}} </li>
+						<li> {{data["twitter"]["popularTweets"][3]}} </li>
+						<li> {{data["twitter"]["popularTweets"][4]}} </li> 
+					</ol> 
+				</table>
+			</div>
 		</div>
 	</div>
-</div>
-<script type="text/javascript" src={{ url_for('static', filename='js/xcharts.js') }} charset="utf-8"></script>
-<script type="text/javascript" src = {{ url_for('static', filename="js/d3.js") }}></script>
-<script type="text/javascript" src = {{ url_for('static', filename="js/lodash.js") }}></script>
-<script type="text/javascript" src = {{ url_for('static', filename="js/jquery-1.10.2.js") }}></script>
-<script type="text/javascript" src = {{ url_for('static', filename="js/jquery-ui-1.10.4.min.js") }}></script>
-<script type="text/javascript" src={{ url_for('static', filename='js/isotope.pkgd.min.js')}}></script>
-<script type="text/javascript" src = {{ url_for('static', filename='js/peopleresults.js') }}> </script>
-<script type="text/javascript">
+	<script type="text/javascript" src={{ url_for('static', filename='js/xcharts.js') }} charset="utf-8"></script>
+	<script type="text/javascript" src = {{ url_for('static', filename="js/d3.js") }}></script>
+	<script type="text/javascript" src = {{ url_for('static', filename="js/lodash.js") }}></script>
+	<script type="text/javascript" src = {{ url_for('static', filename="js/jquery-1.10.2.js") }}></script>
+	<script type="text/javascript" src = {{ url_for('static', filename="js/jquery-ui-1.10.4.min.js") }}></script>
+	<script type="text/javascript" src={{ url_for('static', filename='js/isotope.pkgd.min.js')}}></script>
+	<script type="text/javascript" src = {{ url_for('static', filename='js/peopleresults.js') }}> </script>
+	<script type="text/javascript">
 
-	data = {{data|tojson|safe}};
-	tweets = data["twitter"]
-	pics = data["instagram"]
+		data = {{data|tojson|safe}};
+		tweets = data["twitter"]
+		pics = data["instagram"]
 
 
-	InstagramEngTime(pics);
-	TwitterEngTime(tweets);
-	InstagramLikesTime(pics);
-	TwitterRetFav(tweets);
+		InstagramEngTime(pics);
+		TwitterEngTime(tweets);
+		InstagramLikesTime(pics);
+		TwitterRetFav(tweets);
 
-	
-
-	window.load(function () {
-		document.getElementById("IG-LivsvsCm-dialog").innerHTML = "";
-		var $container = $('.graphs').isotope({
-			itemSelector: '.pgraph',
-			layoutMode: 'masonry',
-		});	
-
-		$('.button-group').each( function( i, buttonGroup ) {
-			var $buttonGroup = $( buttonGroup );
-			$buttonGroup.on( 'click', 'button', function() {
-				$buttonGroup.find('.is-checked').removeClass('is-checked');
-				$( this ).addClass('is-checked');
-			});
-		});
-
-		$('.filters').on( 'click', 'button', function() {
-			var filterValue = $( this ).attr('filter');
-			$container.isotope({ filter: filterValue });
-			$(window).resize();
-			$container.isotope('relayout');
-		});
-
-		$('.sorters').on( 'click', 'button', function() {
-			var filterValue = $( this ).attr('filter');
-			$container.isotope({ sort: filterValue });
-			$(window).resize();
-			$container.isotope('relayout');
-		});
-	});
-</script>
+		window.onload = function () {
+			document.getElementById("IG-LivsvsCm-dialog").innerHTML = "";
+		}
+	</script>
 
 </body>
 
