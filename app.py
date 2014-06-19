@@ -4,9 +4,9 @@ from flask import Flask, session, render_template, request, redirect, url_for
 from py import *
 from py import Twitter
 from py import Instagram
-from py import fbcalls
-from py import fbclasses
-from py import create_fb_jsons
+#from py import fbcalls
+#from py import fbclasses
+#from py import create_fb_jsons
 import json
 import os
 
