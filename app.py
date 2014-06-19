@@ -210,7 +210,7 @@ def index():
         except:
             return render_template("index.html")
         data = peopleresults(instagram, fb, twitter)
-        return render_template("peopleresults.html", data = data)
+        return render_template("peopleresults_dc.html", data = data, instagram = instagram,fb=fb,twitter=twitter )
 
 if __name__ == '__main__':
     app.debug = True;

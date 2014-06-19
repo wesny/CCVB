@@ -1,0 +1,173 @@
+<h2 align="center"><a href="/">Socialpedia</a></h2>
+<head> 
+	<link href={{ url_for('static', filename='css/xcharts.css') }} rel='stylesheet' type='text/css'>
+	<link href={{ url_for('static', filename='css/jquery-ui-1.10.4.min.css') }} rel='stylesheet' type='text/css'>
+	<link href={{ url_for('static', filename='css/peopleresults.css') }} rel='stylesheet' type='text/css'>
+</head>
+<table>
+<tr>
+<td>
+<div class="pgraph instagram summary">
+
+  <h3>{{data["instagram"]["full_name"]}}'s Instagram Profile </h3>
+  <table> 
+    <tr> 
+      <td> 
+	<b> Name: </b> {{data["instagram"]["full_name"]}} <br>
+	<b> Bio: </b> {{data["instagram"]["bio"]}} <br>
+	<b> Website: </b> {{data["instagram"]["website"]}} <br>
+	<b> Total Followers: </b> {{data["instagram"]["followed_by"]}} <br>
+	<b> Total Media: </b> {{data["instagram"]["total_media"]}}<br>
+	<b> Average Like Count: </b> {{data["instagram"]["media_stats"]["like_count"]}}<br>
+	<b> Average Comment Count:</b> {{data["instagram"]["media_stats"]["comment_count"]}}<br>
+      </td>
+      <td>
+	<img src={{data["instagram"]["pro_pic"]}} alt="Profile Picture" style="width:200px;height:200px">
+      </td>
+    </tr>
+  </table>
+</div>
+</td>
+<td> 
+	<div class="pgraph twitter summary">
+				<h3>{{data["twitter"]["name"]}}'s Twitter Profile </h3>
+				<table> 
+					<tr> 
+						<td> 
+							<b> Name: </b> {{data["twitter"]["name"]}} <br>
+							<b> Location: </b> {{data["twitter"]["location"]}} <br>
+							<b> Description: </b> {{data["twitter"]["description"]}} <br>
+							<b> Total Followers: </b> {{data["twitter"]["followers_count"]}} <br>
+							<b> Total Friends: </b> {{data["twitter"]["friends_count"]}} <br>
+							<b> Total Time Listed: </b> {{data["twitter"]["listed_count"]}}<br>
+							<b> Total Statuses: </b> {{data["twitter"]["statuses_count"]}}<br>
+							<b> Average Retweet Count: </b> {{data["twitter"]["retweet_count"]}}<br>
+							<b> Average Favorite Count:</b> {{data["twitter"]["favorite_count"]}}<br>
+						</td>
+						<td>
+							<img src={{data["twitter"]["profilePicture"]}} alt="Profile Picture" style="width:200px;height:200px">
+						</td>
+					</tr>
+				</table>
+			</div>
+</td>
+</tr>
+				
+<tr>
+  <td><div class="pgraph instagram graphs" style="width: 500px; height: 300px">
+      <h3>Instagram Likes vs. Time</h3>
+      <div id = "IG-LivsTi-dialog"> </div>
+      <figure style="width: 500px; height: 250px;" id="IG-LivsTi"></figure>
+  </div> </td>
+  <td>	<div class="pgraph twitter graphs" style="width: 500px; height: 300px">
+      <h3>Twitter Retweets vs. Favorites</h3>
+      <div id = "TW-RTvsFav-dialog"> </div>
+      <figure style="width: 500px; height: 250px;" id="TW-RTvsFav"></figure>
+  </div> </td> 
+</tr>
+
+<tr>
+  <td>
+ <div class="pgraph instagram graphs" style="width: 500px; height: 300px">
+      <h3>Instagram Engagement vs. Time </h3>
+      <div id = "IG-EngvsTi-dialog"> </div>
+      <figure style="width: 500px; height: 250px;" id="IG-EngvsTi"></figure>
+  </div>
+ </td>
+  <td> 	
+<div class="pgraph twitter graphs" style="width: 500px; height: 300px">
+      <h3>Twitter Engagement VS Time</h3>
+      <div id = "TW-EngvsTi-dialog"> </div>
+      <figure style="width: 400px; height: 250px;" id="TW-EngvsTi"></figure>
+  </div>
+    </td> 
+</tr>
+
+<tr>
+<td><button id="b1"> Popular Instagram Media and Instagram Stalkers (Full Profile) </button> </td>
+<td><button id="b2"> Popular Twitter Media (Full Profile) </button></td>
+</tr>
+
+<tr> 
+<td><button id="b3">Instagram Cluster, Favorites vs. Comments </button></td>
+<td><button id="b4"> Twitter Favorites vs. Time </button></td>
+</td>
+</tr>
+
+<tr> 
+<td></td>
+<td><button id="b5"> Twitter Retweets vs. Time </button></td>
+</td>
+</tr>
+<table>
+
+<script>
+  myElem = document.getElementById("b1");
+  myElem.onclick = function () {
+  window.location.href = "/InstagramProfile/{{instagram}}"
+}
+
+myElem2 = document.getElementById("b2");
+  myElem2.onclick = function () {
+  window.location.href = "/TwitterProfile/{{twitter}}"
+}
+
+  myElem3 = document.getElementById("b3");
+  myElem3.onclick = function () {
+  window.location.href = "/Instagram1/{{instagram}}"
+}
+
+myElem4 = document.getElementById("b4");
+  myElem4.onclick = function () {
+  window.location.href = "/Twitter1/{{twitter}}"
+}
+
+myElem5 = document.getElementById("b5");
+  myElem5.onclick = function () {
+  window.location.href = "/Twitter2/{{twitter}}"
+}
+</script>
+<script type="text/javascript" src={{ url_for('static', filename='js/xcharts.js') }} charset="utf-8"></script>
+<script type="text/javascript" src = {{ url_for('static', filename="js/d3.js") }}></script>
+<script type="text/javascript" src = {{ url_for('static', filename="js/lodash.js") }}></script>
+<script type="text/javascript" src = {{ url_for('static', filename="js/jquery-1.10.2.js") }}></script>
+<script type="text/javascript" src = {{ url_for('static', filename="js/jquery-ui-1.10.4.min.js") }}></script>
+<script type="text/javascript" src = {{ url_for('static', filename='js/peopleresults.js') }}> </script>
+
+<script type="text/javascript">
+
+  data = {{data|tojson|safe}};
+  tweets = data["twitter"]
+  pics = data["instagram"]
+
+
+  InstagramEngTime(pics);
+  TwitterEngTime(tweets);
+  InstagramLikesTime(pics);
+  TwitterRetFav(tweets);
+
+  $(window).load(function () {
+  var $container = $('.graphs').isotope({
+  itemSelector: '.pgraph',
+  layoutMode: 'masonry',
+  });	
+
+  // $('.button-group').each( function( i, buttonGroup ) {
+  // 	var $buttonGroup = $( buttonGroup );
+  // 	$buttonGroup.on( 'click', 'button', function() {
+  // 		$buttonGroup.find('.is-checked').removeClass('is-checked');
+  // 		$( this ).addClass('is-checked');
+  // 	});
+  // });
+
+  // $('.filters').on( 'click', 'button', function() {
+  // 	var filterValue = $( this ).attr('filter');
+  // 	$container.isotope({ filter: filterValue });
+  // });
+
+  // $('.sorters').on( 'click', 'button', function() {
+  // 	var filterValue = $( this ).attr('filter');
+  // 	$container.isotope({ filter: filterValue });
+  // });
+  });
+</script>
