@@ -213,5 +213,4 @@ def index():
         return render_template("peopleresults_dc.html", data = data, instagram = instagram,fb=fb,twitter=twitter )
 
 if __name__ == '__main__':
-    app.debug = True;
     app.run()
