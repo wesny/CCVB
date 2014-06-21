@@ -37,20 +37,23 @@
 			</div>
 		</div> -->
 		<div class="graphs">
+			= if data['twitter']
 			<div class="pgraph twitter graphs" style="width: 500px; height: 300px">
 				<h3>Twitter Retweets vs. Favorites</h3>
 				<div id = "TW-RTvsFav-dialog"> </div>
 				<figure style="width: 500px; height: 250px;" id="TW-RTvsFav"></figure>
 			</div>
-			<div class="pgraph instagram graphs" style="width: 500px; height: 300px">
-				<h3>Instagram Likes vs. Time</h3>
-				<div id = "IG-LivsTi-dialog"> </div>
-				<figure style="width: 500px; height: 250px;" id="IG-LivsTi"></figure>
-			</div>
 			<div class="pgraph twitter graphs" style="width: 500px; height: 300px">
 				<h3>Twitter Engagement VS Time</h3>
 				<div id = "TW-EngvsTi-dialog"> </div>
 				<figure style="width: 400px; height: 250px;" id="TW-EngvsTi"></figure>
+			</div>
+			= endif
+			= if data.instagram
+			<div class="pgraph instagram graphs" style="width: 500px; height: 300px">
+				<h3>Instagram Likes vs. Time</h3>
+				<div id = "IG-LivsTi-dialog"> </div>
+				<figure style="width: 500px; height: 250px;" id="IG-LivsTi"></figure>
 			</div>
 			<div class="pgraph instagram graphs" style="width: 500px; height: 300px">
 				<h3>Instagram Engagement vs. Time </h3>
@@ -153,6 +156,8 @@
 					</tr>
 				</table> 
 			</div>
+			= endif
+			= if data.twitter
 			<div class="pgraph twitter summary">
 				<h3>{{data["twitter"]["name"]}}'s Twitter Profile </h3>
 				<table> 
@@ -186,6 +191,7 @@
 					</ol> 
 				</table>
 			</div>
+			= endif
 		</div>
 	</div>
 	<script type="text/javascript" src={{ url_for('static', filename='js/xcharts.js') }} charset="utf-8"></script>
@@ -198,16 +204,17 @@
 	<script type="text/javascript">
 
 		data = {{data|tojson|safe}};
-		tweets = data["twitter"]
+		= if data['instagram']
 		pics = data["instagram"]
-
-
 		InstagramEngTime(pics);
-		TwitterEngTime(tweets);
 		InstagramLikesTime(pics);
+		= endif
+		
+		= if data['twitter']
+		tweets = data["twitter"]
+		TwitterEngTime(tweets);
 		TwitterRetFav(tweets);
-
-
+		= endif
 
 		$(window).load(function () {
 			var $container = $('.graphs').isotope({

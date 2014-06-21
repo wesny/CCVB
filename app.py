@@ -45,6 +45,7 @@ def peopleresults(IGUser, FBUser, TWUser):
             session["tweets"] = tweets
             tweetsUpdate = Twitter.cruchData (tweets)
             data["twitter"] = tweetsUpdate
+    print data
     return data
 
 @app.route("/thingresults")
@@ -209,8 +210,11 @@ def index():
             twitter = request.form['twitter']
         except:
             return render_template("index.html")
-        data = peopleresults(instagram, fb, twitter)
-        return render_template("peopleresults_dc.html", data = data, instagram = instagram,fb=fb,twitter=twitter )
+        if not instagram or not fb or not twitter:
+            return render_template("index.html")
+        else:
+            data = peopleresults(instagram, fb, twitter)
+            return render_template("peopleresults_dc.html", data = data, instagram = instagram,fb=fb,twitter=twitter )
 
 if __name__ == '__main__':
     app.run()
